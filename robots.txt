@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sebkrebs14.github.io/PlateDuel/sitemap.xml
+Sitemap: https://plateduel.com/sitemap.xml

@@ -56,10 +56,9 @@ HOME_PAGE_FILE = "index.html"
 ROSTER_MOVES_LOOKBACK_DAYS = 3
 ROSTER_MOVES_PER_CATEGORY = 30
 
-# GitHub Pages project-site URL (no trailing slash) - robots.txt, sitemap.xml,
-# and the JSON-LD blocks all build absolute URLs from this. Update here if the
-# site ever moves to a custom domain.
-SITE_BASE_URL = "https://sebkrebs14.github.io/PlateDuel"
+# Custom domain (no trailing slash) - robots.txt, sitemap.xml, and the
+# JSON-LD blocks all build absolute URLs from this.
+SITE_BASE_URL = "https://plateduel.com"
 
 PROMOTION_DEMOTION_CODES = {"CU", "OPT", "SE"}  # Recalled, Optioned, Selected
 
