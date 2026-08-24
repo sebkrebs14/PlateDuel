@@ -51,8 +51,8 @@ from bvp_matchups import (
 from bvp_matchups_html import get_handedness
 from weather import get_wind_effect_for_stadium
 
-OUTPUT_FILE = "index.html"
-HOME_PAGE_FILE = "home.html"
+OUTPUT_FILE = "dashboard.html"
+HOME_PAGE_FILE = "index.html"
 ROSTER_MOVES_LOOKBACK_DAYS = 3
 ROSTER_MOVES_PER_CATEGORY = 30
 
@@ -689,7 +689,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>MLB Matchup Dashboard</title>
+<title>Today's Matchups - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="{meta_description}">
 <script type="application/ld+json">{sports_events_jsonld}</script>
@@ -1059,7 +1059,7 @@ ROSTER_MOVES_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Roster Moves</h1>
   </div>
   <span class="date">Last {lookback_days} days</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <div class="filters-bar">
   <select id="team-filter">
@@ -1215,7 +1215,7 @@ HR_PICKS_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Today's Home Run Picks</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Ranked by a composite score - season HR rate, the opposing pitcher's HR/9 allowed, this
@@ -1382,7 +1382,7 @@ PARK_FACTORS_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Park Factors</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   A park factor above 1.00 means a stadium historically produces more home runs than a
@@ -1526,7 +1526,7 @@ WEATHER_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Weather Watch</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Today's games ranked by wind, from most hitter-aided to most pitcher-suppressed. The wind
@@ -1758,7 +1758,7 @@ PLAYER_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>{player_name}</h1>
   </div>
   <span class="date">{bats} &middot; {team}</span>
-  <a class="header-link" href="../home.html">{home_icon}Home</a>
+  <a class="header-link" href="../index.html">{home_icon}Home</a>
   <a class="header-link" href="../{team_link}">&larr; {team}</a>
 </header>
 
@@ -1819,7 +1819,7 @@ TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>{team_name}</h1>
   </div>
   <span class="date">Today: {location_prefix} {opponent}</span>
-  <a class="header-link" href="../home.html">{home_icon}Home</a>
+  <a class="header-link" href="../index.html">{home_icon}Home</a>
 </header>
 
 <main class="team-main">
@@ -2165,7 +2165,7 @@ STREAKS_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Streaks</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Active streaks for players across the league, whether or not their team plays today, computed
@@ -2634,7 +2634,7 @@ LEADERBOARD_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>League Leaders</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Season leaders among qualified players, independent of who's playing today. Names link to
@@ -2804,7 +2804,7 @@ STANDINGS_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Standings</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   The real pennant race, next to the fantasy one over in the 162-0 Challenge. Magic number is
@@ -3620,7 +3620,7 @@ WORD_GAME_TEMPLATE = """<!DOCTYPE html>
     <h1>Bordle</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   A new baseball word every day - players, teams, ballparks, and terminology, all mixed together.
@@ -4495,7 +4495,7 @@ GRID_GAME_TEMPLATE = """<!DOCTYPE html>
     <h1>Diamond Grid</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Every row and column is a team or career achievement - name one player who fits both, without
@@ -5117,7 +5117,7 @@ WHOAMI_TEMPLATE = """<!DOCTYPE html>
     <h1>Guess The Legend</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="home.html">{home_icon}Home</a>
+  <a class="header-link" href="index.html">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   A new Hall of Famer every day. Clues start obscure - draft slot, first team, an odd fact - and
@@ -5278,7 +5278,7 @@ HOME_PAGE_TEMPLATE = """<!DOCTYPE html>
 <title>MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Daily MLB matchups, HR picks, and games - PlateDuel brings live baseball stats and daily games together.">
-<script type="application/ld+json">{{"@context": "https://schema.org", "@type": "WebSite", "name": "PlateDuel", "url": "{site_base_url}/home.html"}}</script>
+<script type="application/ld+json">{{"@context": "https://schema.org", "@type": "WebSite", "name": "PlateDuel", "url": "{site_base_url}/"}}</script>
 </head>
 <body>
 <header class="home-header">
@@ -5508,7 +5508,7 @@ document.addEventListener('click', (e) => {
 
 def build_search_index():
     """Scans already-written player/team pages for a name -> slug index, so
-    home.html can offer instant site-wide search with no server. Reads each
+    the home page can offer instant site-wide search with no server. Reads each
     file's own <h1>/date line rather than reversing slugify(), since that's
     not always lossless (initials, suffixes, apostrophes). Must run after
     the player/team pages for today have been written."""
@@ -5714,7 +5714,7 @@ def main():
     matchup_data_json = json.dumps(dashboard_rows).replace("</", "<\\/")
     cards_html = "\n".join(cards) if cards else (
         "<p class='empty-state'>All of today's games have ended. "
-        "Check back tomorrow, or see <a href='home.html'>Yesterday's Results</a> on the home page.</p>"
+        "Check back tomorrow, or see <a href='index.html'>Yesterday's Results</a> on the home page.</p>"
     )
 
     page = PAGE_TEMPLATE.format(

@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
 <title>MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Today's MLB probable pitchers, starting lineups, and batter-vs-pitcher matchup history for all 15 games on August 23, 2026.">
-<script type="application/ld+json">[]</script>
+<meta name="description" content="Daily MLB matchups, HR picks, and games - PlateDuel brings live baseball stats and daily games together.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "PlateDuel", "url": "https://your-domain.com/"}</script>
 </head>
 <body>
-<header class="site-header">
-  <div class="site-header-top">
-    <div class="brand">
-      <svg width="24" height="24" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+<header class="home-header">
+  <div class="home-brand">
+    <svg width="56" height="56" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
   <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
   <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
   <path d="M10 8 H90 V50 L50 95 L10 50 Z" fill="none" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
@@ -24,204 +23,255 @@
     <circle cx="50" cy="83" r="3.4"/>
   </g>
 </svg>
-      <h1>MLB Matchup Dashboard</h1>
-    </div>
-    <span class="date">Sunday, August 23, 2026</span>
-    <a class="header-link" href="home.html"><svg width="16" height="16" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-  <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
-  <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
-  <path d="M10 8 H90 V50 L50 95 L10 50 Z" fill="none" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
-  <g fill="#000">
-    <circle cx="50" cy="18" r="3.4"/>
-    <circle cx="50" cy="31" r="3.4"/>
-    <circle cx="50" cy="44" r="3.4"/>
-    <circle cx="50" cy="57" r="3.4"/>
-    <circle cx="50" cy="70" r="3.4"/>
-    <circle cx="50" cy="83" r="3.4"/>
-  </g>
-</svg>Home</a>
+    <h1 class="brand-wordmark"><span class="brand-word-plate">Plate</span><span class="brand-word-duel">Duel</span></h1>
   </div>
-  <input id="search" type="text" placeholder="Search teams, venue, or player..." autocomplete="off">
+  <p class="home-date">Monday, August 24, 2026</p>
+  <p class="home-tagline">Daily MLB matchups, HR picks, and games</p>
+  <div class="home-search-wrap">
+    <input id="site-search" type="text" placeholder="Jump to a player or team..." autocomplete="off">
+    <div id="site-search-results" class="site-search-results" hidden></div>
+  </div>
 </header>
-<main class="games-grid" id="games-grid">
-<p class='empty-state'>All of today's games have ended. Check back tomorrow, or see <a href='home.html'>Yesterday's Results</a> on the home page.</p>
+
+<main class="home-main">
+  <section class="home-section">
+    <h2 class="home-section-title">Games</h2>
+    <div class="game-grid">
+      <a class="game-card" href="bordle.html">
+        <svg class="game-art bordle-art" viewBox="0 0 424 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bordle"><g font-family="ui-monospace, monospace" font-weight="800" font-size="32" text-anchor="middle"><rect x="0" y="0" width="64" height="64" rx="10" fill="#ff5266"/><text x="32.0" y="45" fill="#fff">B</text><rect x="72" y="0" width="64" height="64" rx="10" fill="#ffd166"/><text x="104.0" y="45" fill="#1a1a1a">O</text><rect x="144" y="0" width="64" height="64" rx="10" fill="#4ade80"/><text x="176.0" y="45" fill="#0d0d0d">R</text><rect x="216" y="0" width="64" height="64" rx="10" fill="#4ade80"/><text x="248.0" y="45" fill="#0d0d0d">D</text><rect x="288" y="0" width="64" height="64" rx="10" fill="#ffd166"/><text x="320.0" y="45" fill="#1a1a1a">L</text><rect x="360" y="0" width="64" height="64" rx="10" fill="#ff5266"/><text x="392.0" y="45" fill="#fff">E</text></g></svg>
+        <span class="game-card-title">Bordle</span>
+        <span class="game-card-desc">Daily baseball word game &middot; Normal and Hard modes</span>
+      </a>
+      <a class="game-card" href="162-0-challenge.html">
+        <svg class="game-art challenge-art" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="162-0 The Challenge">
+  <circle cx="110" cy="110" r="103" fill="#0f1626" stroke="#d9ae42" stroke-width="5"/>
+  <circle cx="110" cy="110" r="87" fill="none" stroke="#5a6274" stroke-width="1.5" stroke-dasharray="3 5"/>
+  <text x="112" y="121" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="52" fill="#ff5266">162-0</text>
+  <text x="110" y="119" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="52"><tspan fill="#f5efe0">162-</tspan><tspan fill="#d9ae42">0</tspan></text>
+  <text x="110" y="153" text-anchor="middle" font-family="Georgia, serif" font-size="14" letter-spacing="3" fill="#d9ae42">THE CHALLENGE</text>
+</svg>
+        <span class="game-card-title">162-0 Challenge</span>
+        <span class="game-card-desc">Can you build the perfect team?</span>
+      </a>
+      <a class="game-card" href="diamond-grid.html">
+        <svg class="game-art grid-art" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diamond Grid">
+  <rect x="4" y="4" width="212" height="212" rx="42" fill="#0f1626"/>
+  <rect x="86" y="28" width="48" height="48" rx="12" fill="#4ade80"/>
+  <rect x="28" y="86" width="48" height="48" rx="12" fill="#4ade80"/>
+  <rect x="86" y="86" width="48" height="48" rx="12" fill="#f5efe0"/>
+  <rect x="144" y="86" width="48" height="48" rx="12" fill="#4ade80"/>
+  <rect x="86" y="144" width="48" height="48" rx="12" fill="#4ade80"/>
+  <path d="M 106 94 Q 96 110 106 126" fill="none" stroke="#ff5266" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M 114 94 Q 124 110 114 126" fill="none" stroke="#ff5266" stroke-width="3.5" stroke-linecap="round"/>
+</svg>
+        <span class="game-card-title">Diamond Grid</span>
+        <span class="game-card-desc">Name a player who fits both the row and column</span>
+      </a>
+      <a class="game-card" href="guess-the-legend.html">
+        <svg class="game-art whoami-art" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Guess The Legend">
+  <rect x="30" y="24" width="160" height="120" rx="8" fill="#3a2a14" stroke="#d9ae42" stroke-width="3"/>
+  <rect x="42" y="36" width="136" height="96" rx="4" fill="#1a1408"/>
+  <line x1="54" y1="56" x2="166" y2="56" stroke="#d9ae42" stroke-width="3"/>
+  <line x1="54" y1="76" x2="166" y2="76" stroke="#8a6a2a" stroke-width="3"/>
+  <line x1="54" y1="96" x2="140" y2="96" stroke="#8a6a2a" stroke-width="3"/>
+  <line x1="54" y1="116" x2="150" y2="116" stroke="#8a6a2a" stroke-width="3"/>
+  <circle cx="150" cy="150" r="34" fill="#0f1626" stroke="#ff5266" stroke-width="6"/>
+  <line x1="174" y1="174" x2="200" y2="200" stroke="#ff5266" stroke-width="8" stroke-linecap="round"/>
+  <text x="150" y="159" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="26" fill="#f5efe0">?</text>
+</svg>
+        <span class="game-card-title">Guess The Legend</span>
+        <span class="game-card-desc">Guess the Hall of Famer, one clue at a time</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h2 class="home-section-title">Stats &amp; Tools</h2>
+    <div class="tool-grid">
+      <a class="tool-card" href="dashboard.html">
+        <svg class="tool-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 4 L28 16 L16 28 L4 16 Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="4" r="2.2" fill="currentColor"/><circle cx="28" cy="16" r="2.2" fill="currentColor"/><circle cx="16" cy="28" r="2.2" fill="currentColor"/><circle cx="4" cy="16" r="2.2" fill="currentColor"/></svg>
+        <span class="tool-title">Matchup Dashboard</span>
+        <span class="tool-desc">Today's slate, weather, and batter-vs-pitcher history</span>
+      </a>
+      <a class="tool-card" href="hr-picks.html">
+        <svg class="tool-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M4 24 L12 14 L18 19 L28 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 6 H28 V14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tool-title">HR Picks</span>
+        <span class="tool-desc">Today's best home run bets, ranked by matchup</span>
+      </a>
+      <a class="tool-card" href="roster-moves.html">
+        <svg class="tool-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M6 10 H24 M24 10 L19 5 M24 10 L19 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 22 H8 M8 22 L13 17 M8 22 L13 27" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="tool-title">Roster Moves</span>
+        <span class="tool-desc">Call-ups, injuries, and trades from the last few days</span>
+      </a>
+      <a class="tool-card" href="park-factors.html">
+        <svg class="tool-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M6 8 H26 V18 L16 27 L6 18 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        <span class="tool-title">Park Factors</span>
+        <span class="tool-desc">Which ballparks favor hitters or pitchers</span>
+      </a>
+      <a class="tool-card" href="streaks.html">
+        <svg class="tool-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 3 C16 3 9 11 9 18 A7 7 0 0 0 23 18 C23 14 20 12 20 12 C20 16 17 17 17 17 C18 12 14 9 16 3 Z" fill="currentColor"/></svg>
+        <span class="tool-title">Streaks</span>
+        <span class="tool-desc">Active hit, home run, and strikeout streaks</span>
+      </a>
+      <a class="tool-card" href="weather-watch.html">
+        <svg class="tool-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M4 10 H20 A4 4 0 1 0 16 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M4 16 H24 A4 4 0 1 1 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M4 22 H14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <span class="tool-title">Weather Watch</span>
+        <span class="tool-desc">Today's games ranked by wind-aided to wind-suppressed</span>
+      </a>
+      <a class="tool-card" href="leaders.html">
+        <svg class="tool-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M9 6 H23 V10 A7 7 0 0 1 9 10 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M16 17 V22 M11 22 H21" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M9 7 H5 A4 4 0 0 0 9 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M23 7 H27 A4 4 0 0 1 23 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="tool-title">League Leaders</span>
+        <span class="tool-desc">Season leaders in HR, AVG, OPS, ERA, and strikeouts</span>
+      </a>
+      <a class="tool-card" href="standings.html">
+        <svg class="tool-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M6 26 V17 H12 V26 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M13 26 V6 H19 V26 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 26 V12 H26 V26 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        <span class="tool-title">Standings</span>
+        <span class="tool-desc">Division races, wild card standings, and magic numbers</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h2 class="home-section-title">Yesterday's Results</h2>
+    <div class="recap-grid">
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-winner">TB 3</span>
+        <span class="recap-at">@</span>
+        <span class="recap-team">BAL 1</span>
+      </div>
+      <p class="recap-venue">Oriole Park at Camden Yards</p>
+      <ul class='recap-performers'><li><span class='recap-performer-name'>Nick Martinez</span> (Tampa Bay Rays) &mdash; 6.0 IP, 0 ER, 4 K, 0 BB</li><li><span class='recap-performer-name'>Colton Cowser</span> (Baltimore Orioles) &mdash; 2-3 | HR, 2B, RBI</li><li><span class='recap-performer-name'>Shane Baz</span> (Baltimore Orioles) &mdash; 5.2 IP, 3 ER, 3 K, 3 BB</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">STL 4</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">PHI 6</span>
+      </div>
+      <p class="recap-venue">Citizens Bank Park</p>
+      <ul class='recap-performers'><li><span class='recap-performer-name'>Kyle Leahy</span> (St. Louis Cardinals) &mdash; 4.0 IP, 0 ER, 4 K, 2 BB</li><li><a class='recap-performer-name' href='players/bryce-harper.html'>Bryce Harper</a> (Philadelphia Phillies) &mdash; 2-3 | 2 2B, BB, K</li><li><a class='recap-performer-name' href='players/edmundo-sosa.html'>Edmundo Sosa</a> (Philadelphia Phillies) &mdash; 2-4 | 2B, K, 3 RBI</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">TOR 3</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">NYY 8</span>
+      </div>
+      <p class="recap-venue">Yankee Stadium</p>
+      <ul class='recap-performers'><li><span class='recap-performer-name'>Jazz Chisholm Jr.</span> (New York Yankees) &mdash; 2-4 | HR, K, 2 RBI</li><li><span class='recap-performer-name'>Trent Grisham</span> (New York Yankees) &mdash; 1-4 | HR, BB, K</li><li><span class='recap-performer-name'>Spencer Jones</span> (New York Yankees) &mdash; 2-3 | 2B, BB, K</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">WSH 2</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">MIA 6</span>
+      </div>
+      <p class="recap-venue">loanDepot park</p>
+      <ul class='recap-performers'><li><span class='recap-performer-name'>Janson Junk</span> (Miami Marlins) &mdash; 4.2 IP, ER, 2 K, 0 BB</li><li><a class='recap-performer-name' href='players/jakob-marsee.html'>Jakob Marsee</a> (Miami Marlins) &mdash; 1-1 | BB, 2 R</li><li><span class='recap-performer-name'>Jack Ralston</span> (Miami Marlins) &mdash; 2.0 IP, 0 ER, 2 K, 0 BB</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">DET 7</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">KC 11</span>
+      </div>
+      <p class="recap-venue">Kauffman Stadium</p>
+      <ul class='recap-performers'><li><span class='recap-performer-name'>Nick Loftin</span> (Kansas City Royals) &mdash; 3-4 | HR, BB, 4 RBI</li><li><span class='recap-performer-name'>John Rave</span> (Kansas City Royals) &mdash; 2-3 | HR, BB, 2 RBI</li><li><a class='recap-performer-name' href='players/kevin-mcgonigle.html'>Kevin McGonigle</a> (Detroit Tigers) &mdash; 2-4 | HR, 2B, BB</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-winner">ATH 7</span>
+        <span class="recap-at">@</span>
+        <span class="recap-team">HOU 6</span>
+      </div>
+      <p class="recap-venue">Daikin Park</p>
+      <ul class='recap-performers'><li><a class='recap-performer-name' href='players/brian-serven.html'>Brian Serven</a> (Athletics) &mdash; 2-4 | HR, K, 3 RBI</li><li><span class='recap-performer-name'>Jose Altuve</span> (Houston Astros) &mdash; 1-4 | HR, BB, 2 K</li><li><span class='recap-performer-name'>Isaac Paredes</span> (Houston Astros) &mdash; 1-3 | HR, BB, 3 RBI</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">NYM 1</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">CWS 2</span>
+      </div>
+      <p class="recap-venue">Rate Field</p>
+      <ul class='recap-performers'><li><span class='recap-performer-name'>Nolan McLean</span> (New York Mets) &mdash; 6.0 IP, 0 ER, 6 K, 4 BB</li><li><span class='recap-performer-name'>Erick Fedde</span> (Chicago White Sox) &mdash; 4.0 IP, 0 ER, 2 K, BB</li><li><a class='recap-performer-name' href='players/tristan-peters.html'>Tristan Peters</a> (Chicago White Sox) &mdash; 2-4 | HR, K, RBI</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">LAA 3</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">TEX 5</span>
+      </div>
+      <p class="recap-venue">Globe Life Field</p>
+      <ul class='recap-performers'><li><span class='recap-performer-name'>Cal Quantrill</span> (Texas Rangers) &mdash; 6.0 IP, 0 ER, 6 K, 0 BB</li><li><span class='recap-performer-name'>Ezequiel Duran</span> (Texas Rangers) &mdash; 1-3 | HR, HBP, 2 K</li><li><span class='recap-performer-name'>Elias Díaz</span> (Texas Rangers) &mdash; 1-2 | HR, 2 RBI, R</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-winner">CLE 7</span>
+        <span class="recap-at">@</span>
+        <span class="recap-team">COL 2</span>
+      </div>
+      <p class="recap-venue">Coors Field</p>
+      <ul class='recap-performers'><li><a class='recap-performer-name' href='players/chase-delauter.html'>Chase DeLauter</a> (Cleveland Guardians) &mdash; 3-4 | 2 3B, BB, 2 RBI</li><li><a class='recap-performer-name' href='players/angel-martinez.html'>Angel Martínez</a> (Cleveland Guardians) &mdash; 2-3 | BB, K, RBI</li><li><span class='recap-performer-name'>Foster Griffin</span> (Cleveland Guardians) &mdash; 5.0 IP, 2 ER, 4 K, 3 BB</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">SF 4</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">BOS 5</span>
+      </div>
+      <p class="recap-venue">Fenway Park</p>
+      <ul class='recap-performers'><li><a class='recap-performer-name' href='players/nick-sogard.html'>Nick Sogard</a> (Boston Red Sox) &mdash; 2-3 | HR, 2B, BB</li><li><a class='recap-performer-name' href='players/ceddanne-rafaela.html'>Ceddanne Rafaela</a> (Boston Red Sox) &mdash; 3-4 | 2 RBI, SB</li><li><a class='recap-performer-name' href='players/jahmai-jones.html'>Jahmai Jones</a> (Boston Red Sox) &mdash; 2-2 | 3B, R</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">PIT 0</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">LAD 4</span>
+      </div>
+      <p class="recap-venue">UNIQLO Field at Dodger Stadium</p>
+      <ul class='recap-performers'><li><span class='recap-performer-name'>Blake Snell</span> (Los Angeles Dodgers) &mdash; 6.0 IP, 0 ER, 6 K, 3 BB</li><li><span class='recap-performer-name'>Khristian Curtis</span> (Pittsburgh Pirates) &mdash; 3.0 IP, 0 ER, K, BB</li><li><span class='recap-performer-name'>Freddie Freeman</span> (Los Angeles Dodgers) &mdash; 2-4 | R</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-winner">CHC 19</span>
+        <span class="recap-at">@</span>
+        <span class="recap-team">SEA 2</span>
+      </div>
+      <p class="recap-venue">T-Mobile Park</p>
+      <ul class='recap-performers'><li><a class='recap-performer-name' href='players/ian-happ.html'>Ian Happ</a> (Chicago Cubs) &mdash; 2-4 | HR, BB, HBP</li><li><a class='recap-performer-name' href='players/pedro-ramirez.html'>Pedro Ramírez</a> (Chicago Cubs) &mdash; 3-6 | HR, K, 5 RBI</li><li><a class='recap-performer-name' href='players/pete-crow-armstrong.html'>Pete Crow-Armstrong</a> (Chicago Cubs) &mdash; 2-4 | HR, BB, K</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">MIN 1</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">SD 8</span>
+      </div>
+      <p class="recap-venue">Petco Park</p>
+      <ul class='recap-performers'><li><a class='recap-performer-name' href='players/fernando-tatis-jr.html'>Fernando Tatis Jr.</a> (San Diego Padres) &mdash; 4-5 | 2 HR, 4 RBI, 2 R</li><li><span class='recap-performer-name'>Walker Buehler</span> (San Diego Padres) &mdash; 6.0 IP, ER, 4 K, 0 BB</li><li><a class='recap-performer-name' href='players/austin-hays.html'>Austin Hays</a> (San Diego Padres) &mdash; 0-0 | 2 BB, 2 R</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-team">CIN 3</span>
+        <span class="recap-at">@</span>
+        <span class="recap-winner">AZ 5</span>
+      </div>
+      <p class="recap-venue">Chase Field</p>
+      <ul class='recap-performers'><li><a class='recap-performer-name' href='players/ildemaro-vargas.html'>Ildemaro Vargas</a> (Arizona Diamondbacks) &mdash; 2-4 | 3B, 2B, 2 RBI</li><li><a class='recap-performer-name' href='players/corbin-carroll.html'>Corbin Carroll</a> (Arizona Diamondbacks) &mdash; 2-3 | 3B, 2B, K</li><li><span class='recap-performer-name'>Eugenio Suárez</span> (Cincinnati Reds) &mdash; 1-2 | BB, HBP, 2 RBI</li></ul>
+    </div>
+    <div class="recap-card">
+      <div class="recap-score">
+        <span class="recap-winner">ATL 4</span>
+        <span class="recap-at">@</span>
+        <span class="recap-team">MIL 2</span>
+      </div>
+      <p class="recap-venue">Journey Bank Ballpark</p>
+      <ul class='recap-performers'><li><span class='recap-performer-name'>Christian Yelich</span> (Milwaukee Brewers) &mdash; 2-3 | 2B, BB, R</li><li><span class='recap-performer-name'>Tyler Mahle</span> (Atlanta Braves) &mdash; 5.0 IP, ER, 4 K, 2 BB</li><li><span class='recap-performer-name'>Austin Riley</span> (Atlanta Braves) &mdash; 2-3 | BB, K, SB</li></ul>
+    </div>
+    </div>
+  </section>
 </main>
-<p class="empty-state" id="empty-state" hidden>No games match your search.</p>
-
-<section class="all-matchups">
-  <div class="all-matchups-header">
-    <h2>All Matchups</h2>
-    <button type="button" id="opposite-hand-toggle" class="toggle-btn">Opposite-hand matchups only</button>
-  </div>
-  <p class="table-hint">Sorted by career hits vs pitcher by default. Click a column header to sort. Click Bats or Throws to cycle through L / R / S filters. Rows with no recorded history sort to the bottom.</p>
-  <div class="table-scroll">
-    <table id="matchup-table">
-      <thead><tr id="matchup-group"></tr><tr id="matchup-head"></tr></thead>
-      <tbody id="matchup-body"></tbody>
-    </table>
-  </div>
-</section>
-
-<script id="matchup-data" type="application/json">[]</script>
-<script>
-const search = document.getElementById('search');
-const cards = Array.from(document.querySelectorAll('.game-card'));
-const emptyState = document.getElementById('empty-state');
-
-let searchQuery = '';
-
-search.addEventListener('input', () => {
-  searchQuery = search.value.trim().toLowerCase();
-  let visible = 0;
-  for (const card of cards) {
-    const match = card.dataset.search.includes(searchQuery);
-    card.style.display = match ? '' : 'none';
-    if (match) visible++;
-  }
-  emptyState.hidden = visible !== 0;
-  renderBody();
-});
-
-const MATCHUP_COLUMNS = [
-  {key: 'game', label: 'Game', type: 'text'},
-  {key: 'batter', label: 'Batter', type: 'text'},
-  {key: 'bats', label: 'Bats', type: 'text'},
-  {key: 'pitcher', label: 'Pitcher', type: 'text'},
-  {key: 'throws', label: 'Throws', type: 'text'},
-  {key: 'season_avg', label: "'26 AVG", type: 'avg'},
-  {key: 'season_hr', label: "'26 HR", type: 'int'},
-  {key: 'season_ops', label: "'26 OPS", type: 'avg'},
-  {key: 'career_ab', label: 'AB', type: 'int', group: 'Career vs P'},
-  {key: 'career_h', label: 'H', type: 'int', group: 'Career vs P'},
-  {key: 'career_hr', label: 'HR', type: 'int', group: 'Career vs P'},
-  {key: 'career_so', label: 'SO', type: 'int', group: 'Career vs P'},
-  {key: 'career_avg', label: 'AVG', type: 'avg', group: 'Career vs P'},
-  {key: 'cur_ab', label: 'AB', type: 'int', group: "'26 VS P"},
-  {key: 'cur_h', label: 'H', type: 'int', group: "'26 VS P"},
-  {key: 'cur_hr', label: 'HR', type: 'int', group: "'26 VS P"},
-  {key: 'cur_so', label: 'SO', type: 'int', group: "'26 VS P"},
-  {key: 'cur_avg', label: 'AVG', type: 'avg', group: "'26 VS P"},
-];
-
-const HAND_CYCLE = {bats: ['L', 'R', 'S'], throws: ['L', 'R']};
-
-const matchupRows = JSON.parse(document.getElementById('matchup-data').textContent);
-const groupRow = document.getElementById('matchup-group');
-const headRow = document.getElementById('matchup-head');
-const body = document.getElementById('matchup-body');
-let sortKey = 'career_h';
-let sortDir = -1;
-let handFilters = {bats: null, throws: null};
-let oppositeHandOnly = false;
-
-function formatCell(value, type) {
-  if (value === null || value === undefined) return '-';
-  if (type === 'avg') {
-    const fixed = value.toFixed(3);
-    return fixed.startsWith('0.') ? fixed.slice(1) : fixed;
-  }
-  return value;
-}
-
-function renderGroupHead() {
-  groupRow.innerHTML = '';
-  let i = 0;
-  while (i < MATCHUP_COLUMNS.length) {
-    const group = MATCHUP_COLUMNS[i].group;
-    let span = 1;
-    while (i + span < MATCHUP_COLUMNS.length && MATCHUP_COLUMNS[i + span].group === group) span++;
-    const th = document.createElement('th');
-    th.colSpan = span;
-    if (group) {
-      th.textContent = group;
-      th.classList.add('group-header');
-    }
-    groupRow.appendChild(th);
-    i += span;
-  }
-}
-
-function renderHead() {
-  headRow.innerHTML = '';
-  for (const col of MATCHUP_COLUMNS) {
-    const th = document.createElement('th');
-    const cycle = HAND_CYCLE[col.key];
-    if (cycle) {
-      const active = handFilters[col.key];
-      th.textContent = col.label + (active ? `: ${active}` : '');
-      th.title = 'Click to cycle L / R / S filter';
-      th.addEventListener('click', () => {
-        const idx = active === null ? -1 : cycle.indexOf(active);
-        handFilters[col.key] = idx + 1 < cycle.length ? cycle[idx + 1] : null;
-        renderHead();
-        renderBody();
-      });
-    } else {
-      th.textContent = col.label + (sortKey === col.key ? (sortDir === 1 ? ' ▲' : ' ▼') : '');
-      th.title = 'Click to sort';
-      th.addEventListener('click', () => {
-        if (sortKey === col.key) {
-          sortDir *= -1;
-        } else {
-          sortKey = col.key;
-          sortDir = 1;
-        }
-        renderHead();
-        renderBody();
-      });
-    }
-    headRow.appendChild(th);
-  }
-}
-
-function renderBody() {
-  let filtered = searchQuery
-    ? matchupRows.filter(r => (
-        r.batter.toLowerCase().includes(searchQuery) ||
-        r.pitcher.toLowerCase().includes(searchQuery) ||
-        r.game.toLowerCase().includes(searchQuery)
-      ))
-    : matchupRows;
-  if (handFilters.bats) filtered = filtered.filter(r => r.bats === handFilters.bats);
-  if (handFilters.throws) filtered = filtered.filter(r => r.throws === handFilters.throws);
-  if (oppositeHandOnly) filtered = filtered.filter(r => r.bats && r.throws && (r.bats === 'S' || r.bats !== r.throws));
-  const sorted = filtered.slice().sort((a, b) => {
-    const av = a[sortKey], bv = b[sortKey];
-    if (av === null && bv === null) return 0;
-    if (av === null) return 1;
-    if (bv === null) return -1;
-    if (typeof av === 'string') return av.localeCompare(bv) * sortDir;
-    return (av - bv) * sortDir;
-  });
-
-  body.innerHTML = '';
-  for (const r of sorted) {
-    const tr = document.createElement('tr');
-    for (const col of MATCHUP_COLUMNS) {
-      const td = document.createElement('td');
-      td.textContent = formatCell(r[col.key], col.type);
-      if (col.key === 'bats') {
-        if (r.bats === 'S') td.classList.add('bats-switch');
-        else if (r.bats && r.throws && r.bats !== r.throws) td.classList.add('bats-platoon');
-      }
-      tr.appendChild(td);
-    }
-    body.appendChild(tr);
-  }
-}
-
-renderGroupHead();
-renderHead();
-renderBody();
-
-const oppositeHandToggle = document.getElementById('opposite-hand-toggle');
-oppositeHandToggle.addEventListener('click', () => {
-  oppositeHandOnly = !oppositeHandOnly;
-  oppositeHandToggle.classList.toggle('active', oppositeHandOnly);
-  renderBody();
-});
-
-</script>
 
 <style>
 :root { color-scheme: dark; }
@@ -229,150 +279,123 @@ body {
   background: #0d0d0d; color: #f2f2f2; margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
-.site-header {
-  position: sticky; top: 0; z-index: 10;
-  background: #151515; box-shadow: 0 4px 14px rgba(0,0,0,0.45);
-  padding: 0.85rem 1.25rem 0.75rem;
+.home-header {
+  text-align: center; padding: 2.2rem 1.25rem 1.5rem;
+  background: radial-gradient(ellipse at top, #1a1420 0%, #0d0d0d 65%);
 }
-.site-header-top {
-  display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
-  margin-bottom: 0.6rem;
-}
-.brand { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.site-header h1 { font-size: 1.15rem; margin: 0; white-space: nowrap; }
-.site-header .date { color: #999; font-size: 0.9rem; white-space: nowrap; }
+.home-brand { display: flex; align-items: center; justify-content: center; gap: 14px; text-align: center; }
+.brand-wordmark { margin: 0; font-size: 2.4rem; font-weight: 800; letter-spacing: -0.01em; }
+.brand-word-plate { color: #f2f2f2; }
+.brand-word-duel { color: #ff5266; }
+.home-date { margin: 0.9rem 0 0; color: #f2f2f2; font-size: 0.95rem; font-weight: 600; text-align: center; }
+.home-tagline { margin: 0.2rem 0 0; color: #999; font-size: 0.95rem; text-align: center; }
 
-.header-link {
-  background: #1a1a1a; border: 1px solid #333; color: #f2f2f2;
-  padding: 0.45rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
-  text-decoration: none; white-space: nowrap; flex-shrink: 0;
-  display: inline-flex; align-items: center; gap: 6px;
-  transition: border-color 0.15s ease, color 0.15s ease;
+.home-search-wrap { position: relative; max-width: 420px; margin: 1.5rem auto 0; text-align: center; }
+#site-search {
+  width: 100%; box-sizing: border-box; background: #14141a; border: 1px solid #333; color: #f2f2f2;
+  padding: 0.7rem 1rem; border-radius: 10px; font-size: 0.95rem;
 }
-.header-link:first-of-type { margin-left: auto; }
-.header-link:hover { border-color: #ff5266; color: #ff5266; }
-.site-header input {
-  display: block; width: 100%; box-sizing: border-box;
-  background: #0d0d0d; border: 1px solid #333; color: #f2f2f2;
-  padding: 0.5rem 0.75rem; border-radius: 7px; font-size: 0.9rem;
-  transition: border-color 0.15s ease;
+#site-search:focus { outline: none; border-color: #ff5266; }
+.site-search-results {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 20; text-align: left;
+  background: #14141a; border: 1px solid #262626; border-radius: 10px;
+  max-height: 320px; overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,0.5);
 }
-.site-header input:focus { outline: none; border-color: #ff5266; }
+.search-result {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  padding: 0.6rem 0.9rem; text-decoration: none; color: #f2f2f2; font-size: 0.88rem;
+  border-bottom: 1px solid #1e1e1e;
+}
+.search-result:last-child { border-bottom: none; }
+.search-result:hover { background: #1e1e24; }
+.search-sub { color: #888; font-size: 0.75rem; flex-shrink: 0; }
+.search-empty { padding: 0.7rem 0.9rem; color: #777; font-size: 0.85rem; }
 
-.move-section { margin-bottom: 1.25rem; }
-.move-section:last-child { margin-bottom: 0; }
-.move-section h3 {
-  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
-  color: #999; margin: 0 0 0.5rem;
+.home-main { max-width: 980px; margin: 0 auto; padding: 0 1.25rem 3rem; }
+.home-section { margin-top: 1.5rem; }
+.home-section-title {
+  font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: #888; margin: 0 0 1rem; border-bottom: 1px solid #232323; padding-bottom: 0.6rem;
 }
-.move-section ul { list-style: none; margin: 0; padding: 0; }
-.move-section li {
-  font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid #222; line-height: 1.4;
-}
-.move-section li:last-child { border-bottom: none; }
-.move-date { color: #6bb3ff; font-family: ui-monospace, monospace; font-size: 0.78rem; margin-right: 0.6rem; }
-.move-empty { color: #777; font-style: italic; }
 
-.games-grid {
-  display: grid; grid-template-columns: repeat(6, 1fr);
-  gap: 0.75rem; padding: 1.25rem;
+.recap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.recap-card { background: #14141a; border: 1px solid #262626; border-radius: 12px; padding: 1rem 1.1rem; }
+.recap-score { display: flex; align-items: baseline; gap: 6px; font-family: ui-monospace, monospace; font-size: 0.95rem; }
+.recap-team { color: #999; }
+.recap-winner { color: #f2f2f2; font-weight: 700; }
+.recap-at { color: #555; font-size: 0.8rem; }
+.recap-venue { margin: 2px 0 0; font-size: 0.72rem; color: #666; }
+.recap-performers { list-style: none; margin: 0.6rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.recap-performers li { font-size: 0.78rem; color: #999; line-height: 1.4; }
+.recap-performer-name { color: #ccc; font-weight: 600; }
+a.recap-performer-name { text-decoration: none; border-bottom: 1px solid transparent; }
+a.recap-performer-name:hover { color: #ff5266; border-bottom-color: #ff5266; }
+.recap-empty { color: #777; font-size: 0.85rem; font-style: italic; }
+
+.game-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;
+  max-width: 600px; margin: 0 auto;
 }
-@media (max-width: 1400px) { .games-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 900px) { .games-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .games-grid { grid-template-columns: 1fr; } }
 .game-card {
-  background: #161616; border: 1px solid #262626;
-  border-left: 3px solid var(--team-accent, #333); border-right: 3px solid var(--team-accent-home, #333);
-  border-radius: 10px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; gap: 0.55rem;
+  background: #14141a; border: 1px solid #262626; border-radius: 16px;
+  padding: 1.15rem 1.5rem; text-decoration: none; text-align: center;
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
-.game-card[open] { grid-column: 1 / -1; }
-.game-card summary {
-  list-style: none; cursor: pointer; padding: 0.85rem;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 0.55rem;
+.game-card:hover { transform: translateY(-3px); border-color: #ff5266; }
+.game-art { height: 48px; width: auto; max-width: 100%; }
+.game-card-title { font-size: 1.15rem; font-weight: 700; color: #f2f2f2; }
+.game-card-desc { font-size: 0.82rem; color: #999; line-height: 1.4; }
+
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; }
+.tool-card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;
+  background: #14141a; border: 1px solid #262626; border-radius: 12px;
+  padding: 1.25rem; text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
-.game-card summary::-webkit-details-marker { display: none; }
-.team-dots { display: flex; align-items: center; gap: 8px; }
-.team-dot {
-  display: inline-block; padding: 2px 8px; border-radius: 999px; color: #fff;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.02em; flex-shrink: 0;
-  font-family: inherit;
+.tool-card:hover { transform: translateY(-2px); border-color: #6bb3ff; }
+.tool-icon { width: 26px; height: 26px; color: #6bb3ff; }
+.tool-title { font-size: 0.95rem; font-weight: 700; color: #f2f2f2; }
+.tool-desc { font-size: 0.78rem; color: #999; line-height: 1.4; }
+
+@media (max-width: 480px) {
+  .home-header h1 { font-size: 1.5rem; }
 }
-.team-dots .vs { color: #666; font-size: 12px; }
-.summary-main { display: flex; flex-direction: column; gap: 0.2rem; }
-.matchup { font-weight: 700; font-size: 0.88rem; line-height: 1.3; }
-.player-link, .team-link {
-  color: inherit; text-decoration: none; border-bottom: 1px solid transparent;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-.player-link:hover, .team-link:hover { color: #ff5266; border-bottom-color: #ff5266; }
-.meta { color: #999; font-size: 0.72rem; }
-.meta.pitchers { color: #bbb; }
-
-.badge {
-  flex-shrink: 0; font-size: 0.66rem; font-weight: 700; padding: 0.25rem 0.55rem;
-  border-radius: 999px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.03em;
-}
-.badge-hitters { background: rgba(74,222,128,0.15); color: #4ade80; }
-.badge-pitchers { background: rgba(107,179,255,0.15); color: #6bb3ff; }
-.badge-neutral { background: rgba(170,170,170,0.15); color: #aaaaaa; }
-.badge-indoor { background: rgba(153,153,153,0.15); color: #999999; }
-.badge-unknown { background: rgba(102,102,102,0.15); color: #666666; }
-
-.detail { border-top: 1px solid #262626; padding: 1.1rem; display: flex; flex-direction: column; gap: 1.5rem; }
-.section-label { margin: 0 0 0.6rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888; }
-
-.weather-panel .dims { margin: 0 0 0.4rem; color: #ccc; font-size: 0.88rem; line-height: 1.5; }
-.wind { font-weight: 600; margin: 0; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
-.wind-hitters { color: #4ade80; }
-.wind-pitchers { color: #6bb3ff; }
-.wind-neutral { color: #aaaaaa; }
-.wind-unknown { color: #666666; }
-.wind-indoor { color: #999999; font-style: italic; }
-
-.notice { color: #ccc; margin: 0 0 0.75rem; }
-.matchup-sections h3 { font-size: 0.95rem; margin: 1rem 0 0.5rem; }
-.matchup-sections h3:first-of-type { margin-top: 0; }
-
-table { border-collapse: collapse; width: 100%; margin-bottom: 0.75rem; font-size: 0.85rem; }
-th, td { border: none; border-bottom: 1px solid #222; padding: 6px 10px; text-align: left; font-family: ui-monospace, monospace; }
-th { border-bottom: 1px solid #333; color: #aaa; font-family: -apple-system, sans-serif; font-size: 0.78rem; text-transform: uppercase; }
-
-.trends-panel { display: flex; flex-direction: column; gap: 1rem; }
-.trend-block h4 { margin: 0 0 0.4rem; font-size: 0.85rem; color: #ddd; }
-.trend-block table { max-width: 420px; }
-
-.empty-state { text-align: center; color: #888; padding: 3rem 1rem; }
-
-.all-matchups { padding: 0 1.25rem 2rem; }
-.all-matchups-header {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
-}
-.all-matchups h2 { font-size: 1.1rem; margin: 0 0 0.25rem; }
-.table-hint { color: #888; font-size: 0.8rem; margin: 0 0 0.75rem; }
-.toggle-btn {
-  background: #1a1a1a; border: 1px solid #333; color: #ccc;
-  padding: 0.45rem 0.8rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
-  cursor: pointer; white-space: nowrap; transition: all 0.15s ease; flex-shrink: 0;
-}
-.toggle-btn:hover { border-color: #ff5266; color: #ff5266; }
-.toggle-btn.active { background: rgba(255,82,102,0.15); border-color: #ff5266; color: #ff5266; }
-.table-scroll { overflow: auto; max-height: 70vh; border: 1px solid #262626; border-radius: 8px; }
-#matchup-table { margin-bottom: 0; font-size: 0.8rem; }
-#matchup-table th {
-  position: sticky; background: #1a1a1a; cursor: pointer; user-select: none;
-  white-space: nowrap; z-index: 2;
-}
-#matchup-group th { top: 0; cursor: default; text-align: center; color: #999; }
-#matchup-head th { top: 28px; }
-#matchup-head th:hover { color: #f2f2f2; }
-#matchup-table td { white-space: nowrap; }
-.group-header {
-  border-bottom: 1px solid #3a3a3a; font-size: 0.72rem;
-  text-transform: uppercase; letter-spacing: 0.04em;
-}
-
-.bats-platoon { background: rgba(74,222,128,0.18); color: #4ade80; font-weight: 600; }
-.bats-switch { background: rgba(107,179,255,0.18); color: #6bb3ff; font-weight: 600; }
 </style>
+
+<script id="search-index" type="application/json">[{"name": "A.J. Ewing", "slug": "a-j-ewing", "type": "player", "sub": "New York Mets"}, {"name": "Abimelec Ortiz", "slug": "abimelec-ortiz", "type": "player", "sub": "Washington Nationals"}, {"name": "Adael Amador", "slug": "adael-amador", "type": "player", "sub": "Colorado Rockies"}, {"name": "Adam Frazier", "slug": "adam-frazier", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Adley Rutschman", "slug": "adley-rutschman", "type": "player", "sub": "Boston Red Sox"}, {"name": "Agust\u00edn Ram\u00edrez", "slug": "agustin-ramirez", "type": "player", "sub": "Miami Marlins"}, {"name": "Alan Roden", "slug": "alan-roden", "type": "player", "sub": "Minnesota Twins"}, {"name": "Alec Bohm", "slug": "alec-bohm", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Alec Burleson", "slug": "alec-burleson", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Alejandro Kirk", "slug": "alejandro-kirk", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Alek Thomas", "slug": "alek-thomas", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Alex Bregman", "slug": "alex-bregman", "type": "player", "sub": "Chicago Cubs"}, {"name": "Alex Call", "slug": "alex-call", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Alex Jackson", "slug": "alex-jackson", "type": "player", "sub": "Minnesota Twins"}, {"name": "Ali S\u00e1nchez", "slug": "ali-sanchez", "type": "player", "sub": "New York Yankees"}, {"name": "Alika Williams", "slug": "alika-williams", "type": "player", "sub": "Athletics"}, {"name": "Amed Rosario", "slug": "amed-rosario", "type": "player", "sub": "New York Yankees"}, {"name": "Andr\u00e9s Chaparro", "slug": "andres-chaparro", "type": "player", "sub": "Washington Nationals"}, {"name": "Andr\u00e9s Gim\u00e9nez", "slug": "andres-gimenez", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Andrew Benintendi", "slug": "andrew-benintendi", "type": "player", "sub": "Chicago White Sox"}, {"name": "Andrew Knizner", "slug": "andrew-knizner", "type": "player", "sub": "San Francisco Giants"}, {"name": "Andrew Pinckney", "slug": "andrew-pinckney", "type": "player", "sub": "Washington Nationals"}, {"name": "Andrew Vaughn", "slug": "andrew-vaughn", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Andruw Monasterio", "slug": "andruw-monasterio", "type": "player", "sub": "Boston Red Sox"}, {"name": "Andy Pages", "slug": "andy-pages", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Angel Genao", "slug": "angel-genao", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Angel Mart\u00ednez", "slug": "angel-martinez", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Anthony Seigler", "slug": "anthony-seigler", "type": "player", "sub": "Boston Red Sox"}, {"name": "Austin Hays", "slug": "austin-hays", "type": "player", "sub": "San Diego Padres"}, {"name": "Austin Hedges", "slug": "austin-hedges", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Austin Martin", "slug": "austin-martin", "type": "player", "sub": "Minnesota Twins"}, {"name": "Austin Riley", "slug": "austin-riley", "type": "player", "sub": "Atlanta Braves"}, {"name": "Austin Wells", "slug": "austin-wells", "type": "player", "sub": "New York Yankees"}, {"name": "Austin Wynns", "slug": "austin-wynns", "type": "player", "sub": "Texas Rangers"}, {"name": "Ben Malgeri", "slug": "ben-malgeri", "type": "player", "sub": "Detroit Tigers"}, {"name": "Ben Rice", "slug": "ben-rice", "type": "player", "sub": "New York Yankees"}, {"name": "Ben Rortvedt", "slug": "ben-rortvedt", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Billy Cook", "slug": "billy-cook", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Blaze Jordan", "slug": "blaze-jordan", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Bo Bichette", "slug": "bo-bichette", "type": "player", "sub": "New York Mets"}, {"name": "Bo Naylor", "slug": "bo-naylor", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Bobby Witt Jr.", "slug": "bobby-witt-jr", "type": "player", "sub": "Kansas City Royals"}, {"name": "Braden Montgomery", "slug": "braden-montgomery", "type": "player", "sub": "Chicago White Sox"}, {"name": "Brady House", "slug": "brady-house", "type": "player", "sub": "Washington Nationals"}, {"name": "Brandon Lockridge", "slug": "brandon-lockridge", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Brandon Lowe", "slug": "brandon-lowe", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Brandon Marsh", "slug": "brandon-marsh", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Brandon Nimmo", "slug": "brandon-nimmo", "type": "player", "sub": "Texas Rangers"}, {"name": "Brandon Valenzuela", "slug": "brandon-valenzuela", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Braxton Fulford", "slug": "braxton-fulford", "type": "player", "sub": "Colorado Rockies"}, {"name": "Brayan Rocchio", "slug": "brayan-rocchio", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Brendan Donovan", "slug": "brendan-donovan", "type": "player", "sub": "Seattle Mariners"}, {"name": "Brenton Doyle", "slug": "brenton-doyle", "type": "player", "sub": "Chicago White Sox"}, {"name": "Brett Bateman", "slug": "brett-bateman", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Brett Baty", "slug": "brett-baty", "type": "player", "sub": "New York Mets"}, {"name": "Brett Callahan", "slug": "brett-callahan", "type": "player", "sub": "Detroit Tigers"}, {"name": "Brett Sullivan", "slug": "brett-sullivan", "type": "player", "sub": "Colorado Rockies"}, {"name": "Brewer Hicklen", "slug": "brewer-hicklen", "type": "player", "sub": "Atlanta Braves"}, {"name": "Brian Navarreto", "slug": "brian-navarreto", "type": "player", "sub": "Miami Marlins"}, {"name": "Brian Serven", "slug": "brian-serven", "type": "player", "sub": "Athletics"}, {"name": "Brice Turang", "slug": "brice-turang", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Brock Rodden", "slug": "brock-rodden", "type": "player", "sub": "Seattle Mariners"}, {"name": "Brooks Lee", "slug": "brooks-lee", "type": "player", "sub": "Minnesota Twins"}, {"name": "Bryan De La Cruz", "slug": "bryan-de-la-cruz", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Bryan Reynolds", "slug": "bryan-reynolds", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Bryan Torres", "slug": "bryan-torres", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Bryce Eldridge", "slug": "bryce-eldridge", "type": "player", "sub": "San Francisco Giants"}, {"name": "Bryce Harper", "slug": "bryce-harper", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Bryson Stott", "slug": "bryson-stott", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Buddy Kennedy", "slug": "buddy-kennedy", "type": "player", "sub": "San Francisco Giants"}, {"name": "Byron Buxton", "slug": "byron-buxton", "type": "player", "sub": "Minnesota Twins"}, {"name": "Cal Raleigh", "slug": "cal-raleigh", "type": "player", "sub": "Seattle Mariners"}, {"name": "Caleb Durbin", "slug": "caleb-durbin", "type": "player", "sub": "Boston Red Sox"}, {"name": "Cam Cauley", "slug": "cam-cauley", "type": "player", "sub": "Texas Rangers"}, {"name": "Cam Smith", "slug": "cam-smith", "type": "player", "sub": "Houston Astros"}, {"name": "Carlos Cortes", "slug": "carlos-cortes", "type": "player", "sub": "Athletics"}, {"name": "Carlos Narv\u00e1ez", "slug": "carlos-narvaez", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Carson Benge", "slug": "carson-benge", "type": "player", "sub": "New York Mets"}, {"name": "Carson Kelly", "slug": "carson-kelly", "type": "player", "sub": "Chicago Cubs"}, {"name": "Carson Williams", "slug": "carson-williams", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Carter Jensen", "slug": "carter-jensen", "type": "player", "sub": "Kansas City Royals"}, {"name": "Ceddanne Rafaela", "slug": "ceddanne-rafaela", "type": "player", "sub": "Boston Red Sox"}, {"name": "Cedric Mullins", "slug": "cedric-mullins", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "C\u00e9sar Prieto", "slug": "cesar-prieto", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Chandler Simpson", "slug": "chandler-simpson", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Charles McAdoo", "slug": "charles-mcadoo", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Chase DeLauter", "slug": "chase-delauter", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Chase Meidroth", "slug": "chase-meidroth", "type": "player", "sub": "Chicago White Sox"}, {"name": "Christian Encarnacion-Strand", "slug": "christian-encarnacion-strand", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Christian Franklin", "slug": "christian-franklin", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Christian Koss", "slug": "christian-koss", "type": "player", "sub": "San Francisco Giants"}, {"name": "Christian Moore", "slug": "christian-moore", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Christian V\u00e1zquez", "slug": "christian-vazquez", "type": "player", "sub": "Houston Astros"}, {"name": "Christian Walker", "slug": "christian-walker", "type": "player", "sub": "Houston Astros"}, {"name": "Christian Yelich", "slug": "christian-yelich", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Christopher Morel", "slug": "christopher-morel", "type": "player", "sub": "New York Mets"}, {"name": "CJ Abrams", "slug": "cj-abrams", "type": "player", "sub": "Washington Nationals"}, {"name": "Coby Mayo", "slug": "coby-mayo", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Cody Bellinger", "slug": "cody-bellinger", "type": "player", "sub": "New York Yankees"}, {"name": "Cody Freeman", "slug": "cody-freeman", "type": "player", "sub": "Texas Rangers"}, {"name": "Cole Carrigg", "slug": "cole-carrigg", "type": "player", "sub": "Colorado Rockies"}, {"name": "Cole Young", "slug": "cole-young", "type": "player", "sub": "Seattle Mariners"}, {"name": "Colson Montgomery", "slug": "colson-montgomery", "type": "player", "sub": "Chicago White Sox"}, {"name": "Colt Emerson", "slug": "colt-emerson", "type": "player", "sub": "Seattle Mariners"}, {"name": "Colt Keith", "slug": "colt-keith", "type": "player", "sub": "Detroit Tigers"}, {"name": "Colton Cowser", "slug": "colton-cowser", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Connor Norby", "slug": "connor-norby", "type": "player", "sub": "Colorado Rockies"}, {"name": "Connor Wong", "slug": "connor-wong", "type": "player", "sub": "Boston Red Sox"}, {"name": "Cooper Pratt", "slug": "cooper-pratt", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Corbin Carroll", "slug": "corbin-carroll", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Corey Julks", "slug": "corey-julks", "type": "player", "sub": "Detroit Tigers"}, {"name": "Corey Seager", "slug": "corey-seager", "type": "player", "sub": "Texas Rangers"}, {"name": "Cristian Pache", "slug": "cristian-pache", "type": "player", "sub": "New York Mets"}, {"name": "Dane Myers", "slug": "dane-myers", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Danny Jansen", "slug": "danny-jansen", "type": "player", "sub": "Texas Rangers"}, {"name": "Dansby Swanson", "slug": "dansby-swanson", "type": "player", "sub": "Chicago Cubs"}, {"name": "Darell Hernaiz", "slug": "darell-hernaiz", "type": "player", "sub": "Athletics"}, {"name": "Daulton Varsho", "slug": "daulton-varsho", "type": "player", "sub": "Houston Astros"}, {"name": "David Fry", "slug": "david-fry", "type": "player", "sub": "Cleveland Guardians"}, {"name": "David Hamilton", "slug": "david-hamilton", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Davis Schneider", "slug": "davis-schneider", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Daylen Lile", "slug": "daylen-lile", "type": "player", "sub": "Washington Nationals"}, {"name": "Daz Cameron", "slug": "daz-cameron", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Denzer Guzman", "slug": "denzer-guzman", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Derek Hill", "slug": "derek-hill", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Deyvison De Los Santos", "slug": "deyvison-de-los-santos", "type": "player", "sub": "Miami Marlins"}, {"name": "Dillon Dingler", "slug": "dillon-dingler", "type": "player", "sub": "Detroit Tigers"}, {"name": "Dominic Canzone", "slug": "dominic-canzone", "type": "player", "sub": "Seattle Mariners"}, {"name": "Dominic Smith", "slug": "dominic-smith", "type": "player", "sub": "Atlanta Braves"}, {"name": "Donovan Walton", "slug": "donovan-walton", "type": "player", "sub": "Athletics"}, {"name": "Drake Baldwin", "slug": "drake-baldwin", "type": "player", "sub": "Atlanta Braves"}, {"name": "Drew Cavanaugh", "slug": "drew-cavanaugh", "type": "player", "sub": "San Francisco Giants"}, {"name": "Drew Gilbert", "slug": "drew-gilbert", "type": "player", "sub": "San Francisco Giants"}, {"name": "Drew Romo", "slug": "drew-romo", "type": "player", "sub": "Chicago White Sox"}, {"name": "Dylan Beavers", "slug": "dylan-beavers", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Dylan Crews", "slug": "dylan-crews", "type": "player", "sub": "Washington Nationals"}, {"name": "Eddys Leonard", "slug": "eddys-leonard", "type": "player", "sub": "San Francisco Giants"}, {"name": "Edgar Quero", "slug": "edgar-quero", "type": "player", "sub": "Chicago White Sox"}, {"name": "Edmundo Sosa", "slug": "edmundo-sosa", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Edouard Julien", "slug": "edouard-julien", "type": "player", "sub": "Colorado Rockies"}, {"name": "Eduardo Valencia", "slug": "eduardo-valencia", "type": "player", "sub": "Detroit Tigers"}, {"name": "Eli White", "slug": "eli-white", "type": "player", "sub": "Boston Red Sox"}, {"name": "Elias D\u00edaz", "slug": "elias-diaz", "type": "player", "sub": "Texas Rangers"}, {"name": "Elly De La Cruz", "slug": "elly-de-la-cruz", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Endy Rodr\u00edguez", "slug": "endy-rodriguez", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Enrique Hern\u00e1ndez", "slug": "enrique-hernandez", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Eric Wagaman", "slug": "eric-wagaman", "type": "player", "sub": "New York Mets"}, {"name": "Ernie Clement", "slug": "ernie-clement", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Esmerlyn Valdez", "slug": "esmerlyn-valdez", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Esteury Ruiz", "slug": "esteury-ruiz", "type": "player", "sub": "Miami Marlins"}, {"name": "Eugenio Su\u00e1rez", "slug": "eugenio-suarez", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Evan Carter", "slug": "evan-carter", "type": "player", "sub": "Texas Rangers"}, {"name": "Everson Pereira", "slug": "everson-pereira", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Ezequiel Duran", "slug": "ezequiel-duran", "type": "player", "sub": "Texas Rangers"}, {"name": "Ezequiel Tovar", "slug": "ezequiel-tovar", "type": "player", "sub": "Colorado Rockies"}, {"name": "Fernando Tatis Jr.", "slug": "fernando-tatis-jr", "type": "player", "sub": "San Diego Padres"}, {"name": "Francisco Alvarez", "slug": "francisco-alvarez", "type": "player", "sub": "New York Mets"}, {"name": "Francisco Lindor", "slug": "francisco-lindor", "type": "player", "sub": "New York Mets"}, {"name": "Freddie Freeman", "slug": "freddie-freeman", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Freddy Fermin", "slug": "freddy-fermin", "type": "player", "sub": "San Diego Padres"}, {"name": "Gabriel Arias", "slug": "gabriel-arias", "type": "player", "sub": "Chicago Cubs"}, {"name": "Gabriel Moreno", "slug": "gabriel-moreno", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Garrett Mitchell", "slug": "garrett-mitchell", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Garrett Stubbs", "slug": "garrett-stubbs", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Gary S\u00e1nchez", "slug": "gary-sanchez", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Gavin Sheets", "slug": "gavin-sheets", "type": "player", "sub": "San Diego Padres"}, {"name": "George Lombard Jr.", "slug": "george-lombard-jr", "type": "player", "sub": "New York Yankees"}, {"name": "George Lombard", "slug": "george-lombard", "type": "player", "sub": "New York Yankees"}, {"name": "George Springer", "slug": "george-springer", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Geraldo Perdomo", "slug": "geraldo-perdomo", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Gleyber Torres", "slug": "gleyber-torres", "type": "player", "sub": "Detroit Tigers"}, {"name": "Graham Pauley", "slug": "graham-pauley", "type": "player", "sub": "Miami Marlins"}, {"name": "Grant McCray", "slug": "grant-mccray", "type": "player", "sub": "San Francisco Giants"}, {"name": "Griffin Conine", "slug": "griffin-conine", "type": "player", "sub": "Miami Marlins"}, {"name": "Gunnar Henderson", "slug": "gunnar-henderson", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Gustavo Campero", "slug": "gustavo-campero", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Ha-Seong Kim", "slug": "ha-seong-kim", "type": "player", "sub": "Atlanta Braves"}, {"name": "Hao-Yu Lee", "slug": "hao-yu-lee", "type": "player", "sub": "Detroit Tigers"}, {"name": "Harry Ford", "slug": "harry-ford", "type": "player", "sub": "Washington Nationals"}, {"name": "H\u00e9ctor Rodr\u00edguez", "slug": "hector-rodriguez", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Heliot Ramos", "slug": "heliot-ramos", "type": "player", "sub": "New York Yankees"}, {"name": "Henry Bolte", "slug": "henry-bolte", "type": "player", "sub": "Athletics"}, {"name": "Henry Davis", "slug": "henry-davis", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Heriberto Hern\u00e1ndez", "slug": "heriberto-hernandez", "type": "player", "sub": "Miami Marlins"}, {"name": "Hunter Feduccia", "slug": "hunter-feduccia", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Hunter Goodman", "slug": "hunter-goodman", "type": "player", "sub": "Colorado Rockies"}, {"name": "Ian Happ", "slug": "ian-happ", "type": "player", "sub": "Chicago Cubs"}, {"name": "Ildemaro Vargas", "slug": "ildemaro-vargas", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Isaac Collins", "slug": "isaac-collins", "type": "player", "sub": "Kansas City Royals"}, {"name": "Isaac Paredes", "slug": "isaac-paredes", "type": "player", "sub": "Houston Astros"}, {"name": "Iv\u00e1n Herrera", "slug": "ivan-herrera", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Ivan Johnson", "slug": "ivan-johnson", "type": "player", "sub": "Cincinnati Reds"}, {"name": "J.T. Realmuto", "slug": "j-t-realmuto", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Jac Caglianone", "slug": "jac-caglianone", "type": "player", "sub": "Kansas City Royals"}, {"name": "Jack Brannigan", "slug": "jack-brannigan", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Jackson Chourio", "slug": "jackson-chourio", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Jackson Holliday", "slug": "jackson-holliday", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Jackson Merrill", "slug": "jackson-merrill", "type": "player", "sub": "San Diego Padres"}, {"name": "Jacob Gonzalez", "slug": "jacob-gonzalez", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Jacob Wilson", "slug": "jacob-wilson", "type": "player", "sub": "Athletics"}, {"name": "Jacob Young", "slug": "jacob-young", "type": "player", "sub": "Washington Nationals"}, {"name": "Jahmai Jones", "slug": "jahmai-jones", "type": "player", "sub": "Boston Red Sox"}, {"name": "Jake Bauers", "slug": "jake-bauers", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Jake Burger", "slug": "jake-burger", "type": "player", "sub": "Texas Rangers"}, {"name": "Jake Cronenworth", "slug": "jake-cronenworth", "type": "player", "sub": "San Diego Padres"}, {"name": "Jake Mangum", "slug": "jake-mangum", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Jake McCarthy", "slug": "jake-mccarthy", "type": "player", "sub": "Colorado Rockies"}, {"name": "Jake Meyers", "slug": "jake-meyers", "type": "player", "sub": "Houston Astros"}, {"name": "Jake Rogers", "slug": "jake-rogers", "type": "player", "sub": "Chicago White Sox"}, {"name": "Jakob Marsee", "slug": "jakob-marsee", "type": "player", "sub": "Miami Marlins"}, {"name": "James McCann", "slug": "james-mccann", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "James Outman", "slug": "james-outman", "type": "player", "sub": "Detroit Tigers"}, {"name": "James Triantos", "slug": "james-triantos", "type": "player", "sub": "Chicago Cubs"}, {"name": "Jared Triolo", "slug": "jared-triolo", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Jared Young", "slug": "jared-young", "type": "player", "sub": "New York Mets"}, {"name": "Jarred Kelenic", "slug": "jarred-kelenic", "type": "player", "sub": "Texas Rangers"}, {"name": "Jarren Duran", "slug": "jarren-duran", "type": "player", "sub": "Boston Red Sox"}, {"name": "Jase Bowen", "slug": "jase-bowen", "type": "player", "sub": "San Diego Padres"}, {"name": "Javier B\u00e1ez", "slug": "javier-baez", "type": "player", "sub": "Detroit Tigers"}, {"name": "Javier Sanoja", "slug": "javier-sanoja", "type": "player", "sub": "Miami Marlins"}, {"name": "Jazz Chisholm Jr.", "slug": "jazz-chisholm-jr", "type": "player", "sub": "New York Yankees"}, {"name": "Jazz Chisholm", "slug": "jazz-chisholm", "type": "player", "sub": "New York Yankees"}, {"name": "Jeff McNeil", "slug": "jeff-mcneil", "type": "player", "sub": "Athletics"}, {"name": "Jeremiah Jackson", "slug": "jeremiah-jackson", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Jeremy Pe\u00f1a", "slug": "jeremy-pena", "type": "player", "sub": "Houston Astros"}, {"name": "Jes\u00fas S\u00e1nchez", "slug": "jesus-sanchez", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Jhonny Pereda", "slug": "jhonny-pereda", "type": "player", "sub": "Seattle Mariners"}, {"name": "Jhostynxon Garcia", "slug": "jhostynxon-garcia", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Jihwan Bae", "slug": "jihwan-bae", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Jim Jarvis", "slug": "jim-jarvis", "type": "player", "sub": "Atlanta Braves"}, {"name": "Jimmy Crooks", "slug": "jimmy-crooks", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "JJ Bleday", "slug": "jj-bleday", "type": "player", "sub": "Cincinnati Reds"}, {"name": "JJ Wetherholt", "slug": "jj-wetherholt", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Jo Adell", "slug": "jo-adell", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Joc Pederson", "slug": "joc-pederson", "type": "player", "sub": "Texas Rangers"}, {"name": "Joe Mack", "slug": "joe-mack", "type": "player", "sub": "Miami Marlins"}, {"name": "Joey Ortiz", "slug": "joey-ortiz", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "John Rave", "slug": "john-rave", "type": "player", "sub": "Kansas City Royals"}, {"name": "Jonah Bride", "slug": "jonah-bride", "type": "player", "sub": "Texas Rangers"}, {"name": "Jonah Cox", "slug": "jonah-cox", "type": "player", "sub": "San Francisco Giants"}, {"name": "Jonah Heim", "slug": "jonah-heim", "type": "player", "sub": "Athletics"}, {"name": "Jonathan Aranda", "slug": "jonathan-aranda", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Jonathan Ornelas", "slug": "jonathan-ornelas", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Jonny DeLuca", "slug": "jonny-deluca", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Jorbit Vivas", "slug": "jorbit-vivas", "type": "player", "sub": "Washington Nationals"}, {"name": "Jordan Beck", "slug": "jordan-beck", "type": "player", "sub": "Colorado Rockies"}, {"name": "Jordan Lawlar", "slug": "jordan-lawlar", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Jordan Walker", "slug": "jordan-walker", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Jorge Barrosa", "slug": "jorge-barrosa", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Jorge Mateo", "slug": "jorge-mateo", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Jorge Polanco", "slug": "jorge-polanco", "type": "player", "sub": "New York Mets"}, {"name": "Jose Altuve", "slug": "jose-altuve", "type": "player", "sub": "Houston Astros"}, {"name": "Jos\u00e9 Caballero", "slug": "jose-caballero", "type": "player", "sub": "New York Yankees"}, {"name": "Jos\u00e9 Ferm\u00edn", "slug": "jose-fermin", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Jose Fernandez", "slug": "jose-fernandez", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Jos\u00e9 Ram\u00edrez", "slug": "jose-ramirez", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Jose Siri", "slug": "jose-siri", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Jos\u00e9 Tena", "slug": "jose-tena", "type": "player", "sub": "Washington Nationals"}, {"name": "Jose Trevino", "slug": "jose-trevino", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Josh Bell", "slug": "josh-bell", "type": "player", "sub": "Minnesota Twins"}, {"name": "Josh Lowe", "slug": "josh-lowe", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Josh Naylor", "slug": "josh-naylor", "type": "player", "sub": "Seattle Mariners"}, {"name": "Josh Rojas", "slug": "josh-rojas", "type": "player", "sub": "Kansas City Royals"}, {"name": "Josh Smith", "slug": "josh-smith", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Joshua B\u00e1ez", "slug": "joshua-baez", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Julio Rodr\u00edguez", "slug": "julio-rodriguez", "type": "player", "sub": "Seattle Mariners"}, {"name": "Jung Hoo Lee", "slug": "jung-hoo-lee", "type": "player", "sub": "San Francisco Giants"}, {"name": "Junior Caminero", "slug": "junior-caminero", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Justin Crawford", "slug": "justin-crawford", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Justin Foscue", "slug": "justin-foscue", "type": "player", "sub": "Texas Rangers"}, {"name": "Kaelen Culpepper", "slug": "kaelen-culpepper", "type": "player", "sub": "Minnesota Twins"}, {"name": "Kazuma Okamoto", "slug": "kazuma-okamoto", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Ke'Bryan Hayes", "slug": "ke-bryan-hayes", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Keibert Ruiz", "slug": "keibert-ruiz", "type": "player", "sub": "Washington Nationals"}, {"name": "Kenny Piper", "slug": "kenny-piper", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Ketel Marte", "slug": "ketel-marte", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Kevin Alc\u00e1ntara", "slug": "kevin-alcantara", "type": "player", "sub": "Chicago Cubs"}, {"name": "Kevin McGonigle", "slug": "kevin-mcgonigle", "type": "player", "sub": "Detroit Tigers"}, {"name": "Kody Clemens", "slug": "kody-clemens", "type": "player", "sub": "Minnesota Twins"}, {"name": "Kyle Isbel", "slug": "kyle-isbel", "type": "player", "sub": "Kansas City Royals"}, {"name": "Kyle Karros", "slug": "kyle-karros", "type": "player", "sub": "Colorado Rockies"}, {"name": "Kyle Schwarber", "slug": "kyle-schwarber", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Kyle Stowers", "slug": "kyle-stowers", "type": "player", "sub": "Miami Marlins"}, {"name": "Kyle Tucker", "slug": "kyle-tucker", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "LaMonte Wade Jr.", "slug": "lamonte-wade-jr", "type": "player", "sub": "Houston Astros"}, {"name": "LaMonte Wade", "slug": "lamonte-wade", "type": "player", "sub": "Houston Astros"}, {"name": "Lane Thomas", "slug": "lane-thomas", "type": "player", "sub": "Atlanta Braves"}, {"name": "Lars Nootbaar", "slug": "lars-nootbaar", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Lawrence Butler", "slug": "lawrence-butler", "type": "player", "sub": "Athletics"}, {"name": "Leo Jim\u00e9nez", "slug": "leo-jimenez", "type": "player", "sub": "Miami Marlins"}, {"name": "Leo Rivas", "slug": "leo-rivas", "type": "player", "sub": "Seattle Mariners"}, {"name": "Leody Taveras", "slug": "leody-taveras", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Liam Hicks", "slug": "liam-hicks", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Logan Driscoll", "slug": "logan-driscoll", "type": "player", "sub": "Miami Marlins"}, {"name": "Logan O'Hoppe", "slug": "logan-o-hoppe", "type": "player", "sub": "Texas Rangers"}, {"name": "Luis Arraez", "slug": "luis-arraez", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Luis Campusano", "slug": "luis-campusano", "type": "player", "sub": "San Diego Padres"}, {"name": "Luis Garc\u00eda Jr.", "slug": "luis-garcia-jr", "type": "player", "sub": "New York Yankees"}, {"name": "Luis Garc\u00eda", "slug": "luis-garcia", "type": "player", "sub": "New York Yankees"}, {"name": "Luis Lara", "slug": "luis-lara", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Luis Rengifo", "slug": "luis-rengifo", "type": "player", "sub": "San Diego Padres"}, {"name": "Luis Robert Jr.", "slug": "luis-robert-jr", "type": "player", "sub": "New York Mets"}, {"name": "Luis Torrens", "slug": "luis-torrens", "type": "player", "sub": "New York Mets"}, {"name": "Luisangel Acu\u00f1a", "slug": "luisangel-acuna", "type": "player", "sub": "Chicago White Sox"}, {"name": "Luke Keaschall", "slug": "luke-keaschall", "type": "player", "sub": "Minnesota Twins"}, {"name": "Luke Maile", "slug": "luke-maile", "type": "player", "sub": "Kansas City Royals"}, {"name": "Maikel Garcia", "slug": "maikel-garcia", "type": "player", "sub": "Kansas City Royals"}, {"name": "Manny Machado", "slug": "manny-machado", "type": "player", "sub": "San Diego Padres"}, {"name": "Marcus Semien", "slug": "marcus-semien", "type": "player", "sub": "New York Mets"}, {"name": "Masataka Yoshida", "slug": "masataka-yoshida", "type": "player", "sub": "Boston Red Sox"}, {"name": "Masyn Winn", "slug": "masyn-winn", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Matt McLain", "slug": "matt-mclain", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Matt Olson", "slug": "matt-olson", "type": "player", "sub": "Atlanta Braves"}, {"name": "Matthew Lugo", "slug": "matthew-lugo", "type": "player", "sub": "Kansas City Royals"}, {"name": "Mauricio Dub\u00f3n", "slug": "mauricio-dubon", "type": "player", "sub": "Atlanta Braves"}, {"name": "Max Clark", "slug": "max-clark", "type": "player", "sub": "Detroit Tigers"}, {"name": "Max Kepler", "slug": "max-kepler", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Max Muncy", "slug": "max-muncy", "type": "player", "sub": "Athletics"}, {"name": "Max Schuemann", "slug": "max-schuemann", "type": "player", "sub": "New York Yankees"}, {"name": "Michael Busch", "slug": "michael-busch", "type": "player", "sub": "Chicago Cubs"}, {"name": "Michael Conforto", "slug": "michael-conforto", "type": "player", "sub": "Chicago Cubs"}, {"name": "Michael Harris II", "slug": "michael-harris-ii", "type": "player", "sub": "Atlanta Braves"}, {"name": "Michael Massey", "slug": "michael-massey", "type": "player", "sub": "Kansas City Royals"}, {"name": "Michael Stefanic", "slug": "michael-stefanic", "type": "player", "sub": "Athletics"}, {"name": "Michael Toglia", "slug": "michael-toglia", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Mickey Gasper", "slug": "mickey-gasper", "type": "player", "sub": "Boston Red Sox"}, {"name": "Mickey Moniak", "slug": "mickey-moniak", "type": "player", "sub": "Colorado Rockies"}, {"name": "Miguel Amaya", "slug": "miguel-amaya", "type": "player", "sub": "Chicago Cubs"}, {"name": "Miguel Rojas", "slug": "miguel-rojas", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Miguel Vargas", "slug": "miguel-vargas", "type": "player", "sub": "Chicago White Sox"}, {"name": "Mike Trout", "slug": "mike-trout", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Mike Yastrzemski", "slug": "mike-yastrzemski", "type": "player", "sub": "Atlanta Braves"}, {"name": "Mois\u00e9s Ballesteros", "slug": "moises-ballesteros", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Mookie Betts", "slug": "mookie-betts", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Munetaka Murakami", "slug": "munetaka-murakami", "type": "player", "sub": "Chicago White Sox"}, {"name": "Myles Straw", "slug": "myles-straw", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Nasim Nu\u00f1ez", "slug": "nasim-nunez", "type": "player", "sub": "Washington Nationals"}, {"name": "Nate Furman", "slug": "nate-furman", "type": "player", "sub": "San Francisco Giants"}, {"name": "Nathan Church", "slug": "nathan-church", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Nathan Lukes", "slug": "nathan-lukes", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Nathaniel Lowe", "slug": "nathaniel-lowe", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Nelson Vel\u00e1zquez", "slug": "nelson-velazquez", "type": "player", "sub": "Houston Astros"}, {"name": "Nick Allen", "slug": "nick-allen", "type": "player", "sub": "Houston Astros"}, {"name": "Nick Fortes", "slug": "nick-fortes", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Nick Gonzales", "slug": "nick-gonzales", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Nick Loftin", "slug": "nick-loftin", "type": "player", "sub": "Kansas City Royals"}, {"name": "Nick Sogard", "slug": "nick-sogard", "type": "player", "sub": "Boston Red Sox"}, {"name": "Nick Yorke", "slug": "nick-yorke", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Nicky Lopez", "slug": "nicky-lopez", "type": "player", "sub": "Texas Rangers"}, {"name": "Nico Hoerner", "slug": "nico-hoerner", "type": "player", "sub": "Chicago Cubs"}, {"name": "Noelvi Marte", "slug": "noelvi-marte", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Nolan Arenado", "slug": "nolan-arenado", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Nolan Schanuel", "slug": "nolan-schanuel", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Oneil Cruz", "slug": "oneil-cruz", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Osleivis Basabe", "slug": "osleivis-basabe", "type": "player", "sub": "San Francisco Giants"}, {"name": "Oswald Peraza", "slug": "oswald-peraza", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Otto Lopez", "slug": "otto-lopez", "type": "player", "sub": "Miami Marlins"}, {"name": "Owen Caissie", "slug": "owen-caissie", "type": "player", "sub": "Miami Marlins"}, {"name": "Owen Miller", "slug": "owen-miller", "type": "player", "sub": "Chicago Cubs"}, {"name": "Ozzie Albies", "slug": "ozzie-albies", "type": "player", "sub": "Atlanta Braves"}, {"name": "Patrick Bailey", "slug": "patrick-bailey", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Patrick Wisdom", "slug": "patrick-wisdom", "type": "player", "sub": "Seattle Mariners"}, {"name": "Paul Goldschmidt", "slug": "paul-goldschmidt", "type": "player", "sub": "New York Yankees"}, {"name": "Pedro Pag\u00e9s", "slug": "pedro-pages", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Pedro Ram\u00edrez", "slug": "pedro-ramirez", "type": "player", "sub": "Chicago Cubs"}, {"name": "Pete Alonso", "slug": "pete-alonso", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Pete Crow-Armstrong", "slug": "pete-crow-armstrong", "type": "player", "sub": "Chicago Cubs"}, {"name": "Petey Halpin", "slug": "petey-halpin", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Rafael Devers", "slug": "rafael-devers", "type": "player", "sub": "San Francisco Giants"}, {"name": "Rafael Flores Jr.", "slug": "rafael-flores-jr", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Rafael Flores", "slug": "rafael-flores", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Ram\u00f3n Ur\u00edas", "slug": "ramon-urias", "type": "player", "sub": "St. Louis Cardinals"}, {"name": "Randal Grichuk", "slug": "randal-grichuk", "type": "player", "sub": "Chicago White Sox"}, {"name": "Randy Arozarena", "slug": "randy-arozarena", "type": "player", "sub": "Seattle Mariners"}, {"name": "Raynel Delgado", "slug": "raynel-delgado", "type": "player", "sub": "Houston Astros"}, {"name": "Rhys Hoskins", "slug": "rhys-hoskins", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Richie Palacios", "slug": "richie-palacios", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Riley Greene", "slug": "riley-greene", "type": "player", "sub": "Detroit Tigers"}, {"name": "Ronald Acu\u00f1a Jr.", "slug": "ronald-acuna-jr", "type": "player", "sub": "Atlanta Braves"}, {"name": "Ronny Simon", "slug": "ronny-simon", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Royce Lewis", "slug": "royce-lewis", "type": "player", "sub": "Minnesota Twins"}, {"name": "Ryan Jeffers", "slug": "ryan-jeffers", "type": "player", "sub": "Minnesota Twins"}, {"name": "Ryan Kreidler", "slug": "ryan-kreidler", "type": "player", "sub": "Minnesota Twins"}, {"name": "Ryan McMahon", "slug": "ryan-mcmahon", "type": "player", "sub": "New York Yankees"}, {"name": "Ryan Ritter", "slug": "ryan-ritter", "type": "player", "sub": "Colorado Rockies"}, {"name": "Ryan Vilade", "slug": "ryan-vilade", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Ryan Waldschmidt", "slug": "ryan-waldschmidt", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Sal Stewart", "slug": "sal-stewart", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Salvador Perez", "slug": "salvador-perez", "type": "player", "sub": "Kansas City Royals"}, {"name": "Sam Antonacci", "slug": "sam-antonacci", "type": "player", "sub": "Chicago White Sox"}, {"name": "Samuel Basallo", "slug": "samuel-basallo", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Sean Murphy", "slug": "sean-murphy", "type": "player", "sub": "Atlanta Braves"}, {"name": "Seiya Suzuki", "slug": "seiya-suzuki", "type": "player", "sub": "Chicago Cubs"}, {"name": "Shohei Ohtani", "slug": "shohei-ohtani", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Spencer Horwitz", "slug": "spencer-horwitz", "type": "player", "sub": "Pittsburgh Pirates"}, {"name": "Spencer Jones", "slug": "spencer-jones", "type": "player", "sub": "New York Yankees"}, {"name": "Spencer Torkelson", "slug": "spencer-torkelson", "type": "player", "sub": "Detroit Tigers"}, {"name": "Starling Marte", "slug": "starling-marte", "type": "player", "sub": "Kansas City Royals"}, {"name": "Steven Kwan", "slug": "steven-kwan", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Sung-Mun Song", "slug": "sung-mun-song", "type": "player", "sub": "San Diego Padres"}, {"name": "Taylor Trammell", "slug": "taylor-trammell", "type": "player", "sub": "Houston Astros"}, {"name": "Taylor Walls", "slug": "taylor-walls", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Taylor Ward", "slug": "taylor-ward", "type": "player", "sub": "Seattle Mariners"}, {"name": "Teoscar Hern\u00e1ndez", "slug": "teoscar-hernandez", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Tim Tawa", "slug": "tim-tawa", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "TJ Friedl", "slug": "tj-friedl", "type": "player", "sub": "Cincinnati Reds"}, {"name": "TJ Rumfield", "slug": "tj-rumfield", "type": "player", "sub": "Colorado Rockies"}, {"name": "Tommy Edman", "slug": "tommy-edman", "type": "player", "sub": "Los Angeles Dodgers"}, {"name": "Tommy White", "slug": "tommy-white", "type": "player", "sub": "Athletics"}, {"name": "Travis Bazzana", "slug": "travis-bazzana", "type": "player", "sub": "Cleveland Guardians"}, {"name": "Travis d'Arnaud", "slug": "travis-d-arnaud", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Trea Turner", "slug": "trea-turner", "type": "player", "sub": "Philadelphia Phillies"}, {"name": "Trei Cruz", "slug": "trei-cruz", "type": "player", "sub": "Detroit Tigers"}, {"name": "Trent Grisham", "slug": "trent-grisham", "type": "player", "sub": "New York Yankees"}, {"name": "Trevor Larnach", "slug": "trevor-larnach", "type": "player", "sub": "Minnesota Twins"}, {"name": "Tristan Peters", "slug": "tristan-peters", "type": "player", "sub": "Chicago White Sox"}, {"name": "Troy Johnston", "slug": "troy-johnston", "type": "player", "sub": "Colorado Rockies"}, {"name": "Turner Hill", "slug": "turner-hill", "type": "player", "sub": "San Francisco Giants"}, {"name": "Ty France", "slug": "ty-france", "type": "player", "sub": "San Diego Padres"}, {"name": "Tyler Heineman", "slug": "tyler-heineman", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Tyler Locklear", "slug": "tyler-locklear", "type": "player", "sub": "Arizona Diamondbacks"}, {"name": "Tyler O'Neill", "slug": "tyler-o-neill", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Tyler Soderstrom", "slug": "tyler-soderstrom", "type": "player", "sub": "Athletics"}, {"name": "Tyler Stephenson", "slug": "tyler-stephenson", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Tyler Tolbert", "slug": "tyler-tolbert", "type": "player", "sub": "Kansas City Royals"}, {"name": "Tyrone Taylor", "slug": "tyrone-taylor", "type": "player", "sub": "Chicago Cubs"}, {"name": "Vaughn Grissom", "slug": "vaughn-grissom", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Victor Bericoto", "slug": "victor-bericoto", "type": "player", "sub": "San Francisco Giants"}, {"name": "Victor Caratini", "slug": "victor-caratini", "type": "player", "sub": "Minnesota Twins"}, {"name": "Victor Mesa Jr.", "slug": "victor-mesa-jr", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Victor Robles", "slug": "victor-robles", "type": "player", "sub": "Seattle Mariners"}, {"name": "Vinnie Pasquantino", "slug": "vinnie-pasquantino", "type": "player", "sub": "Kansas City Royals"}, {"name": "Vladimir Guerrero Jr.", "slug": "vladimir-guerrero-jr", "type": "player", "sub": "Toronto Blue Jays"}, {"name": "Wade Meckler", "slug": "wade-meckler", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Weston Wilson", "slug": "weston-wilson", "type": "player", "sub": "Seattle Mariners"}, {"name": "Will Banfield", "slug": "will-banfield", "type": "player", "sub": "Cincinnati Reds"}, {"name": "Willi Castro", "slug": "willi-castro", "type": "player", "sub": "Colorado Rockies"}, {"name": "William Contreras", "slug": "william-contreras", "type": "player", "sub": "Milwaukee Brewers"}, {"name": "Willson Contreras", "slug": "willson-contreras", "type": "player", "sub": "Boston Red Sox"}, {"name": "Willy Adames", "slug": "willy-adames", "type": "player", "sub": "San Francisco Giants"}, {"name": "Wilyer Abreu", "slug": "wilyer-abreu", "type": "player", "sub": "Boston Red Sox"}, {"name": "Wyatt Langford", "slug": "wyatt-langford", "type": "player", "sub": "Texas Rangers"}, {"name": "Xander Bogaerts", "slug": "xander-bogaerts", "type": "player", "sub": "San Diego Padres"}, {"name": "Xavier Edwards", "slug": "xavier-edwards", "type": "player", "sub": "Miami Marlins"}, {"name": "Yainer Diaz", "slug": "yainer-diaz", "type": "player", "sub": "Houston Astros"}, {"name": "Yandy D\u00edaz", "slug": "yandy-diaz", "type": "player", "sub": "Tampa Bay Rays"}, {"name": "Yohel Pozo", "slug": "yohel-pozo", "type": "player", "sub": "Baltimore Orioles"}, {"name": "Yordan Alvarez", "slug": "yordan-alvarez", "type": "player", "sub": "Houston Astros"}, {"name": "Zac Veen", "slug": "zac-veen", "type": "player", "sub": "Colorado Rockies"}, {"name": "Zach McKinstry", "slug": "zach-mckinstry", "type": "player", "sub": "Detroit Tigers"}, {"name": "Zach Morgan", "slug": "zach-morgan", "type": "player", "sub": "San Francisco Giants"}, {"name": "Zach Neto", "slug": "zach-neto", "type": "player", "sub": "Los Angeles Angels"}, {"name": "Zack Gelof", "slug": "zack-gelof", "type": "player", "sub": "Athletics"}, {"name": "Arizona Diamondbacks", "slug": "arizona-diamondbacks", "type": "team", "sub": ""}, {"name": "Athletics", "slug": "athletics", "type": "team", "sub": ""}, {"name": "Atlanta Braves", "slug": "atlanta-braves", "type": "team", "sub": ""}, {"name": "Baltimore Orioles", "slug": "baltimore-orioles", "type": "team", "sub": ""}, {"name": "Boston Red Sox", "slug": "boston-red-sox", "type": "team", "sub": ""}, {"name": "Chicago Cubs", "slug": "chicago-cubs", "type": "team", "sub": ""}, {"name": "Chicago White Sox", "slug": "chicago-white-sox", "type": "team", "sub": ""}, {"name": "Cincinnati Reds", "slug": "cincinnati-reds", "type": "team", "sub": ""}, {"name": "Cleveland Guardians", "slug": "cleveland-guardians", "type": "team", "sub": ""}, {"name": "Colorado Rockies", "slug": "colorado-rockies", "type": "team", "sub": ""}, {"name": "Detroit Tigers", "slug": "detroit-tigers", "type": "team", "sub": ""}, {"name": "Houston Astros", "slug": "houston-astros", "type": "team", "sub": ""}, {"name": "Kansas City Royals", "slug": "kansas-city-royals", "type": "team", "sub": ""}, {"name": "Los Angeles Angels", "slug": "los-angeles-angels", "type": "team", "sub": ""}, {"name": "Los Angeles Dodgers", "slug": "los-angeles-dodgers", "type": "team", "sub": ""}, {"name": "Miami Marlins", "slug": "miami-marlins", "type": "team", "sub": ""}, {"name": "Milwaukee Brewers", "slug": "milwaukee-brewers", "type": "team", "sub": ""}, {"name": "Minnesota Twins", "slug": "minnesota-twins", "type": "team", "sub": ""}, {"name": "New York Mets", "slug": "new-york-mets", "type": "team", "sub": ""}, {"name": "New York Yankees", "slug": "new-york-yankees", "type": "team", "sub": ""}, {"name": "Philadelphia Phillies", "slug": "philadelphia-phillies", "type": "team", "sub": ""}, {"name": "Pittsburgh Pirates", "slug": "pittsburgh-pirates", "type": "team", "sub": ""}, {"name": "San Diego Padres", "slug": "san-diego-padres", "type": "team", "sub": ""}, {"name": "San Francisco Giants", "slug": "san-francisco-giants", "type": "team", "sub": ""}, {"name": "Seattle Mariners", "slug": "seattle-mariners", "type": "team", "sub": ""}, {"name": "St. Louis Cardinals", "slug": "st-louis-cardinals", "type": "team", "sub": ""}, {"name": "Tampa Bay Rays", "slug": "tampa-bay-rays", "type": "team", "sub": ""}, {"name": "Texas Rangers", "slug": "texas-rangers", "type": "team", "sub": ""}, {"name": "Toronto Blue Jays", "slug": "toronto-blue-jays", "type": "team", "sub": ""}, {"name": "Washington Nationals", "slug": "washington-nationals", "type": "team", "sub": ""}]</script>
+<script>
+const searchIndex = JSON.parse(document.getElementById('search-index').textContent);
+const searchInput = document.getElementById('site-search');
+const resultsEl = document.getElementById('site-search-results');
+
+function renderResults(query) {
+  if (!query) {
+    resultsEl.hidden = true;
+    resultsEl.innerHTML = '';
+    return;
+  }
+  const q = query.toLowerCase();
+  const matches = searchIndex.filter((e) => e.name.toLowerCase().includes(q)).slice(0, 8);
+  if (!matches.length) {
+    resultsEl.innerHTML = '<div class="search-empty">No matches</div>';
+    resultsEl.hidden = false;
+    return;
+  }
+  resultsEl.innerHTML = matches.map((e) => {
+    const href = (e.type === 'player' ? 'players/' : 'teams/') + e.slug + '.html';
+    const sub = e.sub ? `<span class="search-sub">${e.sub}</span>` : '';
+    return `<a class="search-result" href="${href}"><span class="search-name">${e.name}</span>${sub}</a>`;
+  }).join('');
+  resultsEl.hidden = false;
+}
+
+searchInput.addEventListener('input', () => renderResults(searchInput.value.trim()));
+searchInput.addEventListener('focus', () => renderResults(searchInput.value.trim()));
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.home-search-wrap')) resultsEl.hidden = true;
+});
+</script>
 </body>
 </html>
