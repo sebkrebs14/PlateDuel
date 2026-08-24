@@ -4015,6 +4015,176 @@ GRID_PLAYERS = [
     {"name": "Scott Rolen", "teams": ["Philadelphia Phillies", "St. Louis Cardinals", "Toronto Blue Jays",
                                         "Cincinnati Reds"],
      "tags": ["hof", "roy", "allstar5", "ws_champ", "gold_glove"]},
+
+    # --- expanded roster (added later) ---
+    # --- 1950s-60s legends not yet covered ---
+    {"name": "Roberto Clemente", "teams": ["Pittsburgh Pirates"],
+     "tags": ["hof", "mvp", "allstar5", "ws_champ", "batting_title", "gold_glove", "3000hits"]},
+    {"name": "Early Wynn", "teams": ["Washington Nationals", "Cleveland Guardians", "Chicago White Sox"],
+     "tags": ["hof", "cy_young", "allstar5", "20win_season", "300wins"]},
+    {"name": "Robin Roberts", "teams": ["Philadelphia Phillies", "Baltimore Orioles", "Houston Astros", "Chicago Cubs"],
+     "tags": ["hof", "allstar5", "20win_season", "300wins"]},
+    {"name": "Nellie Fox", "teams": ["Athletics", "Chicago White Sox", "Houston Astros"],
+     "tags": ["hof", "mvp", "allstar5", "gold_glove"]},
+    {"name": "Luis Aparicio", "teams": ["Chicago White Sox", "Baltimore Orioles", "Boston Red Sox"],
+     "tags": ["hof", "allstar5", "gold_glove", "roy"]},
+    {"name": "Tony Perez", "teams": ["Cincinnati Reds", "Boston Red Sox", "Philadelphia Phillies"],
+     "tags": ["hof", "allstar5", "ws_champ"]},
+    {"name": "Johnny Bench", "teams": ["Cincinnati Reds"],
+     "tags": ["hof", "mvp", "roy", "allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Pete Rose", "teams": ["Cincinnati Reds", "Philadelphia Phillies", "Washington Nationals"],
+     "tags": ["mvp", "roy", "allstar5", "ws_champ", "3000hits", "batting_title", "200hits_season", "gold_glove"]},
+    {"name": "Joe Morgan", "teams": ["Houston Astros", "Cincinnati Reds", "San Francisco Giants",
+                                       "Philadelphia Phillies", "Athletics"],
+     "tags": ["hof", "mvp", "allstar5", "ws_champ", "gold_glove", "40sb_season"]},
+    {"name": "Tom Seaver", "teams": ["New York Mets", "Cincinnati Reds", "Chicago White Sox", "Boston Red Sox"],
+     "tags": ["hof", "cy_young", "roy", "allstar5", "ws_champ", "20win_season", "no_hitter", "3000k", "300wins"]},
+    {"name": "Gaylord Perry", "teams": ["San Francisco Giants", "Cleveland Guardians", "Texas Rangers",
+                                          "San Diego Padres", "New York Yankees", "Atlanta Braves", "Kansas City Royals"],
+     "tags": ["hof", "cy_young", "allstar5", "20win_season", "no_hitter", "3000k", "300wins"]},
+
+    # --- 1970s-90s stars not yet covered ---
+    {"name": "Dave Kingman", "teams": ["San Francisco Giants", "New York Mets", "San Diego Padres",
+                                         "Chicago Cubs", "New York Yankees", "Athletics"],
+     "tags": ["40hr_season"]},
+    {"name": "Dale Murphy", "teams": ["Atlanta Braves", "Philadelphia Phillies", "Colorado Rockies"],
+     "tags": ["mvp", "allstar5", "gold_glove", "40hr_season"]},
+    {"name": "Keith Hernandez", "teams": ["St. Louis Cardinals", "New York Mets", "Cleveland Guardians"],
+     "tags": ["mvp", "allstar5", "ws_champ", "gold_glove", "batting_title"]},
+    {"name": "Gary Sheffield", "teams": ["Milwaukee Brewers", "San Diego Padres", "Los Angeles Dodgers",
+                                           "Atlanta Braves", "New York Yankees", "Detroit Tigers", "New York Mets"],
+     "tags": ["allstar5", "ws_champ", "batting_title", "40hr_season"]},
+    {"name": "Fred McGriff", "teams": ["Toronto Blue Jays", "San Diego Padres", "Atlanta Braves",
+                                         "Tampa Bay Rays", "Chicago Cubs", "Los Angeles Dodgers"],
+     "tags": ["hof", "allstar5", "ws_champ", "500hr", "40hr_season"]},
+    {"name": "Kenny Lofton", "teams": ["Houston Astros", "Cleveland Guardians", "Atlanta Braves",
+                                         "Chicago White Sox", "San Francisco Giants", "Chicago Cubs",
+                                         "New York Yankees", "Philadelphia Phillies", "Texas Rangers"],
+     "tags": ["allstar5", "gold_glove", "40sb_season"]},
+    {"name": "Tim Raines", "teams": ["Washington Nationals", "Chicago White Sox", "New York Yankees",
+                                       "Athletics", "Baltimore Orioles", "Miami Marlins"],
+     "tags": ["hof", "allstar5", "ws_champ", "batting_title", "40sb_season"]},
+    {"name": "Dwight Gooden", "teams": ["New York Mets", "New York Yankees", "Cleveland Guardians",
+                                          "Houston Astros", "Tampa Bay Rays"],
+     "tags": ["cy_young", "roy", "allstar5", "ws_champ", "20win_season", "no_hitter"]},
+    {"name": "Orel Hershiser", "teams": ["Los Angeles Dodgers", "Cleveland Guardians", "San Francisco Giants",
+                                           "New York Mets", "Los Angeles Angels"],
+     "tags": ["cy_young", "allstar5", "ws_champ", "ws_mvp", "20win_season"]},
+    {"name": "David Cone", "teams": ["Kansas City Royals", "New York Mets", "Toronto Blue Jays",
+                                       "New York Yankees", "Boston Red Sox"],
+     "tags": ["cy_young", "allstar5", "ws_champ", "20win_season", "no_hitter", "3000k"]},
+    {"name": "Dennis Martinez", "teams": ["Baltimore Orioles", "Washington Nationals", "Cleveland Guardians",
+                                            "Seattle Mariners", "Atlanta Braves"],
+     "tags": ["allstar5", "20win_season", "no_hitter"]},
+    {"name": "Jack Clark", "teams": ["San Francisco Giants", "St. Louis Cardinals", "New York Yankees",
+                                       "San Diego Padres", "Boston Red Sox"],
+     "tags": ["allstar5", "40hr_season"]},
+    {"name": "Darryl Strawberry", "teams": ["New York Mets", "Los Angeles Dodgers", "San Francisco Giants",
+                                              "New York Yankees"],
+     "tags": ["roy", "allstar5", "ws_champ", "40hr_season"]},
+    {"name": "Eric Davis", "teams": ["Cincinnati Reds", "Los Angeles Dodgers", "Detroit Tigers",
+                                       "Baltimore Orioles", "St. Louis Cardinals", "San Francisco Giants"],
+     "tags": ["allstar5", "ws_champ", "gold_glove", "40sb_season"]},
+    {"name": "Mark McGwire", "teams": ["Athletics", "St. Louis Cardinals"],
+     "tags": ["mvp", "roy", "allstar5", "ws_champ", "500hr", "40hr_season", "50hr_season"]},
+    {"name": "Jose Canseco", "teams": ["Athletics", "Texas Rangers", "Boston Red Sox", "Toronto Blue Jays",
+                                         "Tampa Bay Rays", "New York Yankees", "Chicago White Sox"],
+     "tags": ["mvp", "roy", "allstar5", "ws_champ", "40hr_season", "40sb_season"]},
+    {"name": "Sammy Sosa", "teams": ["Texas Rangers", "Chicago White Sox", "Chicago Cubs", "Baltimore Orioles"],
+     "tags": ["mvp", "allstar5", "500hr", "40hr_season", "50hr_season"]},
+    {"name": "Rafael Palmeiro", "teams": ["Chicago Cubs", "Texas Rangers", "Baltimore Orioles"],
+     "tags": ["allstar5", "500hr", "3000hits", "40hr_season", "gold_glove"]},
+    {"name": "Don Mattingly", "teams": ["New York Yankees"],
+     "tags": ["mvp", "allstar5", "gold_glove", "batting_title", "200hits_season"]},
+    {"name": "Robin Ventura", "teams": ["Chicago White Sox", "New York Mets", "New York Yankees", "Los Angeles Dodgers"],
+     "tags": ["allstar5", "gold_glove"]},
+    {"name": "Edgar Martinez", "teams": ["Seattle Mariners"],
+     "tags": ["hof", "allstar5", "batting_title"]},
+
+    # --- 2000s-2010s stars ---
+    {"name": "CC Sabathia", "teams": ["Cleveland Guardians", "Milwaukee Brewers", "New York Yankees"],
+     "tags": ["hof", "cy_young", "allstar5", "ws_champ", "20win_season", "3000k"]},
+    {"name": "Joe Mauer", "teams": ["Minnesota Twins"],
+     "tags": ["hof", "mvp", "allstar5", "batting_title", "gold_glove"]},
+    {"name": "David Wright", "teams": ["New York Mets"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Andrew McCutchen", "teams": ["Pittsburgh Pirates", "San Francisco Giants", "New York Yankees",
+                                             "Philadelphia Phillies", "Milwaukee Brewers"],
+     "tags": ["mvp", "allstar5", "gold_glove", "batting_title"]},
+    {"name": "Miguel Cabrera", "teams": ["Miami Marlins", "Detroit Tigers"],
+     "tags": ["hof", "mvp", "allstar5", "ws_champ", "triple_crown", "500hr", "3000hits", "40hr_season", "batting_title"]},
+    {"name": "Adrian Beltre", "teams": ["Los Angeles Dodgers", "Seattle Mariners", "Boston Red Sox", "Texas Rangers"],
+     "tags": ["hof", "allstar5", "gold_glove", "3000hits", "40hr_season"]},
+    {"name": "Chase Utley", "teams": ["Philadelphia Phillies", "Los Angeles Dodgers"],
+     "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Carlos Beltran", "teams": ["Kansas City Royals", "Houston Astros", "New York Mets",
+                                           "San Francisco Giants", "St. Louis Cardinals", "New York Yankees",
+                                           "Texas Rangers"],
+     "tags": ["hof", "roy", "allstar5", "ws_champ", "gold_glove", "40hr_season", "40sb_season"]},
+    {"name": "Jimmy Rollins", "teams": ["Philadelphia Phillies", "Los Angeles Dodgers", "Chicago White Sox"],
+     "tags": ["mvp", "allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Torii Hunter", "teams": ["Minnesota Twins", "Los Angeles Angels", "Detroit Tigers"],
+     "tags": ["allstar5", "gold_glove"]},
+    {"name": "Felix Hernandez", "teams": ["Seattle Mariners"], "tags": ["cy_young", "allstar5", "20win_season", "no_hitter"]},
+    {"name": "Justin Morneau", "teams": ["Minnesota Twins", "Colorado Rockies", "Chicago White Sox"],
+     "tags": ["mvp", "allstar5", "batting_title"]},
+    {"name": "Prince Fielder", "teams": ["Milwaukee Brewers", "Detroit Tigers", "Texas Rangers"],
+     "tags": ["allstar5", "40hr_season", "50hr_season"]},
+    {"name": "Ryan Braun", "teams": ["Milwaukee Brewers"], "tags": ["mvp", "roy", "allstar5", "40hr_season"]},
+    {"name": "Joey Votto", "teams": ["Cincinnati Reds"], "tags": ["hof", "mvp", "allstar5", "batting_title"]},
+    {"name": "Zack Greinke", "teams": ["Kansas City Royals", "Milwaukee Brewers", "Los Angeles Angels",
+                                         "Los Angeles Dodgers", "Arizona Diamondbacks", "Houston Astros",
+                                         "Kansas City Royals"],
+     "tags": ["cy_young", "allstar5", "20win_season", "gold_glove"]},
+    {"name": "David Price", "teams": ["Tampa Bay Rays", "Detroit Tigers", "Toronto Blue Jays", "Boston Red Sox",
+                                        "Los Angeles Dodgers"],
+     "tags": ["cy_young", "allstar5", "ws_champ", "20win_season"]},
+    {"name": "Cole Hamels", "teams": ["Philadelphia Phillies", "Texas Rangers", "Chicago Cubs", "Atlanta Braves"],
+     "tags": ["allstar5", "ws_champ", "ws_mvp", "no_hitter"]},
+    {"name": "Jon Lester", "teams": ["Boston Red Sox", "Athletics", "Chicago Cubs", "Washington Nationals"],
+     "tags": ["allstar5", "ws_champ", "20win_season", "no_hitter"]},
+
+    # --- current stars (2020s) ---
+    {"name": "Aaron Nola", "teams": ["Philadelphia Phillies"], "tags": ["allstar5"]},
+    {"name": "Adley Rutschman", "teams": ["Baltimore Orioles"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Alex Bregman", "teams": ["Houston Astros", "Boston Red Sox"],
+     "tags": ["allstar5", "ws_champ", "gold_glove", "40hr_season"]},
+    {"name": "Austin Riley", "teams": ["Atlanta Braves"], "tags": ["allstar5", "ws_champ", "40hr_season"]},
+    {"name": "Bobby Witt Jr.", "teams": ["Kansas City Royals"], "tags": ["allstar5", "gold_glove", "40sb_season"]},
+    {"name": "Bryan Reynolds", "teams": ["Pittsburgh Pirates"], "tags": ["allstar5"]},
+    {"name": "Byron Buxton", "teams": ["Minnesota Twins"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Carlos Correa", "teams": ["Houston Astros", "Minnesota Twins"],
+     "tags": ["roy", "allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Cody Bellinger", "teams": ["Los Angeles Dodgers", "Chicago Cubs", "New York Yankees"],
+     "tags": ["mvp", "roy", "allstar5", "ws_champ", "gold_glove", "40hr_season"]},
+    {"name": "Dansby Swanson", "teams": ["Atlanta Braves", "Chicago Cubs"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Elly De La Cruz", "teams": ["Cincinnati Reds"], "tags": ["allstar5", "40sb_season"]},
+    {"name": "Framber Valdez", "teams": ["Houston Astros"], "tags": ["allstar5", "ws_champ", "20win_season"]},
+    {"name": "Gunnar Henderson", "teams": ["Baltimore Orioles"], "tags": ["roy", "allstar5", "40hr_season"]},
+    {"name": "Jazz Chisholm Jr.", "teams": ["Miami Marlins", "New York Yankees"], "tags": ["allstar5"]},
+    {"name": "Jose Abreu", "teams": ["Chicago White Sox", "Houston Astros"], "tags": ["mvp", "roy", "allstar5", "40hr_season"]},
+    {"name": "Josh Hader", "teams": ["Milwaukee Brewers", "San Diego Padres", "Houston Astros"], "tags": ["allstar5"]},
+    {"name": "Julio Rodriguez", "teams": ["Seattle Mariners"], "tags": ["roy", "allstar5", "40sb_season"]},
+    {"name": "Kyle Tucker", "teams": ["Houston Astros", "Chicago Cubs"],
+     "tags": ["allstar5", "ws_champ", "gold_glove", "40hr_season"]},
+    {"name": "Logan Webb", "teams": ["San Francisco Giants"], "tags": ["allstar5"]},
+    {"name": "Luis Robert Jr.", "teams": ["Chicago White Sox"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Marcus Semien", "teams": ["Chicago White Sox", "Athletics", "Toronto Blue Jays", "Texas Rangers"],
+     "tags": ["allstar5", "ws_champ", "gold_glove", "40hr_season"]},
+    {"name": "Matt Chapman", "teams": ["Athletics", "Toronto Blue Jays", "San Francisco Giants"],
+     "tags": ["allstar5", "gold_glove"]},
+    {"name": "Matt Olson", "teams": ["Athletics", "Atlanta Braves"], "tags": ["allstar5", "ws_champ", "gold_glove", "40hr_season"]},
+    {"name": "Max Fried", "teams": ["Atlanta Braves", "New York Yankees"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Paul Goldschmidt", "teams": ["Arizona Diamondbacks", "St. Louis Cardinals"],
+     "tags": ["mvp", "allstar5", "gold_glove", "batting_title", "40hr_season"]},
+    {"name": "Sandy Alcantara", "teams": ["St. Louis Cardinals", "Miami Marlins"], "tags": ["cy_young", "allstar5", "20win_season"]},
+    {"name": "Spencer Strider", "teams": ["Atlanta Braves"], "tags": ["allstar5"]},
+    {"name": "Trea Turner", "teams": ["San Diego Padres", "Washington Nationals", "Los Angeles Dodgers", "Philadelphia Phillies"],
+     "tags": ["allstar5", "ws_champ", "batting_title", "40sb_season"]},
+    {"name": "Tyler Glasnow", "teams": ["Pittsburgh Pirates", "Tampa Bay Rays", "Los Angeles Dodgers"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "William Contreras", "teams": ["Atlanta Braves", "Milwaukee Brewers"], "tags": ["allstar5"]},
+    {"name": "Xander Bogaerts", "teams": ["Boston Red Sox", "San Diego Padres"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Zac Gallen", "teams": ["Miami Marlins", "Arizona Diamondbacks"], "tags": ["allstar5"]},
+    {"name": "Zack Wheeler", "teams": ["New York Mets", "Philadelphia Phillies"], "tags": ["allstar5"]},
 ]
 
 for _p in GRID_PLAYERS:
@@ -4137,6 +4307,12 @@ const prevBtn = document.getElementById('prev-day');
 const nextBtn = document.getElementById('next-day');
 const revealBtn = document.getElementById('reveal-btn');
 const statusEl = document.getElementById('grid-status');
+const pickerOverlay = document.getElementById('picker-overlay');
+const pickerInput = document.getElementById('picker-input');
+const pickerResults = document.getElementById('picker-results');
+const pickerClose = document.getElementById('picker-close');
+const pickerLabel = document.getElementById('picker-label');
+const pickerError = document.getElementById('picker-error');
 
 const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -4219,6 +4395,7 @@ function renderCell(r, c) {
 
   if (state && state.solved) {
     cell.classList.add('solved');
+    cell.classList.remove('grid-answer-empty');
     const nameEl = document.createElement('span');
     nameEl.className = 'grid-answer-name';
     nameEl.textContent = state.name;
@@ -4232,61 +4409,81 @@ function renderCell(r, c) {
   }
 
   cell.classList.remove('solved');
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.className = 'grid-input';
-  input.placeholder = 'Player name';
-  input.autocomplete = 'off';
-  input.value = (state && state.draft) || '';
-  input.addEventListener('input', () => {
-    showSuggestions(input, r, c);
-  });
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      submitCell(r, c, input.value);
-    }
-  });
-  input.addEventListener('blur', () => {
-    setTimeout(() => hideSuggestions(r, c), 150);
-  });
-  cell.appendChild(input);
-
-  const suggestBox = document.createElement('div');
-  suggestBox.className = 'grid-suggest';
-  suggestBox.id = 'suggest-' + key;
-  suggestBox.hidden = true;
-  cell.appendChild(suggestBox);
+  cell.classList.add('grid-answer-empty');
+  const prompt = document.createElement('span');
+  prompt.className = 'grid-answer-prompt';
+  prompt.textContent = 'Tap to guess';
+  cell.appendChild(prompt);
+  cell.addEventListener('click', () => openPicker(r, c));
 }
 
-function showSuggestions(input, r, c) {
-  const key = cellId(r, c);
-  const box = document.getElementById('suggest-' + key);
-  const q = input.value.trim().toLowerCase();
-  if (q.length < 2) { box.hidden = true; return; }
+let activeCell = null;
+
+function openPicker(r, c) {
+  activeCell = { r, c };
+  pickerLabel.textContent = gridData.categoryLabels[ROWS[r]] + ' \\u00d7 ' + gridData.categoryLabels[COLS[c]];
+  pickerInput.value = '';
+  pickerError.textContent = '';
+  renderPickerResults('');
+  pickerOverlay.hidden = false;
+  document.body.classList.add('picker-open');
+  pickerInput.focus();
+}
+
+function closePicker() {
+  pickerOverlay.hidden = true;
+  document.body.classList.remove('picker-open');
+  activeCell = null;
+}
+
+function renderPickerResults(query) {
+  const q = query.trim().toLowerCase();
   const used = usedNames();
-  const matches = gridData.players
-    .filter((p) => p.name.toLowerCase().includes(q) && !used.includes(p.name.toLowerCase()))
-    .slice(0, 6);
-  if (!matches.length) { box.hidden = true; return; }
-  box.innerHTML = '';
+  const pool = gridData.players.filter((p) => !used.includes(p.name.toLowerCase()));
+  const matches = (q.length
+    ? pool.filter((p) => p.name.toLowerCase().includes(q))
+    : pool
+  ).slice(0, 30);
+
+  pickerResults.innerHTML = '';
+  if (!matches.length) {
+    const empty = document.createElement('div');
+    empty.className = 'picker-empty';
+    empty.textContent = 'No matching players';
+    pickerResults.appendChild(empty);
+    return;
+  }
   matches.forEach((p) => {
-    const item = document.createElement('div');
-    item.className = 'grid-suggest-item';
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'picker-item';
     item.textContent = p.name;
-    item.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      submitCell(r, c, p.name);
+    item.addEventListener('click', () => {
+      if (!activeCell) return;
+      const { r, c } = activeCell;
+      const ok = submitCell(r, c, p.name);
+      if (ok) {
+        closePicker();
+      } else {
+        pickerError.textContent = p.name + " doesn't fit both categories - try again";
+        renderPickerResults(pickerInput.value);
+      }
     });
-    box.appendChild(item);
+    pickerResults.appendChild(item);
   });
-  box.hidden = false;
 }
 
-function hideSuggestions(r, c) {
-  const box = document.getElementById('suggest-' + cellId(r, c));
-  if (box) box.hidden = true;
-}
+pickerInput.addEventListener('input', () => {
+  pickerError.textContent = '';
+  renderPickerResults(pickerInput.value);
+});
+pickerClose.addEventListener('click', closePicker);
+pickerOverlay.addEventListener('click', (e) => {
+  if (e.target === pickerOverlay) closePicker();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !pickerOverlay.hidden) closePicker();
+});
 
 function flashInvalid(r, c, msg) {
   const cell = document.getElementById('cell-' + cellId(r, c));
@@ -4299,15 +4496,15 @@ function flashInvalid(r, c, msg) {
 
 function submitCell(r, c, rawName) {
   const key = cellId(r, c);
-  if (!rawName || !rawName.trim()) return;
+  if (!rawName || !rawName.trim()) return true;
   const player = findPlayer(rawName);
   if (!player) {
     flashInvalid(r, c, 'Not in our player database - check spelling');
-    return;
+    return false;
   }
   if (usedNames().includes(player.name.toLowerCase())) {
     flashInvalid(r, c, player.name + ' is already used elsewhere in this grid');
-    return;
+    return false;
   }
   const rowCat = ROWS[r];
   const colCat = COLS[c];
@@ -4318,13 +4515,12 @@ function submitCell(r, c, rawName) {
     renderCell(r, c);
     statusEl.textContent = '';
     checkCompletion();
-  } else {
-    cellState[key] = { solved: false, draft: '', tries: ((cellState[key] && cellState[key].tries) || 0) + 1 };
-    saveState();
-    flashInvalid(r, c, player.name + " doesn't fit both categories");
-    const input = document.querySelector('#cell-' + key + ' .grid-input');
-    if (input) input.value = '';
+    return true;
   }
+  cellState[key] = { solved: false, tries: ((cellState[key] && cellState[key].tries) || 0) + 1 };
+  saveState();
+  flashInvalid(r, c, player.name + " doesn't fit both categories");
+  return false;
 }
 
 function checkCompletion() {
@@ -4487,30 +4683,18 @@ body {
   background: #1a1a1a; border: 1px solid #333; color: #f2f2f2;
   font-size: 0.72rem; font-weight: 700; line-height: 1.25;
 }
-.grid-answer { background: #14141a; border: 1px solid #262626; flex-direction: column; gap: 4px; }
-.grid-answer.solved { background: rgba(74, 222, 128, 0.12); border-color: #4ade80; }
+.grid-answer { background: #14141a; border: 1px solid #262626; flex-direction: column; gap: 4px; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
+.grid-answer-empty:hover { border-color: #ff5266; background: #191919; }
+.grid-answer.solved { background: rgba(74, 222, 128, 0.12); border-color: #4ade80; cursor: default; }
 .grid-answer.shake { animation: grid-shake 0.4s; border-color: #ff5266; }
 @keyframes grid-shake {
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-4px); }
   40%, 80% { transform: translateX(4px); }
 }
-.grid-input {
-  width: 100%; box-sizing: border-box; background: #0d0d0d; border: 1px solid #333; color: #f2f2f2;
-  border-radius: 6px; padding: 6px 4px; font-size: 0.7rem; text-align: center;
-}
-.grid-input:focus { outline: none; border-color: #ff5266; }
+.grid-answer-prompt { font-size: 0.68rem; color: #666; }
 .grid-answer-name { font-size: 0.72rem; font-weight: 700; color: #4ade80; line-height: 1.2; }
 .grid-answer-pool { font-size: 0.62rem; color: #999; }
-.grid-suggest {
-  position: absolute; top: 100%; left: 0; right: 0; z-index: 20; margin-top: 2px;
-  background: #1a1a1a; border: 1px solid #333; border-radius: 8px; overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
-}
-.grid-suggest-item {
-  padding: 0.45rem 0.6rem; font-size: 0.75rem; text-align: left; cursor: pointer; color: #f2f2f2;
-}
-.grid-suggest-item:hover { background: #2a2a2a; }
 
 .grid-status { min-height: 1.4rem; font-size: 0.85rem; font-weight: 600; margin: 0; text-align: center; color: #999; }
 .grid-status.status-error { color: #ff5266; }
@@ -4524,10 +4708,46 @@ body {
 }
 .reveal-btn:hover { border-color: #ff5266; color: #ff5266; }
 
+.picker-overlay {
+  position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,0.6);
+  display: flex; align-items: flex-start; justify-content: center; padding: 10vh 1rem;
+}
+.picker-overlay[hidden] { display: none; }
+.picker-modal {
+  width: 100%; max-width: 420px; max-height: 70vh; display: flex; flex-direction: column;
+  background: #14141a; border: 1px solid #333; border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.6); overflow: hidden;
+}
+.picker-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  padding: 0.9rem 1rem 0.5rem;
+}
+.picker-label { font-size: 0.85rem; font-weight: 700; color: #f2f2f2; }
+.picker-close {
+  background: none; border: none; color: #999; font-size: 1.3rem; line-height: 1;
+  cursor: pointer; padding: 0 4px;
+}
+.picker-close:hover { color: #ff5266; }
+.picker-input {
+  margin: 0 1rem; box-sizing: border-box; background: #0d0d0d; border: 1px solid #333; color: #f2f2f2;
+  border-radius: 8px; padding: 0.6rem 0.8rem; font-size: 0.9rem;
+}
+.picker-input:focus { outline: none; border-color: #ff5266; }
+.picker-error { min-height: 1.2rem; margin: 0.4rem 1rem 0; font-size: 0.78rem; color: #ff5266; font-weight: 600; }
+.picker-results { overflow-y: auto; padding: 0.5rem; display: flex; flex-direction: column; gap: 2px; }
+.picker-item {
+  display: block; width: 100%; text-align: left; background: none; border: none;
+  color: #f2f2f2; font-size: 0.85rem; padding: 0.6rem 0.7rem; border-radius: 8px; cursor: pointer;
+}
+.picker-item:hover { background: #262626; }
+.picker-empty { padding: 0.8rem 0.7rem; font-size: 0.82rem; color: #777; font-style: italic; }
+
+body.picker-open { overflow: hidden; }
+
 @media (max-width: 480px) {
   .grid-cell { min-height: 66px; padding: 4px; }
   .grid-head { font-size: 0.62rem; }
-  .grid-input { font-size: 0.62rem; padding: 4px 2px; }
+  .picker-overlay { padding: 6vh 0.75rem; }
 }
 """
 
@@ -4551,8 +4771,8 @@ GRID_GAME_TEMPLATE = """<!DOCTYPE html>
 </header>
 <p class="disclaimer">
   Every row and column is a team or career achievement - name one player who fits both, without
-  repeating a name across the grid. Type a player and hit Enter, or pick from the suggestions.
-  No hard limit on guesses per square, so argue it out. Use Prev/Next to replay past grids.
+  repeating a name across the grid. Tap a square to search for a player. No hard limit on guesses
+  per square, so argue it out. Use Prev/Next to replay past grids.
 </p>
 <main class="grid-main">
   <div class="grid-nav">
@@ -4568,6 +4788,18 @@ GRID_GAME_TEMPLATE = """<!DOCTYPE html>
     <button type="button" id="reveal-btn" class="reveal-btn">Reveal remaining answers</button>
   </div>
 </main>
+
+<div id="picker-overlay" class="picker-overlay" hidden>
+  <div class="picker-modal">
+    <div class="picker-header">
+      <span id="picker-label" class="picker-label"></span>
+      <button type="button" id="picker-close" class="picker-close" aria-label="Close">&times;</button>
+    </div>
+    <input id="picker-input" class="picker-input" type="text" placeholder="Search players..." autocomplete="off">
+    <p id="picker-error" class="picker-error"></p>
+    <div id="picker-results" class="picker-results"></div>
+  </div>
+</div>
 
 <script id="grid-data" type="application/json">{grid_data_json}</script>
 <script>{game_js}</script>
