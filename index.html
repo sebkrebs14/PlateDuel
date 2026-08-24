@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MLB Matchup Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Today's MLB probable pitchers, starting lineups, and batter-vs-pitcher matchup history for all 15 games on August 23, 2026.">
+<script type="application/ld+json">[]</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-top">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
+  <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
+  <path d="M10 8 H90 V50 L50 95 L10 50 Z" fill="none" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+  <g fill="#000">
+    <circle cx="50" cy="18" r="3.4"/>
+    <circle cx="50" cy="31" r="3.4"/>
+    <circle cx="50" cy="44" r="3.4"/>
+    <circle cx="50" cy="57" r="3.4"/>
+    <circle cx="50" cy="70" r="3.4"/>
+    <circle cx="50" cy="83" r="3.4"/>
+  </g>
+</svg>
+      <h1>MLB Matchup Dashboard</h1>
+    </div>
+    <span class="date">Sunday, August 23, 2026</span>
+    <a class="header-link" href="home.html"><svg width="16" height="16" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
+  <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
+  <path d="M10 8 H90 V50 L50 95 L10 50 Z" fill="none" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+  <g fill="#000">
+    <circle cx="50" cy="18" r="3.4"/>
+    <circle cx="50" cy="31" r="3.4"/>
+    <circle cx="50" cy="44" r="3.4"/>
+    <circle cx="50" cy="57" r="3.4"/>
+    <circle cx="50" cy="70" r="3.4"/>
+    <circle cx="50" cy="83" r="3.4"/>
+  </g>
+</svg>Home</a>
+  </div>
+  <input id="search" type="text" placeholder="Search teams, venue, or player..." autocomplete="off">
+</header>
+<main class="games-grid" id="games-grid">
+<p class='empty-state'>All of today's games have ended. Check back tomorrow, or see <a href='home.html'>Yesterday's Results</a> on the home page.</p>
+</main>
+<p class="empty-state" id="empty-state" hidden>No games match your search.</p>
+
+<section class="all-matchups">
+  <div class="all-matchups-header">
+    <h2>All Matchups</h2>
+    <button type="button" id="opposite-hand-toggle" class="toggle-btn">Opposite-hand matchups only</button>
+  </div>
+  <p class="table-hint">Sorted by career hits vs pitcher by default. Click a column header to sort. Click Bats or Throws to cycle through L / R / S filters. Rows with no recorded history sort to the bottom.</p>
+  <div class="table-scroll">
+    <table id="matchup-table">
+      <thead><tr id="matchup-group"></tr><tr id="matchup-head"></tr></thead>
+      <tbody id="matchup-body"></tbody>
+    </table>
+  </div>
+</section>
+
+<script id="matchup-data" type="application/json">[]</script>
+<script>
+const search = document.getElementById('search');
+const cards = Array.from(document.querySelectorAll('.game-card'));
+const emptyState = document.getElementById('empty-state');
+
+let searchQuery = '';
+
+search.addEventListener('input', () => {
+  searchQuery = search.value.trim().toLowerCase();
+  let visible = 0;
+  for (const card of cards) {
+    const match = card.dataset.search.includes(searchQuery);
+    card.style.display = match ? '' : 'none';
+    if (match) visible++;
+  }
+  emptyState.hidden = visible !== 0;
+  renderBody();
+});
+
+const MATCHUP_COLUMNS = [
+  {key: 'game', label: 'Game', type: 'text'},
+  {key: 'batter', label: 'Batter', type: 'text'},
+  {key: 'bats', label: 'Bats', type: 'text'},
+  {key: 'pitcher', label: 'Pitcher', type: 'text'},
+  {key: 'throws', label: 'Throws', type: 'text'},
+  {key: 'season_avg', label: "'26 AVG", type: 'avg'},
+  {key: 'season_hr', label: "'26 HR", type: 'int'},
+  {key: 'season_ops', label: "'26 OPS", type: 'avg'},
+  {key: 'career_ab', label: 'AB', type: 'int', group: 'Career vs P'},
+  {key: 'career_h', label: 'H', type: 'int', group: 'Career vs P'},
+  {key: 'career_hr', label: 'HR', type: 'int', group: 'Career vs P'},
+  {key: 'career_so', label: 'SO', type: 'int', group: 'Career vs P'},
+  {key: 'career_avg', label: 'AVG', type: 'avg', group: 'Career vs P'},
+  {key: 'cur_ab', label: 'AB', type: 'int', group: "'26 VS P"},
+  {key: 'cur_h', label: 'H', type: 'int', group: "'26 VS P"},
+  {key: 'cur_hr', label: 'HR', type: 'int', group: "'26 VS P"},
+  {key: 'cur_so', label: 'SO', type: 'int', group: "'26 VS P"},
+  {key: 'cur_avg', label: 'AVG', type: 'avg', group: "'26 VS P"},
+];
+
+const HAND_CYCLE = {bats: ['L', 'R', 'S'], throws: ['L', 'R']};
+
+const matchupRows = JSON.parse(document.getElementById('matchup-data').textContent);
+const groupRow = document.getElementById('matchup-group');
+const headRow = document.getElementById('matchup-head');
+const body = document.getElementById('matchup-body');
+let sortKey = 'career_h';
+let sortDir = -1;
+let handFilters = {bats: null, throws: null};
+let oppositeHandOnly = false;
+
+function formatCell(value, type) {
+  if (value === null || value === undefined) return '-';
+  if (type === 'avg') {
+    const fixed = value.toFixed(3);
+    return fixed.startsWith('0.') ? fixed.slice(1) : fixed;
+  }
+  return value;
+}
+
+function renderGroupHead() {
+  groupRow.innerHTML = '';
+  let i = 0;
+  while (i < MATCHUP_COLUMNS.length) {
+    const group = MATCHUP_COLUMNS[i].group;
+    let span = 1;
+    while (i + span < MATCHUP_COLUMNS.length && MATCHUP_COLUMNS[i + span].group === group) span++;
+    const th = document.createElement('th');
+    th.colSpan = span;
+    if (group) {
+      th.textContent = group;
+      th.classList.add('group-header');
+    }
+    groupRow.appendChild(th);
+    i += span;
+  }
+}
+
+function renderHead() {
+  headRow.innerHTML = '';
+  for (const col of MATCHUP_COLUMNS) {
+    const th = document.createElement('th');
+    const cycle = HAND_CYCLE[col.key];
+    if (cycle) {
+      const active = handFilters[col.key];
+      th.textContent = col.label + (active ? `: ${active}` : '');
+      th.title = 'Click to cycle L / R / S filter';
+      th.addEventListener('click', () => {
+        const idx = active === null ? -1 : cycle.indexOf(active);
+        handFilters[col.key] = idx + 1 < cycle.length ? cycle[idx + 1] : null;
+        renderHead();
+        renderBody();
+      });
+    } else {
+      th.textContent = col.label + (sortKey === col.key ? (sortDir === 1 ? ' ▲' : ' ▼') : '');
+      th.title = 'Click to sort';
+      th.addEventListener('click', () => {
+        if (sortKey === col.key) {
+          sortDir *= -1;
+        } else {
+          sortKey = col.key;
+          sortDir = 1;
+        }
+        renderHead();
+        renderBody();
+      });
+    }
+    headRow.appendChild(th);
+  }
+}
+
+function renderBody() {
+  let filtered = searchQuery
+    ? matchupRows.filter(r => (
+        r.batter.toLowerCase().includes(searchQuery) ||
+        r.pitcher.toLowerCase().includes(searchQuery) ||
+        r.game.toLowerCase().includes(searchQuery)
+      ))
+    : matchupRows;
+  if (handFilters.bats) filtered = filtered.filter(r => r.bats === handFilters.bats);
+  if (handFilters.throws) filtered = filtered.filter(r => r.throws === handFilters.throws);
+  if (oppositeHandOnly) filtered = filtered.filter(r => r.bats && r.throws && (r.bats === 'S' || r.bats !== r.throws));
+  const sorted = filtered.slice().sort((a, b) => {
+    const av = a[sortKey], bv = b[sortKey];
+    if (av === null && bv === null) return 0;
+    if (av === null) return 1;
+    if (bv === null) return -1;
+    if (typeof av === 'string') return av.localeCompare(bv) * sortDir;
+    return (av - bv) * sortDir;
+  });
+
+  body.innerHTML = '';
+  for (const r of sorted) {
+    const tr = document.createElement('tr');
+    for (const col of MATCHUP_COLUMNS) {
+      const td = document.createElement('td');
+      td.textContent = formatCell(r[col.key], col.type);
+      if (col.key === 'bats') {
+        if (r.bats === 'S') td.classList.add('bats-switch');
+        else if (r.bats && r.throws && r.bats !== r.throws) td.classList.add('bats-platoon');
+      }
+      tr.appendChild(td);
+    }
+    body.appendChild(tr);
+  }
+}
+
+renderGroupHead();
+renderHead();
+renderBody();
+
+const oppositeHandToggle = document.getElementById('opposite-hand-toggle');
+oppositeHandToggle.addEventListener('click', () => {
+  oppositeHandOnly = !oppositeHandOnly;
+  oppositeHandToggle.classList.toggle('active', oppositeHandOnly);
+  renderBody();
+});
+
+</script>
+
+<style>
+:root { color-scheme: dark; }
+body {
+  background: #0d0d0d; color: #f2f2f2; margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: #151515; box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+  padding: 0.85rem 1.25rem 0.75rem;
+}
+.site-header-top {
+  display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+}
+.brand { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.site-header h1 { font-size: 1.15rem; margin: 0; white-space: nowrap; }
+.site-header .date { color: #999; font-size: 0.9rem; white-space: nowrap; }
+
+.header-link {
+  background: #1a1a1a; border: 1px solid #333; color: #f2f2f2;
+  padding: 0.45rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; white-space: nowrap; flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.header-link:first-of-type { margin-left: auto; }
+.header-link:hover { border-color: #ff5266; color: #ff5266; }
+.site-header input {
+  display: block; width: 100%; box-sizing: border-box;
+  background: #0d0d0d; border: 1px solid #333; color: #f2f2f2;
+  padding: 0.5rem 0.75rem; border-radius: 7px; font-size: 0.9rem;
+  transition: border-color 0.15s ease;
+}
+.site-header input:focus { outline: none; border-color: #ff5266; }
+
+.move-section { margin-bottom: 1.25rem; }
+.move-section:last-child { margin-bottom: 0; }
+.move-section h3 {
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: #999; margin: 0 0 0.5rem;
+}
+.move-section ul { list-style: none; margin: 0; padding: 0; }
+.move-section li {
+  font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid #222; line-height: 1.4;
+}
+.move-section li:last-child { border-bottom: none; }
+.move-date { color: #6bb3ff; font-family: ui-monospace, monospace; font-size: 0.78rem; margin-right: 0.6rem; }
+.move-empty { color: #777; font-style: italic; }
+
+.games-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem; padding: 1.25rem;
+}
+@media (max-width: 1400px) { .games-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 900px) { .games-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .games-grid { grid-template-columns: 1fr; } }
+.game-card {
+  background: #161616; border: 1px solid #262626;
+  border-left: 3px solid var(--team-accent, #333); border-right: 3px solid var(--team-accent-home, #333);
+  border-radius: 10px; overflow: hidden;
+}
+.game-card[open] { grid-column: 1 / -1; }
+.game-card summary {
+  list-style: none; cursor: pointer; padding: 0.85rem;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.55rem;
+}
+.game-card summary::-webkit-details-marker { display: none; }
+.team-dots { display: flex; align-items: center; gap: 8px; }
+.team-dot {
+  display: inline-block; padding: 2px 8px; border-radius: 999px; color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.02em; flex-shrink: 0;
+  font-family: inherit;
+}
+.team-dots .vs { color: #666; font-size: 12px; }
+.summary-main { display: flex; flex-direction: column; gap: 0.2rem; }
+.matchup { font-weight: 700; font-size: 0.88rem; line-height: 1.3; }
+.player-link, .team-link {
+  color: inherit; text-decoration: none; border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.player-link:hover, .team-link:hover { color: #ff5266; border-bottom-color: #ff5266; }
+.meta { color: #999; font-size: 0.72rem; }
+.meta.pitchers { color: #bbb; }
+
+.badge {
+  flex-shrink: 0; font-size: 0.66rem; font-weight: 700; padding: 0.25rem 0.55rem;
+  border-radius: 999px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.badge-hitters { background: rgba(74,222,128,0.15); color: #4ade80; }
+.badge-pitchers { background: rgba(107,179,255,0.15); color: #6bb3ff; }
+.badge-neutral { background: rgba(170,170,170,0.15); color: #aaaaaa; }
+.badge-indoor { background: rgba(153,153,153,0.15); color: #999999; }
+.badge-unknown { background: rgba(102,102,102,0.15); color: #666666; }
+
+.detail { border-top: 1px solid #262626; padding: 1.1rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.section-label { margin: 0 0 0.6rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888; }
+
+.weather-panel .dims { margin: 0 0 0.4rem; color: #ccc; font-size: 0.88rem; line-height: 1.5; }
+.wind { font-weight: 600; margin: 0; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+.wind-hitters { color: #4ade80; }
+.wind-pitchers { color: #6bb3ff; }
+.wind-neutral { color: #aaaaaa; }
+.wind-unknown { color: #666666; }
+.wind-indoor { color: #999999; font-style: italic; }
+
+.notice { color: #ccc; margin: 0 0 0.75rem; }
+.matchup-sections h3 { font-size: 0.95rem; margin: 1rem 0 0.5rem; }
+.matchup-sections h3:first-of-type { margin-top: 0; }
+
+table { border-collapse: collapse; width: 100%; margin-bottom: 0.75rem; font-size: 0.85rem; }
+th, td { border: none; border-bottom: 1px solid #222; padding: 6px 10px; text-align: left; font-family: ui-monospace, monospace; }
+th { border-bottom: 1px solid #333; color: #aaa; font-family: -apple-system, sans-serif; font-size: 0.78rem; text-transform: uppercase; }
+
+.trends-panel { display: flex; flex-direction: column; gap: 1rem; }
+.trend-block h4 { margin: 0 0 0.4rem; font-size: 0.85rem; color: #ddd; }
+.trend-block table { max-width: 420px; }
+
+.empty-state { text-align: center; color: #888; padding: 3rem 1rem; }
+
+.all-matchups { padding: 0 1.25rem 2rem; }
+.all-matchups-header {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.all-matchups h2 { font-size: 1.1rem; margin: 0 0 0.25rem; }
+.table-hint { color: #888; font-size: 0.8rem; margin: 0 0 0.75rem; }
+.toggle-btn {
+  background: #1a1a1a; border: 1px solid #333; color: #ccc;
+  padding: 0.45rem 0.8rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; white-space: nowrap; transition: all 0.15s ease; flex-shrink: 0;
+}
+.toggle-btn:hover { border-color: #ff5266; color: #ff5266; }
+.toggle-btn.active { background: rgba(255,82,102,0.15); border-color: #ff5266; color: #ff5266; }
+.table-scroll { overflow: auto; max-height: 70vh; border: 1px solid #262626; border-radius: 8px; }
+#matchup-table { margin-bottom: 0; font-size: 0.8rem; }
+#matchup-table th {
+  position: sticky; background: #1a1a1a; cursor: pointer; user-select: none;
+  white-space: nowrap; z-index: 2;
+}
+#matchup-group th { top: 0; cursor: default; text-align: center; color: #999; }
+#matchup-head th { top: 28px; }
+#matchup-head th:hover { color: #f2f2f2; }
+#matchup-table td { white-space: nowrap; }
+.group-header {
+  border-bottom: 1px solid #3a3a3a; font-size: 0.72rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+
+.bats-platoon { background: rgba(74,222,128,0.18); color: #4ade80; font-weight: 600; }
+.bats-switch { background: rgba(107,179,255,0.18); color: #6bb3ff; font-weight: 600; }
+</style>
+</body>
+</html>

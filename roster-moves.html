@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Roster Moves - MLB Matchup Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Recent MLB roster moves - call-ups, injuries, and transactions across the league.">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
+  <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
+  <path d="M10 8 H90 V50 L50 95 L10 50 Z" fill="none" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+  <g fill="#000">
+    <circle cx="50" cy="18" r="3.4"/>
+    <circle cx="50" cy="31" r="3.4"/>
+    <circle cx="50" cy="44" r="3.4"/>
+    <circle cx="50" cy="57" r="3.4"/>
+    <circle cx="50" cy="70" r="3.4"/>
+    <circle cx="50" cy="83" r="3.4"/>
+  </g>
+</svg>
+    <h1>Roster Moves</h1>
+  </div>
+  <span class="date">Last 3 days</span>
+  <a class="header-link" href="home.html"><svg width="16" height="16" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
+  <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
+  <path d="M10 8 H90 V50 L50 95 L10 50 Z" fill="none" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+  <g fill="#000">
+    <circle cx="50" cy="18" r="3.4"/>
+    <circle cx="50" cy="31" r="3.4"/>
+    <circle cx="50" cy="44" r="3.4"/>
+    <circle cx="50" cy="57" r="3.4"/>
+    <circle cx="50" cy="70" r="3.4"/>
+    <circle cx="50" cy="83" r="3.4"/>
+  </g>
+</svg>Home</a>
+</header>
+<div class="filters-bar">
+  <select id="team-filter">
+    <option value="">All Teams</option>
+    <option value='Arizona Diamondbacks'>Arizona Diamondbacks</option>
+<option value='Athletics'>Athletics</option>
+<option value='Atlanta Braves'>Atlanta Braves</option>
+<option value='Baltimore Orioles'>Baltimore Orioles</option>
+<option value='Boston Red Sox'>Boston Red Sox</option>
+<option value='Chicago Cubs'>Chicago Cubs</option>
+<option value='Chicago White Sox'>Chicago White Sox</option>
+<option value='Cincinnati Reds'>Cincinnati Reds</option>
+<option value='Cleveland Guardians'>Cleveland Guardians</option>
+<option value='Colorado Rockies'>Colorado Rockies</option>
+<option value='Detroit Tigers'>Detroit Tigers</option>
+<option value='Houston Astros'>Houston Astros</option>
+<option value='Kansas City Royals'>Kansas City Royals</option>
+<option value='Los Angeles Angels'>Los Angeles Angels</option>
+<option value='Los Angeles Dodgers'>Los Angeles Dodgers</option>
+<option value='Miami Marlins'>Miami Marlins</option>
+<option value='Milwaukee Brewers'>Milwaukee Brewers</option>
+<option value='Minnesota Twins'>Minnesota Twins</option>
+<option value='New York Mets'>New York Mets</option>
+<option value='New York Yankees'>New York Yankees</option>
+<option value='Philadelphia Phillies'>Philadelphia Phillies</option>
+<option value='Pittsburgh Pirates'>Pittsburgh Pirates</option>
+<option value='San Diego Padres'>San Diego Padres</option>
+<option value='San Francisco Giants'>San Francisco Giants</option>
+<option value='Seattle Mariners'>Seattle Mariners</option>
+<option value='St. Louis Cardinals'>St. Louis Cardinals</option>
+<option value='Tampa Bay Rays'>Tampa Bay Rays</option>
+<option value='Texas Rangers'>Texas Rangers</option>
+<option value='Toronto Blue Jays'>Toronto Blue Jays</option>
+<option value='Washington Nationals'>Washington Nationals</option>
+  </select>
+  <select id="type-filter">
+    <option value="">All Move Types</option>
+    <option value='promotions'>Promotions &amp; Demotions</option>
+<option value='trades'>Trades</option>
+<option value='activations'>Injury Activations</option>
+  </select>
+  <input id="player-search" type="text" placeholder="Search player or team..." autocomplete="off">
+</div>
+<main class="roster-moves-main"><ul class="move-list" id="move-list"></ul></main>
+<p class="empty-state" id="empty-state" hidden>No moves match your filters.</p>
+
+<script id="roster-moves-data" type="application/json">[{"date": "2026-08-23", "description": "Tampa Bay Rays activated RHP Manuel Rodr\u00edguez from the 60-day injured list.", "player": "Manuel Rodr\u00edguez", "teams": ["Tampa Bay Rays"], "category": "activations"}, {"date": "2026-08-23", "description": "Arizona Diamondbacks activated RHP Drey Jameson from the 15-day injured list.", "player": "Drey Jameson", "teams": ["Arizona Diamondbacks"], "category": "activations"}, {"date": "2026-08-23", "description": "New York Yankees activated LF Cody Bellinger from the 10-day injured list.", "player": "Cody Bellinger", "teams": ["New York Yankees"], "category": "activations"}, {"date": "2026-08-23", "description": "Colorado Rockies activated RF Tyler Freeman from the 10-day injured list.", "player": "Tyler Freeman", "teams": ["Colorado Rockies"], "category": "activations"}, {"date": "2026-08-23", "description": "Los Angeles Angels activated LHP Yusei Kikuchi from the 60-day injured list.", "player": "Yusei Kikuchi", "teams": ["Los Angeles Angels"], "category": "activations"}, {"date": "2026-08-23", "description": "St. Louis Cardinals activated 3B Ram\u00f3n Ur\u00edas from the 60-day injured list.", "player": "Ram\u00f3n Ur\u00edas", "teams": ["St. Louis Cardinals"], "category": "activations"}, {"date": "2026-08-23", "description": "Pittsburgh Pirates recalled RHP Khristian Curtis from Indianapolis Indians.", "player": "Khristian Curtis", "teams": ["Indianapolis Indians", "Pittsburgh Pirates"], "category": "promotions"}, {"date": "2026-08-23", "description": "New York Yankees recalled RHP Brendan Beck from Scranton/Wilkes-Barre RailRiders.", "player": "Brendan Beck", "teams": ["New York Yankees", "Scranton/Wilkes-Barre RailRiders"], "category": "promotions"}, {"date": "2026-08-23", "description": "Detroit Tigers optioned LHP Enmanuel De Jesus to Toledo Mud Hens.", "player": "Enmanuel De Jesus", "teams": ["Detroit Tigers", "Toledo Mud Hens"], "category": "promotions"}, {"date": "2026-08-23", "description": "Pittsburgh Pirates optioned RHP Antwone Kelly to Indianapolis Indians.", "player": "Antwone Kelly", "teams": ["Indianapolis Indians", "Pittsburgh Pirates"], "category": "promotions"}, {"date": "2026-08-23", "description": "Atlanta Braves recalled RF Brewer Hicklen from Gwinnett Stripers.", "player": "Brewer Hicklen", "teams": ["Atlanta Braves", "Gwinnett Stripers"], "category": "promotions"}, {"date": "2026-08-23", "description": "Arizona Diamondbacks recalled RHP Gerardo Carrillo from Reno Aces.", "player": "Gerardo Carrillo", "teams": ["Arizona Diamondbacks", "Reno Aces"], "category": "promotions"}, {"date": "2026-08-23", "description": "Milwaukee Brewers recalled C Bo Naylor from Nashville Sounds.", "player": "Bo Naylor", "teams": ["Milwaukee Brewers", "Nashville Sounds"], "category": "promotions"}, {"date": "2026-08-23", "description": "Cincinnati Reds recalled 2B Ivan Johnson from Louisville Bats.", "player": "Ivan Johnson", "teams": ["Cincinnati Reds", "Louisville Bats"], "category": "promotions"}, {"date": "2026-08-23", "description": "Colorado Rockies recalled SS Ryan Ritter from Albuquerque Isotopes.", "player": "Ryan Ritter", "teams": ["Albuquerque Isotopes", "Colorado Rockies"], "category": "promotions"}, {"date": "2026-08-23", "description": "Detroit Tigers selected the contract of LHP Andrew Sears from Toledo Mud Hens.", "player": "Andrew Sears", "teams": ["Detroit Tigers", "Toledo Mud Hens"], "category": "promotions"}, {"date": "2026-08-23", "description": "Colorado Rockies optioned RF Tyler Freeman to Albuquerque Isotopes.", "player": "Tyler Freeman", "teams": ["Albuquerque Isotopes", "Colorado Rockies"], "category": "promotions"}, {"date": "2026-08-23", "description": "Miami Marlins recalled RHP Jack Ralston from Jacksonville Jumbo Shrimp.", "player": "Jack Ralston", "teams": ["Jacksonville Jumbo Shrimp", "Miami Marlins"], "category": "promotions"}, {"date": "2026-08-23", "description": "Seattle Mariners recalled 3B Patrick Wisdom from Tacoma Rainiers.", "player": "Patrick Wisdom", "teams": ["Seattle Mariners", "Tacoma Rainiers"], "category": "promotions"}, {"date": "2026-08-23", "description": "Texas Rangers recalled C Logan O&#x27;Hoppe from Round Rock Express.", "player": "Logan O&#x27;Hoppe", "teams": ["Round Rock Express", "Texas Rangers"], "category": "promotions"}, {"date": "2026-08-22", "description": "Toronto Blue Jays activated 1B Vladimir Guerrero Jr. from the 7-day injured list.", "player": "Vladimir Guerrero Jr.", "teams": ["Toronto Blue Jays"], "category": "activations"}, {"date": "2026-08-22", "description": "Los Angeles Dodgers activated CF Alek Thomas.", "player": "Alek Thomas", "teams": ["Los Angeles Dodgers"], "category": "activations"}, {"date": "2026-08-22", "description": "Seattle Mariners selected the contract of LHP Kade Anderson from Arkansas Travelers.", "player": "Kade Anderson", "teams": ["Arkansas Travelers", "Seattle Mariners"], "category": "promotions"}, {"date": "2026-08-22", "description": "Los Angeles Dodgers recalled CF Alek Thomas from Oklahoma City Comets.", "player": "Alek Thomas", "teams": ["Los Angeles Dodgers", "Oklahoma City Comets"], "category": "promotions"}, {"date": "2026-08-22", "description": "Los Angeles Angels recalled C Gustavo Campero from Salt Lake Bees.", "player": "Gustavo Campero", "teams": ["Los Angeles Angels", "Salt Lake Bees"], "category": "promotions"}, {"date": "2026-08-22", "description": "New York Yankees optioned LF Max Schuemann to Scranton/Wilkes-Barre RailRiders.", "player": "Max Schuemann", "teams": ["New York Yankees", "Scranton/Wilkes-Barre RailRiders"], "category": "promotions"}, {"date": "2026-08-22", "description": "Miami Marlins recalled 3B Deyvison De Los Santos from Jacksonville Jumbo Shrimp.", "player": "Deyvison De Los Santos", "teams": ["Jacksonville Jumbo Shrimp", "Miami Marlins"], "category": "promotions"}, {"date": "2026-08-22", "description": "St. Louis Cardinals recalled LHP Quinn Mathews from Memphis Redbirds.", "player": "Quinn Mathews", "teams": ["Memphis Redbirds", "St. Louis Cardinals"], "category": "promotions"}, {"date": "2026-08-22", "description": "Los Angeles Angels recalled 2B Christian Moore from Salt Lake Bees.", "player": "Christian Moore", "teams": ["Los Angeles Angels", "Salt Lake Bees"], "category": "promotions"}, {"date": "2026-08-22", "description": "Miami Marlins optioned C Logan Driscoll to Jacksonville Jumbo Shrimp.", "player": "Logan Driscoll", "teams": ["Jacksonville Jumbo Shrimp", "Miami Marlins"], "category": "promotions"}, {"date": "2026-08-22", "description": "Toronto Blue Jays optioned LF Davis Schneider to Buffalo Bisons.", "player": "Davis Schneider", "teams": ["Buffalo Bisons", "Toronto Blue Jays"], "category": "promotions"}, {"date": "2026-08-21", "description": "Seattle Mariners activated RHP Carlos Vargas from the 60-day injured list.", "player": "Carlos Vargas", "teams": ["Seattle Mariners"], "category": "activations"}, {"date": "2026-08-21", "description": "Cincinnati Reds activated RHP Tony Santillan from the 15-day injured list.", "player": "Tony Santillan", "teams": ["Cincinnati Reds"], "category": "activations"}, {"date": "2026-08-21", "description": "Chicago Cubs activated RHP Daniel Palencia from the 60-day injured list.", "player": "Daniel Palencia", "teams": ["Chicago Cubs"], "category": "activations"}, {"date": "2026-08-21", "description": "Colorado Rockies activated 3B Kyle Karros from the 7-day injured list.", "player": "Kyle Karros", "teams": ["Colorado Rockies"], "category": "activations"}, {"date": "2026-08-21", "description": "Toronto Blue Jays activated RHP Spencer Arrighetti from the 15-day injured list.", "player": "Spencer Arrighetti", "teams": ["Toronto Blue Jays"], "category": "activations"}, {"date": "2026-08-21", "description": "Chicago Cubs activated 3B Gabriel Arias.", "player": "Gabriel Arias", "teams": ["Chicago Cubs"], "category": "activations"}, {"date": "2026-08-21", "description": "Chicago Cubs optioned RHP Javier Assad to Iowa Cubs.", "player": "Javier Assad", "teams": ["Chicago Cubs", "Iowa Cubs"], "category": "promotions"}, {"date": "2026-08-21", "description": "Miami Marlins selected the contract of C Logan Driscoll from Jacksonville Jumbo Shrimp.", "player": "Logan Driscoll", "teams": ["Jacksonville Jumbo Shrimp", "Miami Marlins"], "category": "promotions"}, {"date": "2026-08-21", "description": "Colorado Rockies optioned 2B Adael Amador to Albuquerque Isotopes.", "player": "Adael Amador", "teams": ["Albuquerque Isotopes", "Colorado Rockies"], "category": "promotions"}, {"date": "2026-08-21", "description": "Kansas City Royals recalled LF Matthew Lugo from Omaha Storm Chasers.", "player": "Matthew Lugo", "teams": ["Kansas City Royals", "Omaha Storm Chasers"], "category": "promotions"}, {"date": "2026-08-21", "description": "Cincinnati Reds optioned RHP Zach Maxwell to Louisville Bats.", "player": "Zach Maxwell", "teams": ["Cincinnati Reds", "Louisville Bats"], "category": "promotions"}, {"date": "2026-08-21", "description": "Houston Astros recalled RHP Kai-Wei Teng from Sugar Land Space Cowboys.", "player": "Kai-Wei Teng", "teams": ["Houston Astros", "Sugar Land Space Cowboys"], "category": "promotions"}, {"date": "2026-08-21", "description": "Athletics optioned RHP Taylor Rashi to Las Vegas Aviators.", "player": "Taylor Rashi", "teams": ["Athletics", "Las Vegas Aviators"], "category": "promotions"}, {"date": "2026-08-20", "description": "Arizona Diamondbacks activated 2B Ketel Marte from the restricted list.", "player": "Ketel Marte", "teams": ["Arizona Diamondbacks"], "category": "activations"}, {"date": "2026-08-20", "description": "Tampa Bay Rays traded C Logan Driscoll to Miami Marlins for cash.", "player": "Logan Driscoll", "teams": ["Miami Marlins", "Tampa Bay Rays"], "category": "trades"}, {"date": "2026-08-20", "description": "Tampa Bay Rays traded C Logan Driscoll to Miami Marlins for cash.", "player": "", "teams": ["Miami Marlins", "Tampa Bay Rays"], "category": "trades"}]</script>
+<script id="roster-moves-category-labels" type="application/json">{"promotions": "Promotions & Demotions", "trades": "Trades", "activations": "Injury Activations"}</script>
+<script>
+const allMoves = JSON.parse(document.getElementById('roster-moves-data').textContent);
+const categoryLabels = JSON.parse(document.getElementById('roster-moves-category-labels').textContent);
+const moveList = document.getElementById('move-list');
+const emptyState = document.getElementById('empty-state');
+const teamFilter = document.getElementById('team-filter');
+const typeFilter = document.getElementById('type-filter');
+const playerSearch = document.getElementById('player-search');
+
+function matchesFilters(entry, team, type, query) {
+  if (team && !entry.teams.includes(team)) return false;
+  if (type && entry.category !== type) return false;
+  if (query) {
+    const haystack = (entry.player + ' ' + entry.teams.join(' ') + ' ' + entry.description).toLowerCase();
+    if (!haystack.includes(query)) return false;
+  }
+  return true;
+}
+
+function render() {
+  const team = teamFilter.value;
+  const type = typeFilter.value;
+  const query = playerSearch.value.trim().toLowerCase();
+
+  const entries = allMoves.filter(e => matchesFilters(e, team, type, query));
+  moveList.innerHTML = entries.map(e => {
+    return `<li><span class="move-date">${e.date}</span>` +
+      `<span class="move-type move-type-${e.category}">${categoryLabels[e.category]}</span>` +
+      `${e.description}</li>`;
+  }).join('');
+  emptyState.hidden = entries.length !== 0;
+}
+
+teamFilter.addEventListener('change', render);
+typeFilter.addEventListener('change', render);
+playerSearch.addEventListener('input', render);
+render();
+</script>
+
+<style>
+:root { color-scheme: dark; }
+body {
+  background: #0d0d0d; color: #f2f2f2; margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  background: #151515; box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+  padding: 0.9rem 1.25rem;
+}
+.brand { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.site-header h1 { font-size: 1.15rem; margin: 0; white-space: nowrap; }
+.site-header .date { color: #999; font-size: 0.9rem; white-space: nowrap; }
+.header-link {
+  margin-left: auto; background: #1a1a1a; border: 1px solid #333; color: #f2f2f2;
+  padding: 0.45rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; white-space: nowrap; flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.header-link:hover { border-color: #ff5266; color: #ff5266; }
+
+.filters-bar {
+  display: flex; gap: 0.75rem; flex-wrap: wrap;
+  max-width: 800px; margin: 1.25rem auto 0; padding: 0 1.25rem;
+}
+.filters-bar select, .filters-bar input {
+  background: #0d0d0d; border: 1px solid #333; color: #f2f2f2;
+  padding: 0.45rem 0.7rem; border-radius: 6px; font-size: 0.9rem;
+}
+.filters-bar select { flex: 0 1 200px; }
+.filters-bar input { flex: 1 1 220px; min-width: 0; }
+.filters-bar select:focus, .filters-bar input:focus { outline: none; border-color: #6bb3ff; }
+
+@media (max-width: 520px) {
+  .header-link { margin-right: auto; }
+  #team-filter, #type-filter { margin-left: auto; margin-right: auto; }
+}
+
+.roster-moves-main { max-width: 800px; margin: 0 auto; padding: 1rem 1.25rem 1.5rem; }
+.empty-state { max-width: 800px; margin: 0 auto; padding: 0 1.25rem; color: #888; }
+.move-list { list-style: none; margin: 0; padding: 0; }
+.move-list li {
+  font-size: 0.9rem; padding: 0.55rem 0; border-bottom: 1px solid #222; line-height: 1.4;
+}
+.move-list li:last-child { border-bottom: none; }
+.move-date { color: #6bb3ff; font-family: ui-monospace, monospace; font-size: 0.8rem; margin-right: 0.6rem; }
+.move-type {
+  display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.03em; padding: 0.15rem 0.5rem; border-radius: 999px; margin-right: 0.6rem;
+}
+.move-type-promotions { background: rgba(107,179,255,0.15); color: #6bb3ff; }
+.move-type-trades { background: rgba(245,166,35,0.18); color: #f5a623; }
+.move-type-activations { background: rgba(74,222,128,0.15); color: #4ade80; }
+</style>
+</body>
+</html>
