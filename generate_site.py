@@ -4185,6 +4185,516 @@ GRID_PLAYERS = [
     {"name": "Xander Bogaerts", "teams": ["Boston Red Sox", "San Diego Padres"], "tags": ["allstar5", "ws_champ"]},
     {"name": "Zac Gallen", "teams": ["Miami Marlins", "Arizona Diamondbacks"], "tags": ["allstar5"]},
     {"name": "Zack Wheeler", "teams": ["New York Mets", "Philadelphia Phillies"], "tags": ["allstar5"]},
+
+    # --- expanded roster wave 2 (added later) ---
+    # --- Current players, team by team (not yet in dataset) ---
+    {"name": "Merrill Kelly", "teams": ["Arizona Diamondbacks"], "tags": []},
+    {"name": "Christian Walker", "teams": ["Arizona Diamondbacks", "Houston Astros"], "tags": ["gold_glove"]},
+    {"name": "Ketel Marte", "teams": ["Arizona Diamondbacks"], "tags": ["allstar5"]},
+    {"name": "Brandon Crawford", "teams": ["San Francisco Giants", "St. Louis Cardinals"], "tags": ["allstar5", "gold_glove", "ws_champ"]},
+    {"name": "Ryan Helsley", "teams": ["St. Louis Cardinals"], "tags": ["allstar5"]},
+    {"name": "Nolan Gorman", "teams": ["St. Louis Cardinals"], "tags": []},
+    {"name": "Willson Contreras", "teams": ["Chicago Cubs", "St. Louis Cardinals"], "tags": ["allstar5"]},
+    {"name": "Ian Happ", "teams": ["Chicago Cubs"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Nico Hoerner", "teams": ["Chicago Cubs"], "tags": ["gold_glove"]},
+    {"name": "Christian Yelich", "teams": ["Miami Marlins", "Milwaukee Brewers"], "tags": ["mvp", "allstar5", "batting_title", "40hr_season", "40sb_season"]},
+    {"name": "Willy Adames", "teams": ["Tampa Bay Rays", "Milwaukee Brewers", "San Francisco Giants"], "tags": ["allstar5"]},
+    {"name": "Freddy Peralta", "teams": ["Milwaukee Brewers"], "tags": ["allstar5"]},
+    {"name": "Ha-Seong Kim", "teams": ["San Diego Padres", "Tampa Bay Rays"], "tags": ["gold_glove"]},
+    {"name": "Dylan Cease", "teams": ["Chicago White Sox", "San Diego Padres"], "tags": ["allstar5"]},
+    {"name": "Fernando Tatis Jr.", "teams": ["San Diego Padres"], "tags": ["allstar5", "gold_glove", "40hr_season", "40sb_season"]},
+    {"name": "Michael King", "teams": ["New York Yankees", "San Diego Padres"], "tags": ["allstar5"]},
+
+    {"name": "Teoscar Hernandez", "teams": ["Houston Astros", "Toronto Blue Jays", "Seattle Mariners", "Los Angeles Dodgers"],
+     "tags": ["allstar5", "ws_champ", "40hr_season"]},
+    {"name": "Tommy Edman", "teams": ["St. Louis Cardinals", "Los Angeles Dodgers"], "tags": ["allstar5", "ws_champ", "gold_glove", "ws_mvp"]},
+    {"name": "Will Smith", "teams": ["Los Angeles Dodgers"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Enrique Hernandez", "teams": ["Los Angeles Dodgers", "Boston Red Sox"], "tags": ["ws_champ"]},
+    {"name": "Blake Snell", "teams": ["Tampa Bay Rays", "San Diego Padres", "San Francisco Giants", "Los Angeles Dodgers"],
+     "tags": ["cy_young", "allstar5", "no_hitter"]},
+    {"name": "Randy Arozarena", "teams": ["Tampa Bay Rays", "Seattle Mariners"], "tags": ["allstar5", "roy"]},
+    {"name": "Yandy Diaz", "teams": ["Cleveland Guardians", "Tampa Bay Rays"], "tags": ["allstar5", "batting_title"]},
+    {"name": "Nathan Eovaldi", "teams": ["Los Angeles Dodgers", "Miami Marlins", "New York Yankees", "Tampa Bay Rays",
+                                          "Boston Red Sox", "Texas Rangers"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Adolis Garcia", "teams": ["St. Louis Cardinals", "Texas Rangers"], "tags": ["allstar5", "ws_champ", "ws_mvp"]},
+
+    {"name": "Salvador Perez", "teams": ["Kansas City Royals"], "tags": ["allstar5", "gold_glove", "40hr_season"]},
+    {"name": "Vinnie Pasquantino", "teams": ["Kansas City Royals"], "tags": []},
+    {"name": "Seth Lugo", "teams": ["New York Mets", "San Diego Padres", "Kansas City Royals"], "tags": ["allstar5"]},
+    {"name": "Pablo Lopez", "teams": ["Miami Marlins", "Minnesota Twins"], "tags": ["allstar5"]},
+    {"name": "Steven Kwan", "teams": ["Cleveland Guardians"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Emmanuel Clase", "teams": ["Texas Rangers", "Cleveland Guardians"], "tags": ["allstar5"]},
+    {"name": "Andres Gimenez", "teams": ["New York Mets", "Cleveland Guardians", "Toronto Blue Jays"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Riley Greene", "teams": ["Detroit Tigers"], "tags": ["allstar5"]},
+    {"name": "Tarik Skubal", "teams": ["Detroit Tigers"], "tags": ["cy_young", "allstar5", "20win_season"]},
+    {"name": "Spencer Torkelson", "teams": ["Detroit Tigers"], "tags": []},
+    {"name": "Anthony Santander", "teams": ["Baltimore Orioles", "Toronto Blue Jays"], "tags": ["allstar5", "40hr_season"]},
+    {"name": "Jeremy Pena", "teams": ["Houston Astros"], "tags": ["ws_champ", "ws_mvp", "gold_glove"]},
+    {"name": "Andres Munoz", "teams": ["Seattle Mariners"], "tags": ["allstar5"]},
+    {"name": "Cal Raleigh", "teams": ["Seattle Mariners"], "tags": ["allstar5", "gold_glove", "40hr_season"]},
+    {"name": "George Kirby", "teams": ["Seattle Mariners"], "tags": ["allstar5"]},
+    {"name": "Bo Bichette", "teams": ["Toronto Blue Jays"], "tags": ["allstar5", "batting_title"]},
+    {"name": "Jose Berrios", "teams": ["Minnesota Twins", "Toronto Blue Jays"], "tags": ["allstar5"]},
+    {"name": "Wyatt Langford", "teams": ["Texas Rangers"], "tags": []},
+    {"name": "Josh Jung", "teams": ["Texas Rangers"], "tags": []},
+    {"name": "Zach Neto", "teams": ["Los Angeles Angels"], "tags": []},
+    {"name": "Logan O'Hoppe", "teams": ["Los Angeles Angels"], "tags": []},
+    {"name": "Brent Rooker", "teams": ["Minnesota Twins", "San Diego Padres", "Athletics"], "tags": ["allstar5"]},
+    {"name": "JJ Bleday", "teams": ["Miami Marlins", "Athletics"], "tags": []},
+    {"name": "Luis Severino", "teams": ["New York Yankees", "Athletics", "New York Mets"], "tags": ["allstar5"]},
+    {"name": "Shane Bieber", "teams": ["Cleveland Guardians"], "tags": ["cy_young", "allstar5", "20win_season"]},
+    {"name": "Nolan Jones", "teams": ["Cleveland Guardians", "Colorado Rockies"], "tags": []},
+    {"name": "Brenton Doyle", "teams": ["Colorado Rockies"], "tags": ["gold_glove"]},
+    {"name": "Ezequiel Tovar", "teams": ["Colorado Rockies"], "tags": ["gold_glove"]},
+    {"name": "Jackson Merrill", "teams": ["San Diego Padres"], "tags": ["allstar5"]},
+    {"name": "Luis Arraez", "teams": ["Minnesota Twins", "Miami Marlins", "San Diego Padres"],
+     "tags": ["allstar5", "batting_title", "200hits_season"]},
+    {"name": "Jesus Luzardo", "teams": ["Athletics", "Miami Marlins", "Philadelphia Phillies"], "tags": ["allstar5"]},
+    {"name": "Ranger Suarez", "teams": ["Philadelphia Phillies"], "tags": ["allstar5"]},
+    {"name": "J.T. Realmuto", "teams": ["Miami Marlins", "Philadelphia Phillies"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Francisco Alvarez", "teams": ["New York Mets"], "tags": []},
+    {"name": "Brandon Nimmo", "teams": ["New York Mets"], "tags": ["allstar5"]},
+    {"name": "Edwin Diaz", "teams": ["New York Mets"], "tags": ["allstar5"]},
+    {"name": "Michael Harris II", "teams": ["Atlanta Braves"], "tags": ["roy", "gold_glove"]},
+    {"name": "Sean Murphy", "teams": ["Athletics", "Atlanta Braves"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Chris Sale", "teams": ["Chicago White Sox", "Boston Red Sox", "Atlanta Braves"],
+     "tags": ["cy_young", "allstar5", "ws_champ", "20win_season", "3000k"]},
+    {"name": "Aaron Bummer", "teams": ["Chicago White Sox", "Atlanta Braves", "New York Yankees"], "tags": []},
+    {"name": "Giancarlo Stanton", "teams": ["Miami Marlins", "New York Yankees"],
+     "tags": ["mvp", "allstar5", "ws_champ", "40hr_season", "50hr_season"]},
+    {"name": "Spencer Schwellenbach", "teams": ["Atlanta Braves"], "tags": []},
+    {"name": "Chris Bassitt", "teams": ["Athletics", "New York Mets", "Chicago White Sox", "Toronto Blue Jays"], "tags": ["allstar5"]},
+    {"name": "Kevin Gausman", "teams": ["Baltimore Orioles", "Atlanta Braves", "San Francisco Giants", "Toronto Blue Jays"], "tags": ["allstar5"]},
+    {"name": "Trevor Story", "teams": ["Colorado Rockies", "Boston Red Sox"], "tags": ["allstar5", "gold_glove", "40hr_season"]},
+    {"name": "Charlie Blackmon", "teams": ["Colorado Rockies"], "tags": ["allstar5", "batting_title", "200hits_season"]},
+    {"name": "German Marquez", "teams": ["Colorado Rockies"], "tags": []},
+    {"name": "Nick Castellanos", "teams": ["Detroit Tigers", "Chicago Cubs", "Philadelphia Phillies"], "tags": ["allstar5"]},
+    {"name": "J.P. Crawford", "teams": ["Philadelphia Phillies", "Seattle Mariners"], "tags": ["gold_glove"]},
+    {"name": "Luis Castillo", "teams": ["Cincinnati Reds", "Seattle Mariners"], "tags": ["allstar5"]},
+    {"name": "Nick Lodolo", "teams": ["Cincinnati Reds"], "tags": []},
+    {"name": "Matt McLain", "teams": ["Cincinnati Reds"], "tags": []},
+    {"name": "Willi Castro", "teams": ["Detroit Tigers", "Minnesota Twins"], "tags": []},
+    {"name": "Colt Keith", "teams": ["Detroit Tigers"], "tags": []},
+    {"name": "Yusei Kikuchi", "teams": ["Seattle Mariners", "Toronto Blue Jays", "Los Angeles Angels"], "tags": []},
+    {"name": "Ryne Stanek", "teams": ["Tampa Bay Rays", "Miami Marlins", "Houston Astros", "Seattle Mariners"], "tags": []},
+    {"name": "Jackson Holliday", "teams": ["Baltimore Orioles"], "tags": []},
+    {"name": "Grayson Rodriguez", "teams": ["Baltimore Orioles"], "tags": []},
+    {"name": "Julio Teheran", "teams": ["Atlanta Braves", "Los Angeles Angels", "Detroit Tigers", "Milwaukee Brewers"], "tags": []},
+    {"name": "Josh Naylor", "teams": ["San Diego Padres", "Cleveland Guardians", "Arizona Diamondbacks", "Seattle Mariners"], "tags": ["allstar5"]},
+
+    # --- Historical players (1900s-1950s) ---
+    {"name": "Ty Cobb", "teams": ["Detroit Tigers", "Athletics"], "tags": ["hof", "batting_title", "3000hits"]},
+    {"name": "Honus Wagner", "teams": ["Pittsburgh Pirates"], "tags": ["hof", "batting_title", "3000hits"]},
+    {"name": "Walter Johnson", "teams": ["Washington Nationals"], "tags": ["hof", "no_hitter", "3000k", "300wins", "20win_season"]},
+    {"name": "Christy Mathewson", "teams": ["San Francisco Giants", "Cincinnati Reds"], "tags": ["hof", "no_hitter", "300wins", "20win_season"]},
+    {"name": "Grover Cleveland Alexander", "teams": ["Philadelphia Phillies", "Chicago Cubs", "St. Louis Cardinals"],
+     "tags": ["hof", "no_hitter", "300wins", "20win_season"]},
+    {"name": "Rogers Hornsby", "teams": ["St. Louis Cardinals", "New York Mets", "Atlanta Braves", "Chicago Cubs", "Baltimore Orioles"],
+     "tags": ["hof", "mvp", "triple_crown", "batting_title", "3000hits"]},
+    {"name": "Jimmie Foxx", "teams": ["Athletics", "Boston Red Sox", "Chicago Cubs", "Philadelphia Phillies"],
+     "tags": ["hof", "mvp", "triple_crown", "500hr", "40hr_season", "50hr_season", "batting_title"]},
+    {"name": "Mel Ott", "teams": ["San Francisco Giants"], "tags": ["hof", "500hr", "40hr_season"]},
+    {"name": "Al Simmons", "teams": ["Athletics", "Chicago White Sox", "Detroit Tigers", "Washington Nationals",
+                                       "Boston Red Sox", "Cincinnati Reds", "Pittsburgh Pirates"],
+     "tags": ["hof", "batting_title", "3000hits", "200hits_season"]},
+    {"name": "Lefty Grove", "teams": ["Athletics", "Boston Red Sox"], "tags": ["hof", "mvp", "300wins", "20win_season"]},
+    {"name": "Charlie Gehringer", "teams": ["Detroit Tigers"], "tags": ["hof", "mvp", "batting_title", "200hits_season"]},
+    {"name": "Hank Greenberg", "teams": ["Detroit Tigers", "Pittsburgh Pirates"], "tags": ["hof", "mvp", "40hr_season"]},
+    {"name": "Bill Dickey", "teams": ["New York Yankees"], "tags": ["hof", "ws_champ"]},
+    {"name": "Carl Hubbell", "teams": ["San Francisco Giants"], "tags": ["hof", "mvp", "20win_season"]},
+    {"name": "Dizzy Dean", "teams": ["St. Louis Cardinals", "Chicago Cubs"], "tags": ["hof", "mvp", "20win_season"]},
+    {"name": "Arky Vaughan", "teams": ["Pittsburgh Pirates", "Los Angeles Dodgers"], "tags": ["hof", "batting_title"]},
+    {"name": "Joe Cronin", "teams": ["Pittsburgh Pirates", "Washington Nationals", "Boston Red Sox"], "tags": ["hof", "mvp"]},
+    {"name": "Enos Slaughter", "teams": ["St. Louis Cardinals", "New York Yankees", "Kansas City Royals", "Milwaukee Brewers"],
+     "tags": ["hof", "ws_champ", "batting_title"]},
+
+    # --- 1950s-70s ---
+    {"name": "Larry Doby", "teams": ["Cleveland Guardians", "Chicago White Sox"], "tags": ["hof", "allstar5", "ws_champ", "40hr_season"]},
+    {"name": "Monte Irvin", "teams": ["San Francisco Giants", "Chicago Cubs"], "tags": ["hof", "ws_champ"]},
+    {"name": "Richie Ashburn", "teams": ["Philadelphia Phillies", "Chicago Cubs", "New York Mets"], "tags": ["hof", "allstar5", "batting_title", "gold_glove"]},
+    {"name": "Ralph Kiner", "teams": ["Pittsburgh Pirates", "Chicago Cubs", "Cleveland Guardians"], "tags": ["hof", "allstar5", "40hr_season", "50hr_season"]},
+    {"name": "Billy Pierce", "teams": ["Detroit Tigers", "Chicago White Sox", "San Francisco Giants"], "tags": ["allstar5", "20win_season"]},
+    {"name": "Roy Face", "teams": ["Pittsburgh Pirates", "Detroit Tigers", "Washington Nationals"], "tags": []},
+    {"name": "Vada Pinson", "teams": ["Cincinnati Reds", "St. Louis Cardinals", "Cleveland Guardians", "Los Angeles Angels", "Kansas City Royals"],
+     "tags": ["allstar5", "3000hits", "200hits_season"]},
+    {"name": "Curt Flood", "teams": ["Cincinnati Reds", "St. Louis Cardinals", "Washington Nationals"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Maury Wills", "teams": ["Los Angeles Dodgers", "Pittsburgh Pirates", "Washington Nationals"],
+     "tags": ["mvp", "allstar5", "ws_champ", "gold_glove", "40sb_season"]},
+    {"name": "Willie Horton", "teams": ["Detroit Tigers", "Texas Rangers", "Cleveland Guardians", "Athletics", "Toronto Blue Jays", "Seattle Mariners"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Jim Kaat", "teams": ["Minnesota Twins", "Chicago White Sox", "Philadelphia Phillies", "New York Yankees", "St. Louis Cardinals"],
+     "tags": ["hof", "allstar5", "ws_champ", "20win_season", "gold_glove"]},
+    {"name": "Mickey Lolich", "teams": ["Detroit Tigers", "New York Mets", "San Diego Padres"], "tags": ["allstar5", "ws_champ", "ws_mvp", "20win_season"]},
+    {"name": "Luis Tiant", "teams": ["Cleveland Guardians", "Minnesota Twins", "Boston Red Sox", "New York Yankees", "Pittsburgh Pirates", "Los Angeles Angels"],
+     "tags": ["allstar5", "20win_season"]},
+    {"name": "Vida Blue", "teams": ["Athletics", "San Francisco Giants", "Kansas City Royals"], "tags": ["mvp", "cy_young", "allstar5", "ws_champ", "20win_season", "no_hitter"]},
+    {"name": "Thurman Munson", "teams": ["New York Yankees"], "tags": ["mvp", "roy", "allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Bobby Grich", "teams": ["Baltimore Orioles", "Los Angeles Angels"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Amos Otis", "teams": ["New York Mets", "Kansas City Royals"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Bill Freehan", "teams": ["Detroit Tigers"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Ron Cey", "teams": ["Los Angeles Dodgers", "Chicago Cubs", "Athletics"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Bill Buckner", "teams": ["Los Angeles Dodgers", "Chicago Cubs", "Boston Red Sox", "Los Angeles Angels", "Kansas City Royals"],
+     "tags": ["batting_title", "3000hits", "200hits_season"]},
+    {"name": "Bake McBride", "teams": ["St. Louis Cardinals", "Philadelphia Phillies", "Cleveland Guardians"], "tags": ["roy", "ws_champ"]},
+    {"name": "Al Oliver", "teams": ["Pittsburgh Pirates", "Texas Rangers", "Washington Nationals", "San Francisco Giants",
+                                      "Philadelphia Phillies", "Los Angeles Dodgers", "Toronto Blue Jays"],
+     "tags": ["allstar5", "ws_champ", "batting_title", "3000hits"]},
+    {"name": "Bert Campaneris", "teams": ["Athletics", "Texas Rangers", "Los Angeles Angels", "New York Yankees"],
+     "tags": ["allstar5", "ws_champ", "40sb_season"]},
+    {"name": "Sal Bando", "teams": ["Athletics", "Milwaukee Brewers"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Joe Rudi", "teams": ["Athletics", "Los Angeles Angels", "Boston Red Sox"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Ken Holtzman", "teams": ["Chicago Cubs", "Athletics", "Baltimore Orioles", "New York Yankees"],
+     "tags": ["allstar5", "ws_champ", "no_hitter"]},
+
+    # --- 1980s-90s ---
+    {"name": "Bret Saberhagen", "teams": ["Kansas City Royals", "New York Mets", "Colorado Rockies", "Boston Red Sox"],
+     "tags": ["cy_young", "allstar5", "ws_champ", "ws_mvp", "20win_season", "no_hitter"]},
+    {"name": "Frank Viola", "teams": ["Minnesota Twins", "New York Mets", "Boston Red Sox", "Cincinnati Reds", "Toronto Blue Jays"],
+     "tags": ["cy_young", "allstar5", "ws_champ", "ws_mvp", "20win_season"]},
+    {"name": "Bob Welch", "teams": ["Los Angeles Dodgers", "Athletics"], "tags": ["cy_young", "allstar5", "ws_champ", "20win_season"]},
+    {"name": "Willie Randolph", "teams": ["Pittsburgh Pirates", "New York Yankees", "Los Angeles Dodgers", "Athletics",
+                                            "Milwaukee Brewers", "New York Mets"],
+     "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Ozzie Virgil", "teams": ["Philadelphia Phillies", "Atlanta Braves"], "tags": ["allstar5"]},
+    {"name": "Tim Wallach", "teams": ["Washington Nationals", "Los Angeles Dodgers"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Hubie Brooks", "teams": ["New York Mets", "Washington Nationals", "Los Angeles Dodgers", "Los Angeles Angels", "Chicago White Sox"],
+     "tags": ["allstar5"]},
+    {"name": "Andres Galarraga", "teams": ["Washington Nationals", "St. Louis Cardinals", "Colorado Rockies", "Atlanta Braves",
+                                             "Texas Rangers", "San Francisco Giants", "Los Angeles Angels", "San Diego Padres"],
+     "tags": ["allstar5", "gold_glove", "batting_title", "40hr_season"]},
+    {"name": "Moises Alou", "teams": ["Pittsburgh Pirates", "Washington Nationals", "Houston Astros", "Chicago Cubs",
+                                        "San Francisco Giants", "New York Mets"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "John Olerud", "teams": ["Toronto Blue Jays", "New York Mets", "Seattle Mariners", "New York Yankees",
+                                        "Boston Red Sox"],
+     "tags": ["allstar5", "ws_champ", "batting_title", "gold_glove"]},
+    {"name": "Devon White", "teams": ["Los Angeles Angels", "Toronto Blue Jays", "Miami Marlins", "Arizona Diamondbacks",
+                                        "Los Angeles Dodgers", "Milwaukee Brewers"],
+     "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Joe Carter", "teams": ["Chicago Cubs", "Cleveland Guardians", "San Diego Padres", "Toronto Blue Jays",
+                                       "Baltimore Orioles", "San Francisco Giants"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "B.J. Surhoff", "teams": ["Milwaukee Brewers", "Baltimore Orioles", "Atlanta Braves"], "tags": ["allstar5"]},
+    {"name": "Lou Whitaker", "teams": ["Detroit Tigers"], "tags": ["hof", "roy", "allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Chet Lemon", "teams": ["Chicago White Sox", "Detroit Tigers"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Cecil Fielder", "teams": ["Toronto Blue Jays", "Detroit Tigers", "New York Yankees", "Cleveland Guardians"],
+     "tags": ["allstar5", "ws_champ", "40hr_season", "50hr_season"]},
+    {"name": "Travis Fryman", "teams": ["Detroit Tigers", "Cleveland Guardians"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Juan Gonzalez", "teams": ["Texas Rangers", "Detroit Tigers", "Kansas City Royals", "Cleveland Guardians"],
+     "tags": ["mvp", "allstar5", "40hr_season", "50hr_season"]},
+    {"name": "Kenny Rogers", "teams": ["Texas Rangers", "New York Yankees", "Athletics", "New York Mets", "Minnesota Twins",
+                                         "Detroit Tigers"],
+     "tags": ["allstar5", "ws_champ", "20win_season", "no_hitter"]},
+    {"name": "Will Clark", "teams": ["San Francisco Giants", "Texas Rangers", "Baltimore Orioles", "St. Louis Cardinals"],
+     "tags": ["allstar5", "gold_glove", "batting_title"]},
+    {"name": "Matt Williams", "teams": ["San Francisco Giants", "Cleveland Guardians", "Arizona Diamondbacks"],
+     "tags": ["allstar5", "ws_champ", "gold_glove", "40hr_season"]},
+    {"name": "Robby Thompson", "teams": ["San Francisco Giants"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Kevin Mitchell", "teams": ["New York Mets", "San Diego Padres", "San Francisco Giants", "Seattle Mariners",
+                                           "Cincinnati Reds", "Boston Red Sox", "Cleveland Guardians"],
+     "tags": ["mvp", "allstar5", "ws_champ", "40hr_season"]},
+    {"name": "Chris Sabo", "teams": ["Cincinnati Reds", "Baltimore Orioles", "St. Louis Cardinals"], "tags": ["roy", "allstar5", "ws_champ"]},
+    {"name": "Jose Rijo", "teams": ["New York Yankees", "Athletics", "Cincinnati Reds"], "tags": ["allstar5", "ws_champ", "ws_mvp"]},
+    {"name": "Terry Pendleton", "teams": ["St. Louis Cardinals", "Atlanta Braves", "Miami Marlins", "Cincinnati Reds"],
+     "tags": ["mvp", "allstar5", "gold_glove", "batting_title"]},
+    {"name": "David Justice", "teams": ["Atlanta Braves", "Cleveland Guardians", "New York Yankees", "Athletics"],
+     "tags": ["roy", "allstar5", "ws_champ"]},
+    {"name": "Ron Gant", "teams": ["Atlanta Braves", "Cincinnati Reds", "St. Louis Cardinals", "Philadelphia Phillies",
+                                     "Colorado Rockies", "San Diego Padres", "Athletics"],
+     "tags": ["allstar5", "ws_champ", "40hr_season", "40sb_season"]},
+    {"name": "Javy Lopez", "teams": ["Atlanta Braves", "Baltimore Orioles", "Boston Red Sox"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Mark Grace", "teams": ["Chicago Cubs", "Arizona Diamondbacks"], "tags": ["allstar5", "ws_champ", "gold_glove", "200hits_season"]},
+    {"name": "Shawon Dunston", "teams": ["Chicago Cubs", "San Francisco Giants", "Pittsburgh Pirates", "Cleveland Guardians",
+                                           "St. Louis Cardinals", "New York Mets"],
+     "tags": ["allstar5"]},
+    {"name": "Andre Thornton", "teams": ["Chicago Cubs", "Washington Nationals", "Cleveland Guardians"], "tags": ["allstar5", "40hr_season"]},
+    {"name": "Julio Franco", "teams": ["Philadelphia Phillies", "Cleveland Guardians", "Texas Rangers", "Chicago White Sox",
+                                         "Milwaukee Brewers", "Cleveland Guardians", "Atlanta Braves", "New York Mets"],
+     "tags": ["allstar5", "batting_title", "3000hits"]},
+    {"name": "Harold Baines", "teams": ["Chicago White Sox", "Texas Rangers", "Athletics", "Baltimore Orioles", "Cleveland Guardians"],
+     "tags": ["hof", "allstar5"]},
+    {"name": "Carlton Fisk", "teams": ["Boston Red Sox", "Chicago White Sox"], "tags": ["hof", "mvp", "roy", "allstar5", "gold_glove"]},
+    {"name": "Albert Belle", "teams": ["Cleveland Guardians", "Chicago White Sox", "Baltimore Orioles"],
+     "tags": ["allstar5", "40hr_season", "50hr_season"]},
+    {"name": "Omar Vizquel", "teams": ["Seattle Mariners", "Cleveland Guardians", "San Francisco Giants", "Texas Rangers",
+                                         "Chicago White Sox", "Toronto Blue Jays"],
+     "tags": ["allstar5", "gold_glove", "3000hits"]},
+    {"name": "Mike Mussina", "teams": ["Baltimore Orioles", "New York Yankees"], "tags": ["hof", "allstar5", "20win_season", "gold_glove"]},
+    {"name": "Bernie Williams", "teams": ["New York Yankees"], "tags": ["allstar5", "ws_champ", "gold_glove", "batting_title"]},
+    {"name": "Paul O'Neill", "teams": ["Cincinnati Reds", "New York Yankees"], "tags": ["allstar5", "ws_champ", "batting_title"]},
+    {"name": "Tino Martinez", "teams": ["Seattle Mariners", "New York Yankees", "St. Louis Cardinals", "Tampa Bay Rays"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Jorge Posada", "teams": ["New York Yankees"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "David Wells", "teams": ["Toronto Blue Jays", "Detroit Tigers", "Cincinnati Reds", "Baltimore Orioles",
+                                        "New York Yankees", "Chicago White Sox", "San Diego Padres", "Boston Red Sox",
+                                        "Los Angeles Dodgers"],
+     "tags": ["allstar5", "ws_champ", "no_hitter", "20win_season"]},
+
+    # --- Negro Leagues legend who also pitched in affiliated MLB ---
+    {"name": "Satchel Paige", "teams": ["Cleveland Guardians", "Baltimore Orioles", "Athletics"], "tags": ["hof"]},
+
+    # --- 2000s-2010s stars ---
+    {"name": "Miguel Tejada", "teams": ["Athletics", "Baltimore Orioles", "Houston Astros", "San Diego Padres", "San Francisco Giants",
+                                          "Kansas City Royals"],
+     "tags": ["mvp", "allstar5"]},
+    {"name": "Nomar Garciaparra", "teams": ["Boston Red Sox", "Chicago Cubs", "Los Angeles Dodgers", "Athletics"],
+     "tags": ["roy", "allstar5", "batting_title"]},
+    {"name": "Johnny Damon", "teams": ["Kansas City Royals", "Athletics", "Boston Red Sox", "New York Yankees",
+                                         "Detroit Tigers", "Tampa Bay Rays", "Cleveland Guardians"],
+     "tags": ["allstar5", "ws_champ", "200hits_season"]},
+    {"name": "Roy Oswalt", "teams": ["Houston Astros", "Philadelphia Phillies", "Texas Rangers", "Colorado Rockies"],
+     "tags": ["allstar5", "20win_season"]},
+    {"name": "Lance Berkman", "teams": ["Houston Astros", "New York Yankees", "St. Louis Cardinals", "Texas Rangers"],
+     "tags": ["allstar5", "ws_champ", "40hr_season"]},
+    {"name": "Andruw Jones", "teams": ["Atlanta Braves", "Los Angeles Dodgers", "Texas Rangers", "Chicago White Sox",
+                                         "New York Yankees"],
+     "tags": ["allstar5", "ws_champ", "gold_glove", "40hr_season", "50hr_season"]},
+    {"name": "Mark Teixeira", "teams": ["Texas Rangers", "Atlanta Braves", "Los Angeles Angels", "New York Yankees"],
+     "tags": ["allstar5", "ws_champ", "gold_glove", "40hr_season"]},
+    {"name": "Robinson Cano", "teams": ["New York Yankees", "Seattle Mariners", "New York Mets", "Atlanta Braves"],
+     "tags": ["allstar5", "ws_champ", "gold_glove", "batting_title", "200hits_season"]},
+    {"name": "Cliff Lee", "teams": ["Cleveland Guardians", "Philadelphia Phillies", "Seattle Mariners", "Texas Rangers"],
+     "tags": ["cy_young", "allstar5", "20win_season"]},
+    {"name": "Ryan Howard", "teams": ["Philadelphia Phillies"], "tags": ["mvp", "roy", "allstar5", "ws_champ", "40hr_season", "50hr_season"]},
+    {"name": "Shane Victorino", "teams": ["Philadelphia Phillies", "Los Angeles Dodgers", "Boston Red Sox", "Los Angeles Angels"],
+     "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Jayson Werth", "teams": ["Los Angeles Dodgers", "Philadelphia Phillies", "Washington Nationals"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Placido Polanco", "teams": ["St. Louis Cardinals", "Philadelphia Phillies", "Detroit Tigers", "Miami Marlins"],
+     "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Brad Lidge", "teams": ["Houston Astros", "Philadelphia Phillies", "Washington Nationals"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Josh Hamilton", "teams": ["Cincinnati Reds", "Texas Rangers", "Los Angeles Angels"],
+     "tags": ["mvp", "allstar5", "batting_title", "40hr_season", "50hr_season"]},
+    {"name": "Ian Kinsler", "teams": ["Texas Rangers", "Detroit Tigers", "Los Angeles Angels", "Boston Red Sox", "San Diego Padres"],
+     "tags": ["allstar5", "gold_glove", "40hr_season", "40sb_season"]},
+    {"name": "Michael Young", "teams": ["Texas Rangers", "Philadelphia Phillies", "Los Angeles Dodgers"],
+     "tags": ["allstar5", "batting_title", "200hits_season"]},
+    {"name": "Elvis Andrus", "teams": ["Texas Rangers", "Athletics", "Chicago White Sox", "Los Angeles Angels"], "tags": ["allstar5"]},
+    {"name": "Rickie Weeks", "teams": ["Milwaukee Brewers"], "tags": ["allstar5"]},
+    {"name": "Corey Hart", "teams": ["Milwaukee Brewers", "Seattle Mariners"], "tags": ["allstar5", "40hr_season"]},
+    {"name": "Yovani Gallardo", "teams": ["Milwaukee Brewers", "Texas Rangers", "Baltimore Orioles", "Seattle Mariners", "Cincinnati Reds"],
+     "tags": ["allstar5"]},
+    {"name": "Brandon Phillips", "teams": ["Cleveland Guardians", "Cincinnati Reds", "Atlanta Braves", "Los Angeles Angels",
+                                             "Boston Red Sox"],
+     "tags": ["allstar5", "gold_glove", "40sb_season"]},
+    {"name": "Jay Bruce", "teams": ["Cincinnati Reds", "New York Mets", "Cleveland Guardians", "Seattle Mariners",
+                                      "Philadelphia Phillies", "New York Yankees"],
+     "tags": ["allstar5", "40hr_season"]},
+    {"name": "Johnny Cueto", "teams": ["Cincinnati Reds", "Kansas City Royals", "San Francisco Giants", "Chicago White Sox",
+                                         "Miami Marlins", "Milwaukee Brewers"],
+     "tags": ["allstar5", "ws_champ", "20win_season", "no_hitter"]},
+    {"name": "Matt Kemp", "teams": ["Los Angeles Dodgers", "San Diego Padres", "Atlanta Braves", "Cincinnati Reds"],
+     "tags": ["allstar5", "gold_glove", "40hr_season"]},
+    {"name": "Andre Ethier", "teams": ["Los Angeles Dodgers"], "tags": ["allstar5"]},
+    {"name": "Yasiel Puig", "teams": ["Los Angeles Dodgers", "Cincinnati Reds", "Cleveland Guardians", "Atlanta Braves"],
+     "tags": ["allstar5"]},
+    {"name": "Justin Turner", "teams": ["New York Mets", "Los Angeles Dodgers", "Boston Red Sox", "Toronto Blue Jays"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Matt Holliday", "teams": ["Colorado Rockies", "Athletics", "St. Louis Cardinals", "New York Yankees",
+                                          "Colorado Rockies"],
+     "tags": ["allstar5", "ws_champ", "batting_title", "40hr_season"]},
+    {"name": "Jason Heyward", "teams": ["Atlanta Braves", "St. Louis Cardinals", "Chicago Cubs", "Los Angeles Dodgers"],
+     "tags": ["roy", "allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Brian McCann", "teams": ["Atlanta Braves", "New York Yankees", "Houston Astros"],
+     "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Dan Uggla", "teams": ["Miami Marlins", "Atlanta Braves"], "tags": ["allstar5", "40hr_season"]},
+    {"name": "Hanley Ramirez", "teams": ["Boston Red Sox", "Miami Marlins", "Los Angeles Dodgers", "Miami Marlins"],
+     "tags": ["roy", "allstar5", "batting_title", "40hr_season", "40sb_season"]},
+    {"name": "Dustin Pedroia", "teams": ["Boston Red Sox"], "tags": ["mvp", "roy", "allstar5", "ws_champ", "gold_glove", "batting_title"]},
+    {"name": "Jacoby Ellsbury", "teams": ["Boston Red Sox", "New York Yankees"], "tags": ["allstar5", "ws_champ", "gold_glove", "40sb_season"]},
+    {"name": "Kevin Youkilis", "teams": ["Boston Red Sox", "Chicago White Sox", "New York Yankees"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Josh Beckett", "teams": ["Miami Marlins", "Boston Red Sox", "Los Angeles Dodgers"],
+     "tags": ["allstar5", "ws_champ", "ws_mvp", "20win_season"]},
+    {"name": "Mark Buehrle", "teams": ["Chicago White Sox", "Miami Marlins", "Toronto Blue Jays"],
+     "tags": ["allstar5", "ws_champ", "gold_glove", "no_hitter", "20win_season"]},
+    {"name": "Paul Konerko", "teams": ["Los Angeles Dodgers", "Cincinnati Reds", "Chicago White Sox"],
+     "tags": ["allstar5", "ws_champ", "40hr_season"]},
+    {"name": "Jermaine Dye", "teams": ["Atlanta Braves", "Kansas City Royals", "Athletics", "Chicago White Sox"],
+     "tags": ["allstar5", "ws_champ", "ws_mvp"]},
+    {"name": "A.J. Pierzynski", "teams": ["Minnesota Twins", "San Francisco Giants", "Chicago White Sox", "Texas Rangers",
+                                            "Boston Red Sox", "St. Louis Cardinals", "Atlanta Braves"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Denard Span", "teams": ["Minnesota Twins", "Washington Nationals", "San Francisco Giants", "Seattle Mariners",
+                                        "Tampa Bay Rays"],
+     "tags": ["allstar5"]},
+    {"name": "Alex Gordon", "teams": ["Kansas City Royals"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Eric Hosmer", "teams": ["Kansas City Royals", "San Diego Padres", "Boston Red Sox", "Chicago Cubs"],
+     "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Lorenzo Cain", "teams": ["Milwaukee Brewers", "Kansas City Royals", "Chicago White Sox"],
+     "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Zack Cozart", "teams": ["Cincinnati Reds", "Los Angeles Angels"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Billy Hamilton", "teams": ["Cincinnati Reds", "San Francisco Giants", "Kansas City Royals",
+                                           "Atlanta Braves", "Cleveland Guardians", "Chicago White Sox"],
+     "tags": ["gold_glove", "40sb_season"]},
+    {"name": "Adam Dunn", "teams": ["Cincinnati Reds", "Arizona Diamondbacks", "Washington Nationals", "Chicago White Sox",
+                                      "Athletics"],
+     "tags": ["allstar5", "40hr_season", "50hr_season"]},
+    {"name": "Bronson Arroyo", "teams": ["Pittsburgh Pirates", "Boston Red Sox", "Cincinnati Reds", "Arizona Diamondbacks"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Josh Harrison", "teams": ["Pittsburgh Pirates", "Detroit Tigers", "Washington Nationals",
+                                          "Athletics", "Chicago White Sox", "Philadelphia Phillies", "Chicago Cubs"],
+     "tags": ["allstar5"]},
+    {"name": "Ryan Zimmerman", "teams": ["Washington Nationals"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Stephen Strasburg", "teams": ["Washington Nationals"], "tags": ["allstar5", "ws_champ", "ws_mvp"]},
+    {"name": "Anthony Rendon", "teams": ["Washington Nationals", "Los Angeles Angels"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Ian Desmond", "teams": ["Washington Nationals", "Texas Rangers", "Colorado Rockies"], "tags": ["allstar5", "40sb_season"]},
+    {"name": "Jordan Zimmermann", "teams": ["Washington Nationals", "Detroit Tigers"], "tags": ["allstar5", "no_hitter", "20win_season"]},
+    {"name": "Gio Gonzalez", "teams": ["Athletics", "Washington Nationals", "Milwaukee Brewers", "Chicago White Sox"],
+     "tags": ["allstar5", "20win_season"]},
+    {"name": "Wilson Ramos", "teams": ["Washington Nationals", "Tampa Bay Rays", "New York Mets", "Cleveland Guardians",
+                                         "Detroit Tigers"],
+     "tags": ["allstar5"]},
+    {"name": "Jonathan Papelbon", "teams": ["Boston Red Sox", "Philadelphia Phillies", "Washington Nationals"],
+     "tags": ["allstar5", "ws_champ", "roy"]},
+    {"name": "Craig Kimbrel", "teams": ["Atlanta Braves", "San Diego Padres", "Boston Red Sox", "Chicago Cubs",
+                                          "Los Angeles Dodgers", "Philadelphia Phillies", "Baltimore Orioles"],
+     "tags": ["roy", "allstar5"]},
+    {"name": "Julio Urias", "teams": ["Los Angeles Dodgers"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Max Muncy", "teams": ["Athletics", "Los Angeles Dodgers"], "tags": ["allstar5", "ws_champ", "40hr_season"]},
+    {"name": "Chris Taylor", "teams": ["Seattle Mariners", "Los Angeles Dodgers"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Joc Pederson", "teams": ["Los Angeles Dodgers", "Chicago Cubs", "Atlanta Braves", "San Francisco Giants",
+                                         "Arizona Diamondbacks"],
+     "tags": ["allstar5", "ws_champ"]},
+
+    # --- More 1970s-80s standouts ---
+    {"name": "Fergie Jenkins", "teams": ["Philadelphia Phillies", "Chicago Cubs", "Texas Rangers", "Boston Red Sox"],
+     "tags": ["hof", "cy_young", "allstar5", "300wins", "3000k", "20win_season"]},
+    {"name": "Don Sutton", "teams": ["Los Angeles Dodgers", "Houston Astros", "Milwaukee Brewers", "Athletics",
+                                       "California Angels".replace("California Angels", "Los Angeles Angels")],
+     "tags": ["hof", "allstar5", "300wins", "3000k", "20win_season"]},
+    {"name": "Lenny Dykstra", "teams": ["New York Mets", "Philadelphia Phillies"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "John Kruk", "teams": ["San Diego Padres", "Philadelphia Phillies", "Chicago White Sox"], "tags": ["allstar5", "batting_title"]},
+    {"name": "Lenny Randle", "teams": ["Washington Nationals", "Texas Rangers", "New York Mets", "San Francisco Giants",
+                                         "Chicago Cubs", "Seattle Mariners"], "tags": []},
+    {"name": "Buddy Bell", "teams": ["Cleveland Guardians", "Texas Rangers", "Cincinnati Reds", "Houston Astros"],
+     "tags": ["allstar5", "gold_glove"]},
+    {"name": "Ron Santo", "teams": ["Chicago Cubs", "Chicago White Sox"], "tags": ["hof", "allstar5", "gold_glove"]},
+    {"name": "Dave Concepcion", "teams": ["Cincinnati Reds"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "George Foster", "teams": ["San Francisco Giants", "Cincinnati Reds", "New York Mets", "Chicago White Sox"],
+     "tags": ["mvp", "allstar5", "ws_champ", "40hr_season", "50hr_season"]},
+    {"name": "Cesar Cedeno", "teams": ["Houston Astros", "Cincinnati Reds", "St. Louis Cardinals", "Los Angeles Dodgers"],
+     "tags": ["allstar5", "gold_glove", "40sb_season"]},
+    {"name": "J.R. Richard", "teams": ["Houston Astros"], "tags": ["allstar5", "20win_season"]},
+    {"name": "Gary Matthews", "teams": ["San Francisco Giants", "Atlanta Braves", "Philadelphia Phillies", "Chicago Cubs", "Seattle Mariners"],
+     "tags": ["roy", "allstar5"]},
+    {"name": "Steve Rogers", "teams": ["Washington Nationals"], "tags": ["allstar5", "20win_season"]},
+    {"name": "Rick Sutcliffe", "teams": ["Los Angeles Dodgers", "Cleveland Guardians", "Chicago Cubs", "Baltimore Orioles",
+                                           "St. Louis Cardinals"],
+     "tags": ["cy_young", "roy", "allstar5", "20win_season"]},
+    {"name": "Steve Sax", "teams": ["Los Angeles Dodgers", "New York Yankees", "Chicago White Sox", "Athletics"],
+     "tags": ["roy", "allstar5", "ws_champ"]},
+    {"name": "Bill Madlock", "teams": ["Texas Rangers", "Chicago Cubs", "San Francisco Giants", "Pittsburgh Pirates",
+                                         "Los Angeles Dodgers", "Detroit Tigers"],
+     "tags": ["allstar5", "ws_champ", "batting_title"]},
+    {"name": "Bob Horner", "teams": ["Atlanta Braves", "St. Louis Cardinals"], "tags": ["roy"]},
+    {"name": "Willie McGee", "teams": ["St. Louis Cardinals", "Athletics", "San Francisco Giants", "Boston Red Sox"],
+     "tags": ["mvp", "allstar5", "ws_champ", "gold_glove", "batting_title"]},
+    {"name": "Greg Luzinski", "teams": ["Philadelphia Phillies", "Chicago White Sox"], "tags": ["allstar5", "ws_champ", "40hr_season"]},
+    {"name": "Garry Maddox", "teams": ["San Francisco Giants", "Philadelphia Phillies"], "tags": ["ws_champ", "gold_glove"]},
+    {"name": "Manny Trillo", "teams": ["Athletics", "Chicago Cubs", "Philadelphia Phillies", "Cleveland Guardians",
+                                         "Montreal Expos".replace("Montreal Expos", "Washington Nationals"), "San Francisco Giants",
+                                         "Cincinnati Reds"],
+     "tags": ["allstar5", "ws_champ", "ws_mvp", "gold_glove"]},
+    {"name": "Tug McGraw", "teams": ["New York Mets", "Philadelphia Phillies"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Larry Bowa", "teams": ["Philadelphia Phillies", "Chicago Cubs", "New York Mets"], "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Don Baylor", "teams": ["Baltimore Orioles", "Athletics", "California Angels".replace("California Angels", "Los Angeles Angels"),
+                                       "New York Yankees", "Boston Red Sox", "Minnesota Twins", "Athletics"],
+     "tags": ["mvp", "allstar5", "ws_champ"]},
+    {"name": "Rich Dauer", "teams": ["Baltimore Orioles"], "tags": ["ws_champ"]},
+    {"name": "Ken Singleton", "teams": ["New York Mets", "Montreal Expos".replace("Montreal Expos", "Washington Nationals"),
+                                          "Baltimore Orioles"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Al Bumbry", "teams": ["Baltimore Orioles", "San Diego Padres"], "tags": ["roy", "allstar5", "ws_champ"]},
+    {"name": "Scott McGregor", "teams": ["New York Yankees", "Baltimore Orioles"], "tags": ["ws_champ", "20win_season"]},
+    {"name": "Mike Flanagan", "teams": ["Baltimore Orioles", "Toronto Blue Jays"], "tags": ["cy_young", "allstar5", "ws_champ", "20win_season"]},
+    {"name": "Storm Davis", "teams": ["Baltimore Orioles", "San Diego Padres", "Athletics", "Kansas City Royals", "Detroit Tigers"],
+     "tags": ["ws_champ"]},
+
+    # --- More 1990s-2000s and additional current players (buffer batch) ---
+    {"name": "Jay Buhner", "teams": ["New York Yankees", "Seattle Mariners"], "tags": ["allstar5", "gold_glove", "40hr_season"]},
+    {"name": "Alvin Davis", "teams": ["Seattle Mariners", "California Angels".replace("California Angels", "Los Angeles Angels")],
+     "tags": ["roy", "allstar5"]},
+    {"name": "Harold Reynolds", "teams": ["Seattle Mariners", "Baltimore Orioles", "California Angels".replace("California Angels", "Los Angeles Angels")],
+     "tags": ["allstar5", "gold_glove"]},
+    {"name": "Freddy Garcia", "teams": ["Seattle Mariners", "Chicago White Sox", "Philadelphia Phillies", "New York Mets",
+                                          "Baltimore Orioles"],
+     "tags": ["allstar5", "20win_season"]},
+    {"name": "Raul Ibanez", "teams": ["Seattle Mariners", "Kansas City Royals", "Philadelphia Phillies", "New York Yankees",
+                                        "Los Angeles Angels"],
+     "tags": ["allstar5"]},
+    {"name": "Kevin Brown", "teams": ["Texas Rangers", "Baltimore Orioles", "Florida Marlins".replace("Florida Marlins", "Miami Marlins"),
+                                        "San Diego Padres", "Los Angeles Dodgers", "New York Yankees"],
+     "tags": ["allstar5", "ws_champ", "20win_season", "no_hitter"]},
+    {"name": "Rusty Greer", "teams": ["Texas Rangers"], "tags": ["allstar5"]},
+    {"name": "Charlie Hough", "teams": ["Los Angeles Dodgers", "Texas Rangers", "Chicago White Sox", "Florida Marlins".replace("Florida Marlins", "Miami Marlins")],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Jeff Burroughs", "teams": ["Texas Rangers", "Atlanta Braves", "Seattle Mariners", "Athletics", "Toronto Blue Jays"],
+     "tags": ["mvp", "allstar5"]},
+    {"name": "Toby Harrah", "teams": ["Washington Nationals", "Texas Rangers", "Cleveland Guardians", "New York Yankees"],
+     "tags": ["allstar5"]},
+    {"name": "Jim Sundberg", "teams": ["Texas Rangers", "Milwaukee Brewers", "Kansas City Royals", "Chicago Cubs"],
+     "tags": ["allstar5", "ws_champ", "gold_glove"]},
+    {"name": "Pudge Fisk", "teams": ["Boston Red Sox", "Chicago White Sox"], "tags": []},
+    {"name": "Fred Lynn", "teams": ["Boston Red Sox", "California Angels".replace("California Angels", "Los Angeles Angels"),
+                                      "Baltimore Orioles", "Detroit Tigers", "San Diego Padres"],
+     "tags": ["mvp", "roy", "allstar5", "gold_glove"]},
+    {"name": "Dwight Evans", "teams": ["Boston Red Sox"], "tags": ["allstar5", "ws_champ", "gold_glove", "40hr_season"]},
+    {"name": "Rich Gedman", "teams": ["Boston Red Sox", "Houston Astros"], "tags": ["allstar5"]},
+    {"name": "Bruce Hurst", "teams": ["Boston Red Sox", "San Diego Padres", "Colorado Rockies", "Texas Rangers"],
+     "tags": ["allstar5", "20win_season"]},
+    {"name": "Mo Vaughn", "teams": ["Boston Red Sox", "California Angels".replace("California Angels", "Los Angeles Angels"),
+                                      "New York Mets"],
+     "tags": ["mvp", "allstar5", "40hr_season"]},
+    {"name": "Tim Wakefield", "teams": ["Pittsburgh Pirates", "Boston Red Sox"], "tags": ["allstar5", "ws_champ", "20win_season"]},
+    {"name": "Trot Nixon", "teams": ["Boston Red Sox"], "tags": ["ws_champ"]},
+    {"name": "Bill Mueller", "teams": ["San Francisco Giants", "Chicago Cubs", "Boston Red Sox", "Los Angeles Dodgers"],
+     "tags": ["ws_champ", "batting_title"]},
+    {"name": "Derek Lowe", "teams": ["Seattle Mariners", "Boston Red Sox", "Los Angeles Dodgers", "Atlanta Braves", "Cleveland Guardians",
+                                       "Texas Rangers", "New York Yankees"],
+     "tags": ["allstar5", "ws_champ", "20win_season", "no_hitter"]},
+    {"name": "Keith Foulke", "teams": ["San Francisco Giants", "Chicago White Sox", "Athletics", "Boston Red Sox", "Cleveland Guardians"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Kevin Millar", "teams": ["Florida Marlins".replace("Florida Marlins", "Miami Marlins"), "Boston Red Sox",
+                                         "Baltimore Orioles", "Toronto Blue Jays", "Chicago Cubs"],
+     "tags": ["ws_champ"]},
+    {"name": "Doug Mirabelli", "teams": ["San Francisco Giants", "Boston Red Sox", "Texas Rangers"], "tags": ["ws_champ"]},
+    {"name": "Orlando Cabrera", "teams": ["Montreal Expos".replace("Montreal Expos", "Washington Nationals"), "Boston Red Sox",
+                                            "Los Angeles Angels", "Chicago White Sox", "Athletics", "Minnesota Twins",
+                                            "Cincinnati Reds", "Cleveland Guardians"],
+     "tags": ["ws_champ", "gold_glove"]},
+    {"name": "Mark Bellhorn", "teams": ["Athletics", "Chicago Cubs", "Colorado Rockies", "New York Yankees", "Boston Red Sox",
+                                          "Cincinnati Reds"],
+     "tags": ["ws_champ"]},
+    {"name": "Jason Varitek", "teams": ["Boston Red Sox"], "tags": ["allstar5", "ws_champ"]},
+    {"name": "Mike Lowell", "teams": ["New York Yankees", "Florida Marlins".replace("Florida Marlins", "Miami Marlins"), "Boston Red Sox"],
+     "tags": ["allstar5", "ws_champ", "ws_mvp", "gold_glove"]},
+    {"name": "Coco Crisp", "teams": ["Cleveland Guardians", "Boston Red Sox", "Kansas City Royals", "Athletics"],
+     "tags": ["gold_glove"]},
+    {"name": "Julio Lugo", "teams": ["Houston Astros", "Tampa Bay Rays", "Los Angeles Dodgers", "Boston Red Sox", "St. Louis Cardinals",
+                                       "Baltimore Orioles"],
+     "tags": []},
+
+    # --- Final buffer batch (recent notable current/past players) ---
+    {"name": "Ozzie Albies", "teams": ["Atlanta Braves"], "tags": ["allstar5"]},
+    {"name": "Marcell Ozuna", "teams": ["Miami Marlins", "St. Louis Cardinals", "Atlanta Braves"], "tags": ["allstar5", "40hr_season"]},
+    {"name": "Charlie Morton", "teams": ["Atlanta Braves", "Pittsburgh Pirates", "Philadelphia Phillies", "Houston Astros", "Tampa Bay Rays"],
+     "tags": ["allstar5", "ws_champ"]},
+    {"name": "Kyle Wright", "teams": ["Atlanta Braves"], "tags": ["allstar5"]},
+    {"name": "Oneil Cruz", "teams": ["Pittsburgh Pirates"], "tags": []},
+    {"name": "Mitch Keller", "teams": ["Pittsburgh Pirates"], "tags": ["allstar5"]},
+    {"name": "Rafael Devers", "teams": ["Boston Red Sox", "San Francisco Giants"], "tags": ["allstar5"]},
+    {"name": "Triston Casas", "teams": ["Boston Red Sox"], "tags": []},
+    {"name": "Jarren Duran", "teams": ["Boston Red Sox"], "tags": ["allstar5", "gold_glove"]},
+    {"name": "Gleyber Torres", "teams": ["New York Yankees", "Detroit Tigers"], "tags": ["allstar5"]},
+    {"name": "Aaron Hicks", "teams": ["Minnesota Twins", "New York Yankees", "Baltimore Orioles", "Los Angeles Angels"], "tags": ["allstar5"]},
+    {"name": "DJ LeMahieu", "teams": ["Chicago Cubs", "Colorado Rockies", "New York Yankees"], "tags": ["allstar5", "gold_glove", "batting_title"]},
+    {"name": "Anthony Volpe", "teams": ["New York Yankees"], "tags": ["gold_glove"]},
+    {"name": "Austin Wells", "teams": ["New York Yankees"], "tags": []},
+    {"name": "Clay Holmes", "teams": ["Pittsburgh Pirates", "New York Yankees", "New York Mets"], "tags": ["allstar5"]},
+    {"name": "Luis Gil", "teams": ["New York Yankees"], "tags": ["roy"]},
+    {"name": "Jeff McNeil", "teams": ["New York Mets"], "tags": ["allstar5", "batting_title"]},
+    {"name": "Kodai Senga", "teams": ["New York Mets"], "tags": ["roy"]},
+    {"name": "David Peterson", "teams": ["New York Mets"], "tags": []},
 ]
 
 for _p in GRID_PLAYERS:
@@ -4231,9 +4741,12 @@ def _grid_full_assignment_exists(rows, cols):
     players - a stronger guarantee than every cell merely having >=1 answer
     in isolation, since two cells can each have an answer that turns out to
     be the same one or only player available, leaving no valid player for
-    whichever cell is filled last. Backtracks cell-by-cell (9 cells, small
-    per-cell candidate pools) trying every candidate before declaring a
-    grid unsolvable."""
+    whichever cell is filled last. Backtracks using most-constrained-cell-
+    first ordering (always branches on whichever unfilled cell currently has
+    the fewest remaining candidates) rather than a fixed cell order - with a
+    large player pool some cells have dozens of valid candidates while
+    others have only 1-2, and a fixed order explores the wide cells first,
+    blowing up combinatorially before ever reaching the narrow ones."""
     candidates_by_cell = [
         [p["name"] for p in GRID_PLAYERS if r in _grid_player_cats(p) and c in _grid_player_cats(p)]
         for r in rows for c in cols
@@ -4241,21 +4754,33 @@ def _grid_full_assignment_exists(rows, cols):
     if any(not names for names in candidates_by_cell):
         return False
 
+    n = len(candidates_by_cell)
     used = set()
+    assigned = [False] * n
 
-    def backtrack(cell_index):
-        if cell_index == len(candidates_by_cell):
-            return True
-        for name in candidates_by_cell[cell_index]:
-            if name in used:
+    def backtrack():
+        best_idx = -1
+        best_remaining = None
+        for i in range(n):
+            if assigned[i]:
                 continue
+            remaining = [name for name in candidates_by_cell[i] if name not in used]
+            if not remaining:
+                return False
+            if best_remaining is None or len(remaining) < len(best_remaining):
+                best_idx, best_remaining = i, remaining
+        if best_idx == -1:
+            return True
+        assigned[best_idx] = True
+        for name in best_remaining:
             used.add(name)
-            if backtrack(cell_index + 1):
+            if backtrack():
                 return True
             used.discard(name)
+        assigned[best_idx] = False
         return False
 
-    return backtrack(0)
+    return backtrack()
 
 
 def _select_daily_grid(day_index, categories, pair_counts):
@@ -4438,14 +4963,15 @@ function closePicker() {
 
 function renderPickerResults(query) {
   const q = query.trim().toLowerCase();
-  const used = usedNames();
-  const pool = gridData.players.filter((p) => !used.includes(p.name.toLowerCase()));
-  const matches = (q.length
-    ? pool.filter((p) => p.name.toLowerCase().includes(q))
-    : pool
-  ).slice(0, 30);
-
   pickerResults.innerHTML = '';
+  if (q.length < 2) return;
+
+  const used = usedNames();
+  const matches = gridData.players
+    .filter((p) => !used.includes(p.name.toLowerCase()))
+    .filter((p) => p.name.toLowerCase().includes(q))
+    .slice(0, 30);
+
   if (!matches.length) {
     const empty = document.createElement('div');
     empty.className = 'picker-empty';
@@ -4542,6 +5068,11 @@ function findFullAssignment(openCells, alreadyUsed) {
   // can each have exactly one candidate, and if it's the same player for
   // both, filling the first one greedily leaves the second unsolvable even
   // though a full assignment (using a different, non-greedy pick) exists.
+  // Picks the most-constrained still-open cell first at each step (fewest
+  // remaining candidates) rather than a fixed order - with a large player
+  // pool some cells have dozens of candidates while others have only 1-2,
+  // and a fixed order explores the wide cells first, blowing up
+  // combinatorially before ever reaching the narrow ones.
   const candidatesByCell = openCells.map(({ rowCat, colCat }) =>
     gridData.players
       .map((p) => p.name)
@@ -4551,21 +5082,35 @@ function findFullAssignment(openCells, alreadyUsed) {
         return p.cats.includes(rowCat) && p.cats.includes(colCat);
       })
   );
-  const assignment = new Array(openCells.length).fill(null);
+  const n = openCells.length;
+  const assignment = new Array(n).fill(null);
+  const done = new Array(n).fill(false);
   const used = new Set();
-  function backtrack(i) {
-    if (i === openCells.length) return true;
-    for (const name of candidatesByCell[i]) {
+  function backtrack() {
+    let bestIdx = -1;
+    let bestRemaining = null;
+    for (let i = 0; i < n; i++) {
+      if (done[i]) continue;
+      const remaining = candidatesByCell[i].filter((name) => !used.has(name.toLowerCase()));
+      if (remaining.length === 0) return false;
+      if (bestRemaining === null || remaining.length < bestRemaining.length) {
+        bestIdx = i;
+        bestRemaining = remaining;
+      }
+    }
+    if (bestIdx === -1) return true;
+    done[bestIdx] = true;
+    for (const name of bestRemaining) {
       const key = name.toLowerCase();
-      if (used.has(key)) continue;
       used.add(key);
-      assignment[i] = name;
-      if (backtrack(i + 1)) return true;
+      assignment[bestIdx] = name;
+      if (backtrack()) return true;
       used.delete(key);
     }
+    done[bestIdx] = false;
     return false;
   }
-  return backtrack(0) ? assignment : null;
+  return backtrack() ? assignment : null;
 }
 
 revealBtn.addEventListener('click', () => {
