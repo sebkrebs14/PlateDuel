@@ -56,9 +56,10 @@ HOME_PAGE_FILE = "index.html"
 ROSTER_MOVES_LOOKBACK_DAYS = 3
 ROSTER_MOVES_PER_CATEGORY = 30
 
-# TODO: replace with the site's real domain once it's deployed - robots.txt
-# and sitemap.xml both need an absolute base URL to be valid.
-SITE_BASE_URL = "https://your-domain.com"
+# GitHub Pages project-site URL (no trailing slash) - robots.txt, sitemap.xml,
+# and the JSON-LD blocks all build absolute URLs from this. Update here if the
+# site ever moves to a custom domain.
+SITE_BASE_URL = "https://sebkrebs14.github.io/PlateDuel"
 
 PROMOTION_DEMOTION_CODES = {"CU", "OPT", "SE"}  # Recalled, Optioned, Selected
 
