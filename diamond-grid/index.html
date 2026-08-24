@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Diamond Grid - MLB Matchup Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Diamond Grid: a daily baseball trivia game - name a player who fits both the team and the achievement.">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
+  <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
+  <path d="M10 8 H90 V50 L50 95 L10 50 Z" fill="none" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+  <g fill="#000">
+    <circle cx="50" cy="18" r="3.4"/>
+    <circle cx="50" cy="31" r="3.4"/>
+    <circle cx="50" cy="44" r="3.4"/>
+    <circle cx="50" cy="57" r="3.4"/>
+    <circle cx="50" cy="70" r="3.4"/>
+    <circle cx="50" cy="83" r="3.4"/>
+  </g>
+</svg>
+    <h1>Diamond Grid</h1>
+  </div>
+  <span class="date">Monday, August 24, 2026</span>
+  <a class="header-link" href="/home/"><svg width="16" height="16" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
+  <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
+  <path d="M10 8 H90 V50 L50 95 L10 50 Z" fill="none" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+  <g fill="#000">
+    <circle cx="50" cy="18" r="3.4"/>
+    <circle cx="50" cy="31" r="3.4"/>
+    <circle cx="50" cy="44" r="3.4"/>
+    <circle cx="50" cy="57" r="3.4"/>
+    <circle cx="50" cy="70" r="3.4"/>
+    <circle cx="50" cy="83" r="3.4"/>
+  </g>
+</svg>Home</a>
+</header>
+<p class="disclaimer">
+  Every row and column is a team or career achievement - name one player who fits both, without
+  repeating a name across the grid. Type a player and hit Enter, or pick from the suggestions.
+  No hard limit on guesses per square, so argue it out. Use Prev/Next to replay past grids.
+</p>
+<main class="grid-main">
+  <div class="grid-nav">
+    <button type="button" id="prev-day" class="nav-btn">&larr; Prev</button>
+    <div class="grid-nav-info">
+      <span id="grid-date" class="grid-date"></span>
+    </div>
+    <button type="button" id="next-day" class="nav-btn">Next &rarr;</button>
+  </div>
+  <div id="grid" class="grid"></div>
+  <p id="grid-status" class="grid-status" aria-live="polite"></p>
+  <div class="grid-actions">
+    <button type="button" id="reveal-btn" class="reveal-btn">Reveal remaining answers</button>
+  </div>
+</main>
+
+<script id="grid-data" type="application/json">{"players": [{"name": "Shohei Ohtani", "cats": ["team:Los Angeles Angels", "team:Los Angeles Dodgers", "achv:mvp", "achv:allstar5", "achv:40hr_season", "achv:roy"]}, {"name": "Mike Trout", "cats": ["team:Los Angeles Angels", "achv:mvp", "achv:allstar5", "achv:roy", "achv:40hr_season"]}, {"name": "Aaron Judge", "cats": ["team:New York Yankees", "achv:mvp", "achv:allstar5", "achv:roy", "achv:50hr_season", "achv:40hr_season"]}, {"name": "Mookie Betts", "cats": ["team:Boston Red Sox", "team:Los Angeles Dodgers", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:gold_glove", "achv:batting_title"]}, {"name": "Freddie Freeman", "cats": ["team:Atlanta Braves", "team:Los Angeles Dodgers", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:batting_title"]}, {"name": "Bryce Harper", "cats": ["team:Washington Nationals", "team:Philadelphia Phillies", "achv:mvp", "achv:allstar5", "achv:roy", "achv:40hr_season"]}, {"name": "Clayton Kershaw", "cats": ["team:Los Angeles Dodgers", "achv:mvp", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:no_hitter"]}, {"name": "Justin Verlander", "cats": ["team:Detroit Tigers", "team:Houston Astros", "achv:mvp", "achv:cy_young", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:no_hitter", "achv:3000k"]}, {"name": "Max Scherzer", "cats": ["team:Detroit Tigers", "team:Washington Nationals", "team:New York Mets", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:no_hitter", "achv:3000k"]}, {"name": "Jacob deGrom", "cats": ["team:New York Mets", "team:Texas Rangers", "achv:cy_young", "achv:roy", "achv:allstar5"]}, {"name": "Corbin Burnes", "cats": ["team:Milwaukee Brewers", "team:Baltimore Orioles", "team:Arizona Diamondbacks", "achv:cy_young", "achv:allstar5"]}, {"name": "Paul Skenes", "cats": ["team:Pittsburgh Pirates", "achv:roy", "achv:allstar5"]}, {"name": "Gerrit Cole", "cats": ["team:Pittsburgh Pirates", "team:Houston Astros", "team:New York Yankees", "achv:cy_young", "achv:allstar5", "achv:ws_champ"]}, {"name": "Jose Altuve", "cats": ["team:Houston Astros", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:batting_title", "achv:200hits_season"]}, {"name": "Manny Machado", "cats": ["team:Baltimore Orioles", "team:San Diego Padres", "achv:allstar5", "achv:gold_glove", "achv:40hr_season"]}, {"name": "Nolan Arenado", "cats": ["team:Colorado Rockies", "team:St. Louis Cardinals", "achv:allstar5", "achv:gold_glove", "achv:40hr_season"]}, {"name": "Francisco Lindor", "cats": ["team:Cleveland Guardians", "team:New York Mets", "achv:allstar5", "achv:gold_glove"]}, {"name": "Jose Ramirez", "cats": ["team:Cleveland Guardians", "achv:allstar5", "achv:40sb_season"]}, {"name": "Juan Soto", "cats": ["team:Washington Nationals", "team:San Diego Padres", "team:New York Yankees", "team:New York Mets", "achv:allstar5", "achv:ws_champ", "achv:batting_title"]}, {"name": "Vladimir Guerrero Jr.", "cats": ["team:Toronto Blue Jays", "achv:allstar5", "achv:40hr_season"]}, {"name": "Ronald Acuna Jr.", "cats": ["team:Atlanta Braves", "achv:mvp", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:40hr_season", "achv:40sb_season"]}, {"name": "Kyle Schwarber", "cats": ["team:Chicago Cubs", "team:Philadelphia Phillies", "achv:ws_champ", "achv:allstar5", "achv:50hr_season", "achv:40hr_season"]}, {"name": "Pete Alonso", "cats": ["team:New York Mets", "achv:roy", "achv:allstar5", "achv:40hr_season"]}, {"name": "Yordan Alvarez", "cats": ["team:Houston Astros", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:40hr_season"]}, {"name": "Corey Seager", "cats": ["team:Los Angeles Dodgers", "team:Texas Rangers", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp"]}, {"name": "Buster Posey", "cats": ["team:San Francisco Giants", "achv:mvp", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:batting_title", "achv:gold_glove"]}, {"name": "Madison Bumgarner", "cats": ["team:San Francisco Giants", "team:Arizona Diamondbacks", "achv:ws_champ", "achv:ws_mvp", "achv:allstar5"]}, {"name": "Yadier Molina", "cats": ["team:St. Louis Cardinals", "achv:ws_champ", "achv:allstar5", "achv:gold_glove"]}, {"name": "Albert Pujols", "cats": ["team:St. Louis Cardinals", "team:Los Angeles Angels", "team:Los Angeles Dodgers", "achv:mvp", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:hof", "achv:500hr", "achv:3000hits", "achv:batting_title", "achv:40hr_season", "achv:gold_glove"]}, {"name": "David Ortiz", "cats": ["team:Minnesota Twins", "team:Boston Red Sox", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:500hr", "achv:40hr_season"]}, {"name": "Ichiro Suzuki", "cats": ["team:Seattle Mariners", "team:New York Yankees", "team:Miami Marlins", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:3000hits", "achv:batting_title", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Chipper Jones", "cats": ["team:Atlanta Braves", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:batting_title"]}, {"name": "Derek Jeter", "cats": ["team:New York Yankees", "achv:hof", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:3000hits", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Mariano Rivera", "cats": ["team:New York Yankees", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp"]}, {"name": "Andy Pettitte", "cats": ["team:New York Yankees", "team:Houston Astros", "achv:allstar5", "achv:ws_champ", "achv:20win_season"]}, {"name": "Alex Rodriguez", "cats": ["team:Seattle Mariners", "team:Texas Rangers", "team:New York Yankees", "achv:mvp", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:500hr", "achv:3000hits", "achv:40hr_season", "achv:50hr_season", "achv:batting_title", "achv:gold_glove"]}, {"name": "Ken Griffey Jr.", "cats": ["team:Seattle Mariners", "team:Cincinnati Reds", "team:Chicago White Sox", "achv:hof", "achv:mvp", "achv:allstar5", "achv:500hr", "achv:40hr_season", "achv:50hr_season", "achv:gold_glove"]}, {"name": "Randy Johnson", "cats": ["team:Seattle Mariners", "team:Houston Astros", "team:Arizona Diamondbacks", "team:New York Yankees", "team:San Francisco Giants", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:20win_season", "achv:no_hitter", "achv:3000k", "achv:300wins"]}, {"name": "Pedro Martinez", "cats": ["team:Los Angeles Dodgers", "team:Washington Nationals", "team:Boston Red Sox", "team:New York Mets", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:20win_season", "achv:3000k"]}, {"name": "Greg Maddux", "cats": ["team:Chicago Cubs", "team:Atlanta Braves", "team:Los Angeles Dodgers", "team:San Diego Padres", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:gold_glove", "achv:300wins"]}, {"name": "Tom Glavine", "cats": ["team:Atlanta Braves", "team:New York Mets", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:20win_season", "achv:300wins"]}, {"name": "John Smoltz", "cats": ["team:Atlanta Braves", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:3000k"]}, {"name": "Roger Clemens", "cats": ["team:Boston Red Sox", "team:Toronto Blue Jays", "team:New York Yankees", "team:Houston Astros", "achv:mvp", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:3000k", "achv:300wins"]}, {"name": "Frank Thomas", "cats": ["team:Chicago White Sox", "team:Toronto Blue Jays", "team:Athletics", "achv:hof", "achv:mvp", "achv:allstar5", "achv:500hr", "achv:batting_title", "achv:40hr_season"]}, {"name": "Jim Thome", "cats": ["team:Cleveland Guardians", "team:Philadelphia Phillies", "team:Chicago White Sox", "team:Los Angeles Dodgers", "team:Minnesota Twins", "team:Baltimore Orioles", "achv:hof", "achv:allstar5", "achv:500hr", "achv:40hr_season"]}, {"name": "Manny Ramirez", "cats": ["team:Cleveland Guardians", "team:Boston Red Sox", "team:Los Angeles Dodgers", "team:Chicago White Sox", "team:Tampa Bay Rays", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:500hr", "achv:40hr_season", "achv:batting_title"]}, {"name": "Vladimir Guerrero", "cats": ["team:Washington Nationals", "team:Los Angeles Angels", "team:Texas Rangers", "team:Baltimore Orioles", "achv:hof", "achv:mvp", "achv:allstar5", "achv:batting_title", "achv:40hr_season"]}, {"name": "Jeff Bagwell", "cats": ["team:Houston Astros", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:40hr_season"]}, {"name": "Craig Biggio", "cats": ["team:Houston Astros", "achv:hof", "achv:allstar5", "achv:3000hits", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Trevor Hoffman", "cats": ["team:Miami Marlins", "team:San Diego Padres", "team:Milwaukee Brewers", "achv:hof", "achv:allstar5"]}, {"name": "Lee Smith", "cats": ["team:Chicago Cubs", "team:Boston Red Sox", "team:St. Louis Cardinals", "team:New York Yankees", "team:Baltimore Orioles", "team:Cincinnati Reds", "team:Washington Nationals", "achv:hof", "achv:allstar5"]}, {"name": "Ivan Rodriguez", "cats": ["team:Texas Rangers", "team:Miami Marlins", "team:Detroit Tigers", "team:Houston Astros", "team:New York Yankees", "team:Washington Nationals", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:gold_glove", "achv:batting_title"]}, {"name": "Mike Piazza", "cats": ["team:Los Angeles Dodgers", "team:New York Mets", "team:San Diego Padres", "team:Athletics", "achv:hof", "achv:roy", "achv:allstar5"]}, {"name": "Barry Larkin", "cats": ["team:Cincinnati Reds", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:gold_glove"]}, {"name": "Roberto Alomar", "cats": ["team:San Diego Padres", "team:Toronto Blue Jays", "team:Baltimore Orioles", "team:Cleveland Guardians", "team:New York Mets", "team:Chicago White Sox", "team:Arizona Diamondbacks", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:gold_glove", "achv:batting_title"]}, {"name": "Cal Ripken Jr.", "cats": ["team:Baltimore Orioles", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Eddie Murray", "cats": ["team:Baltimore Orioles", "team:Los Angeles Dodgers", "team:New York Mets", "team:Cleveland Guardians", "team:Los Angeles Angels", "achv:hof", "achv:roy", "achv:allstar5", "achv:500hr", "achv:3000hits"]}, {"name": "Wade Boggs", "cats": ["team:Boston Red Sox", "team:New York Yankees", "team:Tampa Bay Rays", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:3000hits", "achv:batting_title", "achv:200hits_season"]}, {"name": "Rickey Henderson", "cats": ["team:Athletics", "team:New York Yankees", "team:Toronto Blue Jays", "team:San Diego Padres", "team:Boston Red Sox", "team:Los Angeles Dodgers", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:3000hits", "achv:40sb_season"]}, {"name": "Tony Gwynn", "cats": ["team:San Diego Padres", "achv:hof", "achv:allstar5", "achv:3000hits", "achv:batting_title", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Ozzie Smith", "cats": ["team:San Diego Padres", "team:St. Louis Cardinals", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:gold_glove"]}, {"name": "Kirby Puckett", "cats": ["team:Minnesota Twins", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:batting_title", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Paul Molitor", "cats": ["team:Milwaukee Brewers", "team:Toronto Blue Jays", "team:Minnesota Twins", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:3000hits", "achv:batting_title", "achv:200hits_season"]}, {"name": "Dennis Eckersley", "cats": ["team:Cleveland Guardians", "team:Boston Red Sox", "team:Chicago Cubs", "team:Athletics", "team:St. Louis Cardinals", "achv:hof", "achv:mvp", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:no_hitter"]}, {"name": "Nolan Ryan", "cats": ["team:New York Mets", "team:Los Angeles Angels", "team:Houston Astros", "team:Texas Rangers", "achv:hof", "achv:allstar5", "achv:3000k", "achv:no_hitter"]}, {"name": "Steve Carlton", "cats": ["team:St. Louis Cardinals", "team:Philadelphia Phillies", "team:San Francisco Giants", "team:Chicago White Sox", "team:Cleveland Guardians", "team:Minnesota Twins", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:3000k", "achv:300wins"]}, {"name": "Rich Gossage", "cats": ["team:Chicago White Sox", "team:Pittsburgh Pirates", "team:New York Yankees", "team:San Diego Padres", "team:Chicago Cubs", "team:San Francisco Giants", "team:Texas Rangers", "team:Athletics", "team:Seattle Mariners", "achv:hof", "achv:allstar5"]}, {"name": "Ryne Sandberg", "cats": ["team:Philadelphia Phillies", "team:Chicago Cubs", "achv:hof", "achv:mvp", "achv:allstar5", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Andre Dawson", "cats": ["team:Washington Nationals", "team:Chicago Cubs", "team:Boston Red Sox", "team:Miami Marlins", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:40hr_season", "achv:gold_glove"]}, {"name": "Gary Carter", "cats": ["team:Washington Nationals", "team:New York Mets", "team:San Francisco Giants", "team:Los Angeles Dodgers", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:gold_glove"]}, {"name": "Bruce Sutter", "cats": ["team:Chicago Cubs", "team:St. Louis Cardinals", "team:Atlanta Braves", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ"]}, {"name": "Ozzie Guillen", "cats": ["team:Chicago White Sox", "team:Baltimore Orioles", "team:Atlanta Braves", "team:Tampa Bay Rays", "achv:roy", "achv:allstar5"]}, {"name": "Fernando Valenzuela", "cats": ["team:Los Angeles Dodgers", "team:Los Angeles Angels", "team:Baltimore Orioles", "team:Philadelphia Phillies", "team:San Diego Padres", "achv:cy_young", "achv:roy", "achv:allstar5", "achv:ws_champ"]}, {"name": "George Brett", "cats": ["team:Kansas City Royals", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:3000hits", "achv:batting_title", "achv:200hits_season"]}, {"name": "Robin Yount", "cats": ["team:Milwaukee Brewers", "achv:hof", "achv:mvp", "achv:allstar5", "achv:3000hits", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Mike Schmidt", "cats": ["team:Philadelphia Phillies", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:500hr", "achv:40hr_season", "achv:gold_glove"]}, {"name": "Steve Garvey", "cats": ["team:Los Angeles Dodgers", "team:San Diego Padres", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Dave Winfield", "cats": ["team:San Diego Padres", "team:New York Yankees", "team:Los Angeles Angels", "team:Toronto Blue Jays", "team:Minnesota Twins", "team:Cleveland Guardians", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:3000hits", "achv:gold_glove"]}, {"name": "Dave Parker", "cats": ["team:Pittsburgh Pirates", "team:Cincinnati Reds", "team:Athletics", "team:Milwaukee Brewers", "team:Los Angeles Angels", "team:Toronto Blue Jays", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:batting_title", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Willie Stargell", "cats": ["team:Pittsburgh Pirates", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:40hr_season"]}, {"name": "Reggie Jackson", "cats": ["team:Athletics", "team:Baltimore Orioles", "team:New York Yankees", "team:Los Angeles Angels", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:500hr", "achv:40hr_season"]}, {"name": "Catfish Hunter", "cats": ["team:Athletics", "team:New York Yankees", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season"]}, {"name": "Rollie Fingers", "cats": ["team:Athletics", "team:San Diego Padres", "team:Milwaukee Brewers", "achv:hof", "achv:mvp", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp"]}, {"name": "Rod Carew", "cats": ["team:Minnesota Twins", "team:Los Angeles Angels", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:3000hits", "achv:batting_title", "achv:200hits_season"]}, {"name": "Harmon Killebrew", "cats": ["team:Minnesota Twins", "team:Kansas City Royals", "achv:hof", "achv:mvp", "achv:allstar5", "achv:500hr", "achv:40hr_season"]}, {"name": "Bert Blyleven", "cats": ["team:Minnesota Twins", "team:Texas Rangers", "team:Pittsburgh Pirates", "team:Cleveland Guardians", "team:Los Angeles Angels", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:3000k", "achv:no_hitter"]}, {"name": "Kirk Gibson", "cats": ["team:Detroit Tigers", "team:Los Angeles Dodgers", "team:Pittsburgh Pirates", "team:Kansas City Royals", "achv:mvp", "achv:ws_champ"]}, {"name": "Alan Trammell", "cats": ["team:Detroit Tigers", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:gold_glove"]}, {"name": "Jack Morris", "cats": ["team:Detroit Tigers", "team:Minnesota Twins", "team:Toronto Blue Jays", "team:Cleveland Guardians", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:20win_season"]}, {"name": "Al Kaline", "cats": ["team:Detroit Tigers", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:batting_title", "achv:gold_glove", "achv:3000hits"]}, {"name": "Bob Feller", "cats": ["team:Cleveland Guardians", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:no_hitter", "achv:3000k"]}, {"name": "Jim Palmer", "cats": ["team:Baltimore Orioles", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season"]}, {"name": "Brooks Robinson", "cats": ["team:Baltimore Orioles", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:gold_glove"]}, {"name": "Frank Robinson", "cats": ["team:Cincinnati Reds", "team:Baltimore Orioles", "team:Los Angeles Dodgers", "team:Los Angeles Angels", "team:Cleveland Guardians", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:triple_crown", "achv:500hr", "achv:40hr_season", "achv:batting_title"]}, {"name": "Willie Mays", "cats": ["team:San Francisco Giants", "team:New York Mets", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:500hr", "achv:40hr_season", "achv:50hr_season", "achv:gold_glove", "achv:batting_title", "achv:40sb_season"]}, {"name": "Willie McCovey", "cats": ["team:San Francisco Giants", "team:San Diego Padres", "team:Athletics", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:500hr", "achv:40hr_season"]}, {"name": "Juan Marichal", "cats": ["team:San Francisco Giants", "team:Boston Red Sox", "team:Los Angeles Dodgers", "achv:hof", "achv:allstar5", "achv:20win_season", "achv:no_hitter"]}, {"name": "Orlando Cepeda", "cats": ["team:San Francisco Giants", "team:St. Louis Cardinals", "team:Atlanta Braves", "team:Athletics", "team:Boston Red Sox", "team:Kansas City Royals", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:batting_title", "achv:40hr_season"]}, {"name": "Barry Bonds", "cats": ["team:Pittsburgh Pirates", "team:San Francisco Giants", "achv:mvp", "achv:allstar5", "achv:500hr", "achv:40hr_season", "achv:50hr_season", "achv:gold_glove", "achv:batting_title", "achv:40sb_season"]}, {"name": "Sandy Koufax", "cats": ["team:Los Angeles Dodgers", "achv:hof", "achv:mvp", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:20win_season", "achv:no_hitter", "achv:3000k"]}, {"name": "Don Drysdale", "cats": ["team:Los Angeles Dodgers", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:no_hitter", "achv:3000k"]}, {"name": "Duke Snider", "cats": ["team:Los Angeles Dodgers", "team:New York Mets", "team:San Francisco Giants", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:40hr_season"]}, {"name": "Pee Wee Reese", "cats": ["team:Los Angeles Dodgers", "achv:hof", "achv:allstar5", "achv:ws_champ"]}, {"name": "Jackie Robinson", "cats": ["team:Los Angeles Dodgers", "achv:hof", "achv:mvp", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:batting_title", "achv:40sb_season"]}, {"name": "Roy Campanella", "cats": ["team:Los Angeles Dodgers", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ"]}, {"name": "Hank Aaron", "cats": ["team:Atlanta Braves", "team:Milwaukee Brewers", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:500hr", "achv:3000hits", "achv:40hr_season", "achv:batting_title", "achv:gold_glove"]}, {"name": "Eddie Mathews", "cats": ["team:Atlanta Braves", "team:Houston Astros", "team:Detroit Tigers", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:500hr", "achv:40hr_season"]}, {"name": "Warren Spahn", "cats": ["team:Atlanta Braves", "team:New York Mets", "team:San Francisco Giants", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:20win_season", "achv:no_hitter", "achv:300wins"]}, {"name": "Phil Niekro", "cats": ["team:Atlanta Braves", "team:New York Yankees", "team:Cleveland Guardians", "team:Toronto Blue Jays", "achv:hof", "achv:allstar5", "achv:20win_season", "achv:3000k", "achv:300wins"]}, {"name": "Ernie Banks", "cats": ["team:Chicago Cubs", "achv:hof", "achv:mvp", "achv:allstar5", "achv:500hr", "achv:40hr_season", "achv:gold_glove"]}, {"name": "Billy Williams", "cats": ["team:Chicago Cubs", "team:Athletics", "achv:hof", "achv:roy", "achv:allstar5", "achv:batting_title", "achv:40hr_season", "achv:200hits_season"]}, {"name": "Ferguson Jenkins", "cats": ["team:Chicago Cubs", "team:Texas Rangers", "team:Boston Red Sox", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:20win_season", "achv:3000k", "achv:300wins"]}, {"name": "Lou Brock", "cats": ["team:Chicago Cubs", "team:St. Louis Cardinals", "achv:hof", "achv:allstar5", "achv:ws_champ", "achv:3000hits", "achv:40sb_season"]}, {"name": "Bob Gibson", "cats": ["team:St. Louis Cardinals", "achv:hof", "achv:mvp", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:20win_season", "achv:no_hitter", "achv:3000k"]}, {"name": "Stan Musial", "cats": ["team:St. Louis Cardinals", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:3000hits", "achv:batting_title", "achv:200hits_season"]}, {"name": "Ted Williams", "cats": ["team:Boston Red Sox", "achv:hof", "achv:mvp", "achv:allstar5", "achv:triple_crown", "achv:batting_title", "achv:40hr_season"]}, {"name": "Carl Yastrzemski", "cats": ["team:Boston Red Sox", "achv:hof", "achv:mvp", "achv:allstar5", "achv:triple_crown", "achv:3000hits", "achv:batting_title", "achv:gold_glove"]}, {"name": "Jim Rice", "cats": ["team:Boston Red Sox", "achv:hof", "achv:mvp", "achv:allstar5", "achv:40hr_season", "achv:200hits_season"]}, {"name": "Pedro Guerrero", "cats": ["team:Los Angeles Dodgers", "team:St. Louis Cardinals", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp"]}, {"name": "Yogi Berra", "cats": ["team:New York Yankees", "team:New York Mets", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ"]}, {"name": "Whitey Ford", "cats": ["team:New York Yankees", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:20win_season"]}, {"name": "Mickey Mantle", "cats": ["team:New York Yankees", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:triple_crown", "achv:500hr", "achv:40hr_season", "achv:gold_glove"]}, {"name": "Joe DiMaggio", "cats": ["team:New York Yankees", "achv:hof", "achv:mvp", "achv:allstar5", "achv:ws_champ", "achv:batting_title"]}, {"name": "Lou Gehrig", "cats": ["team:New York Yankees", "achv:hof", "achv:mvp", "achv:ws_champ", "achv:triple_crown", "achv:batting_title", "achv:200hits_season", "achv:40hr_season"]}, {"name": "Babe Ruth", "cats": ["team:Boston Red Sox", "team:New York Yankees", "team:Atlanta Braves", "achv:hof", "achv:mvp", "achv:ws_champ", "achv:triple_crown", "achv:500hr", "achv:40hr_season", "achv:batting_title"]}, {"name": "Roy Halladay", "cats": ["team:Toronto Blue Jays", "team:Philadelphia Phillies", "achv:hof", "achv:cy_young", "achv:allstar5", "achv:20win_season", "achv:no_hitter"]}, {"name": "Curt Schilling", "cats": ["team:Baltimore Orioles", "team:Houston Astros", "team:Philadelphia Phillies", "team:Arizona Diamondbacks", "team:Boston Red Sox", "achv:allstar5", "achv:ws_champ", "achv:ws_mvp", "achv:20win_season", "achv:3000k"]}, {"name": "Larry Walker", "cats": ["team:Washington Nationals", "team:Colorado Rockies", "team:St. Louis Cardinals", "achv:hof", "achv:mvp", "achv:allstar5", "achv:batting_title", "achv:gold_glove", "achv:40hr_season"]}, {"name": "Todd Helton", "cats": ["team:Colorado Rockies", "achv:hof", "achv:allstar5", "achv:batting_title", "achv:gold_glove", "achv:200hits_season"]}, {"name": "Scott Rolen", "cats": ["team:Philadelphia Phillies", "team:St. Louis Cardinals", "team:Toronto Blue Jays", "team:Cincinnati Reds", "achv:hof", "achv:roy", "achv:allstar5", "achv:ws_champ", "achv:gold_glove"]}], "categoryLabels": {"achv:hof": "Hall of Fame", "achv:mvp": "MVP Award", "achv:cy_young": "Cy Young Award", "achv:roy": "Rookie of the Year", "achv:ws_champ": "World Series Champion", "achv:ws_mvp": "World Series MVP", "achv:triple_crown": "Triple Crown Season", "achv:500hr": "500+ Career Home Runs", "achv:3000hits": "3,000+ Career Hits", "achv:300wins": "300+ Career Wins", "achv:3000k": "3,000+ Career Strikeouts", "achv:40hr_season": "40+ HR in a Season", "achv:50hr_season": "50+ HR in a Season", "achv:20win_season": "20+ Wins in a Season", "achv:no_hitter": "Threw a No-Hitter", "achv:batting_title": "Won a Batting Title", "achv:gold_glove": "Gold Glove Winner", "achv:allstar5": "5+ Time All-Star", "achv:200hits_season": "200+ Hits in a Season", "achv:40sb_season": "40+ Stolen Bases in a Season", "team:Arizona Diamondbacks": "Arizona Diamondbacks", "team:Athletics": "Athletics", "team:Atlanta Braves": "Atlanta Braves", "team:Baltimore Orioles": "Baltimore Orioles", "team:Boston Red Sox": "Boston Red Sox", "team:Chicago Cubs": "Chicago Cubs", "team:Chicago White Sox": "Chicago White Sox", "team:Cincinnati Reds": "Cincinnati Reds", "team:Cleveland Guardians": "Cleveland Guardians", "team:Colorado Rockies": "Colorado Rockies", "team:Detroit Tigers": "Detroit Tigers", "team:Houston Astros": "Houston Astros", "team:Kansas City Royals": "Kansas City Royals", "team:Los Angeles Angels": "Los Angeles Angels", "team:Los Angeles Dodgers": "Los Angeles Dodgers", "team:Miami Marlins": "Miami Marlins", "team:Milwaukee Brewers": "Milwaukee Brewers", "team:Minnesota Twins": "Minnesota Twins", "team:New York Mets": "New York Mets", "team:New York Yankees": "New York Yankees", "team:Philadelphia Phillies": "Philadelphia Phillies", "team:Pittsburgh Pirates": "Pittsburgh Pirates", "team:San Diego Padres": "San Diego Padres", "team:San Francisco Giants": "San Francisco Giants", "team:Seattle Mariners": "Seattle Mariners", "team:St. Louis Cardinals": "St. Louis Cardinals", "team:Tampa Bay Rays": "Tampa Bay Rays", "team:Texas Rangers": "Texas Rangers", "team:Toronto Blue Jays": "Toronto Blue Jays", "team:Washington Nationals": "Washington Nationals"}, "archive": [{"date_key": "2026-08-17", "rows": ["team:San Francisco Giants", "achv:mvp", "achv:hof"], "cols": ["team:Cleveland Guardians", "achv:no_hitter", "achv:50hr_season"]}, {"date_key": "2026-08-18", "rows": ["achv:cy_young", "achv:batting_title", "achv:300wins"], "cols": ["team:Texas Rangers", "team:Toronto Blue Jays", "achv:ws_mvp"]}, {"date_key": "2026-08-19", "rows": ["team:Boston Red Sox", "team:Los Angeles Angels", "team:Miami Marlins"], "cols": ["team:Washington Nationals", "achv:batting_title", "achv:ws_champ"]}, {"date_key": "2026-08-20", "rows": ["team:Chicago Cubs", "team:Washington Nationals", "team:Atlanta Braves"], "cols": ["achv:40hr_season", "achv:allstar5", "achv:roy"]}, {"date_key": "2026-08-21", "rows": ["team:Los Angeles Angels", "achv:40hr_season", "team:Boston Red Sox"], "cols": ["team:Cincinnati Reds", "achv:mvp", "team:Toronto Blue Jays"]}, {"date_key": "2026-08-22", "rows": ["achv:40hr_season", "achv:200hits_season", "team:Chicago White Sox"], "cols": ["team:Minnesota Twins", "team:San Diego Padres", "team:Tampa Bay Rays"]}, {"date_key": "2026-08-23", "rows": ["achv:batting_title", "team:Cincinnati Reds", "team:Minnesota Twins"], "cols": ["team:Toronto Blue Jays", "achv:hof", "team:Pittsburgh Pirates"]}, {"date_key": "2026-08-24", "rows": ["team:Boston Red Sox", "team:Miami Marlins", "team:Toronto Blue Jays"], "cols": ["team:Houston Astros", "achv:40hr_season", "achv:gold_glove"]}], "todayIndex": 7}</script>
+<script>
+
+const gridData = JSON.parse(document.getElementById('grid-data').textContent);
+
+const gridEl = document.getElementById('grid');
+const dateEl = document.getElementById('grid-date');
+const prevBtn = document.getElementById('prev-day');
+const nextBtn = document.getElementById('next-day');
+const revealBtn = document.getElementById('reveal-btn');
+const statusEl = document.getElementById('grid-status');
+
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+function formatDateKey(dateKey) {
+  const [y, m, d] = dateKey.split('-').map(Number);
+  return MONTH_NAMES[m - 1] + ' ' + d + ', ' + y;
+}
+
+let currentIndex = gridData.todayIndex;
+let ROWS = [];
+let COLS = [];
+let STORAGE_KEY = '';
+let cellState = {};
+
+function loadState() {
+  cellState = {};
+  try {
+    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (raw && typeof raw === 'object') cellState = raw;
+  } catch (e) {}
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cellState));
+  } catch (e) {}
+}
+
+function usedNames() {
+  return Object.values(cellState).filter((c) => c && c.solved).map((c) => c.name.toLowerCase());
+}
+
+function findPlayer(rawName) {
+  const name = rawName.trim().toLowerCase();
+  if (!name) return null;
+  return gridData.players.find((p) => p.name.toLowerCase() === name) || null;
+}
+
+function cellId(r, c) { return r + '-' + c; }
+
+function buildGrid() {
+  gridEl.innerHTML = '';
+  gridEl.style.setProperty('--size', 4);
+
+  const corner = document.createElement('div');
+  corner.className = 'grid-cell grid-corner';
+  gridEl.appendChild(corner);
+
+  COLS.forEach((col) => {
+    const head = document.createElement('div');
+    head.className = 'grid-cell grid-head';
+    head.textContent = gridData.categoryLabels[col];
+    gridEl.appendChild(head);
+  });
+
+  ROWS.forEach((row, r) => {
+    const head = document.createElement('div');
+    head.className = 'grid-cell grid-head';
+    head.textContent = gridData.categoryLabels[row];
+    gridEl.appendChild(head);
+
+    COLS.forEach((col, c) => {
+      const cell = document.createElement('div');
+      cell.className = 'grid-cell grid-answer';
+      cell.id = 'cell-' + cellId(r, c);
+      gridEl.appendChild(cell);
+      renderCell(r, c);
+    });
+  });
+}
+
+function renderCell(r, c) {
+  const cell = document.getElementById('cell-' + cellId(r, c));
+  const key = cellId(r, c);
+  const state = cellState[key];
+  cell.innerHTML = '';
+
+  if (state && state.solved) {
+    cell.classList.add('solved');
+    const nameEl = document.createElement('span');
+    nameEl.className = 'grid-answer-name';
+    nameEl.textContent = state.name;
+    cell.appendChild(nameEl);
+    const poolEl = document.createElement('span');
+    poolEl.className = 'grid-answer-pool';
+    const tries = state.tries || 1;
+    poolEl.textContent = tries === 1 ? 'First try' : tries + ' tries';
+    cell.appendChild(poolEl);
+    return;
+  }
+
+  cell.classList.remove('solved');
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'grid-input';
+  input.placeholder = 'Player name';
+  input.autocomplete = 'off';
+  input.value = (state && state.draft) || '';
+  input.addEventListener('input', () => {
+    showSuggestions(input, r, c);
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      submitCell(r, c, input.value);
+    }
+  });
+  input.addEventListener('blur', () => {
+    setTimeout(() => hideSuggestions(r, c), 150);
+  });
+  cell.appendChild(input);
+
+  const suggestBox = document.createElement('div');
+  suggestBox.className = 'grid-suggest';
+  suggestBox.id = 'suggest-' + key;
+  suggestBox.hidden = true;
+  cell.appendChild(suggestBox);
+}
+
+function showSuggestions(input, r, c) {
+  const key = cellId(r, c);
+  const box = document.getElementById('suggest-' + key);
+  const q = input.value.trim().toLowerCase();
+  if (q.length < 2) { box.hidden = true; return; }
+  const used = usedNames();
+  const matches = gridData.players
+    .filter((p) => p.name.toLowerCase().includes(q) && !used.includes(p.name.toLowerCase()))
+    .slice(0, 6);
+  if (!matches.length) { box.hidden = true; return; }
+  box.innerHTML = '';
+  matches.forEach((p) => {
+    const item = document.createElement('div');
+    item.className = 'grid-suggest-item';
+    item.textContent = p.name;
+    item.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      submitCell(r, c, p.name);
+    });
+    box.appendChild(item);
+  });
+  box.hidden = false;
+}
+
+function hideSuggestions(r, c) {
+  const box = document.getElementById('suggest-' + cellId(r, c));
+  if (box) box.hidden = true;
+}
+
+function flashInvalid(r, c, msg) {
+  const cell = document.getElementById('cell-' + cellId(r, c));
+  cell.classList.add('shake');
+  setTimeout(() => cell.classList.remove('shake'), 400);
+  statusEl.textContent = msg;
+  statusEl.classList.add('status-error');
+  setTimeout(() => statusEl.classList.remove('status-error'), 1200);
+}
+
+function submitCell(r, c, rawName) {
+  const key = cellId(r, c);
+  if (!rawName || !rawName.trim()) return;
+  const player = findPlayer(rawName);
+  if (!player) {
+    flashInvalid(r, c, 'Not in our player database - check spelling');
+    return;
+  }
+  if (usedNames().includes(player.name.toLowerCase())) {
+    flashInvalid(r, c, player.name + ' is already used elsewhere in this grid');
+    return;
+  }
+  const rowCat = ROWS[r];
+  const colCat = COLS[c];
+  if (player.cats.includes(rowCat) && player.cats.includes(colCat)) {
+    const prevTries = (cellState[key] && cellState[key].tries) || 0;
+    cellState[key] = { solved: true, name: player.name, tries: prevTries + 1 };
+    saveState();
+    renderCell(r, c);
+    statusEl.textContent = '';
+    checkCompletion();
+  } else {
+    cellState[key] = { solved: false, draft: '', tries: ((cellState[key] && cellState[key].tries) || 0) + 1 };
+    saveState();
+    flashInvalid(r, c, player.name + " doesn't fit both categories");
+    const input = document.querySelector('#cell-' + key + ' .grid-input');
+    if (input) input.value = '';
+  }
+}
+
+function checkCompletion() {
+  const total = ROWS.length * COLS.length;
+  const solved = Object.values(cellState).filter((s) => s && s.solved).length;
+  if (solved === total) {
+    const totalTries = Object.values(cellState).reduce((sum, s) => sum + (s.tries || 1), 0);
+    const perfect = totalTries === total;
+    statusEl.textContent = perfect
+      ? 'Immaculate! All 9 solved on the first try.'
+      : 'Grid complete! ' + totalTries + ' total guesses across 9 squares.';
+    statusEl.classList.add('status-success');
+  }
+}
+
+function findFullAssignment(openCells, alreadyUsed) {
+  // Backtracks over just the still-open cells so "Reveal" can't paint
+  // itself into a corner the way a naive greedy fill can: two open cells
+  // can each have exactly one candidate, and if it's the same player for
+  // both, filling the first one greedily leaves the second unsolvable even
+  // though a full assignment (using a different, non-greedy pick) exists.
+  const candidatesByCell = openCells.map(({ rowCat, colCat }) =>
+    gridData.players
+      .map((p) => p.name)
+      .filter((name) => !alreadyUsed.has(name.toLowerCase()))
+      .filter((name) => {
+        const p = gridData.players.find((pl) => pl.name === name);
+        return p.cats.includes(rowCat) && p.cats.includes(colCat);
+      })
+  );
+  const assignment = new Array(openCells.length).fill(null);
+  const used = new Set();
+  function backtrack(i) {
+    if (i === openCells.length) return true;
+    for (const name of candidatesByCell[i]) {
+      const key = name.toLowerCase();
+      if (used.has(key)) continue;
+      used.add(key);
+      assignment[i] = name;
+      if (backtrack(i + 1)) return true;
+      used.delete(key);
+    }
+    return false;
+  }
+  return backtrack(0) ? assignment : null;
+}
+
+revealBtn.addEventListener('click', () => {
+  const openCells = [];
+  for (let r = 0; r < ROWS.length; r++) {
+    for (let c = 0; c < COLS.length; c++) {
+      const key = cellId(r, c);
+      if (cellState[key] && cellState[key].solved) continue;
+      openCells.push({ r, c, key, rowCat: ROWS[r], colCat: COLS[c] });
+    }
+  }
+  const alreadyUsed = new Set(usedNames());
+  const assignment = findFullAssignment(openCells, alreadyUsed);
+  openCells.forEach((cell, i) => {
+    const name = assignment ? assignment[i] : null;
+    if (!name) return;
+    cellState[cell.key] = { solved: true, name, tries: (cellState[cell.key] && cellState[cell.key].tries) || 1, revealed: true };
+    renderCell(cell.r, cell.c);
+  });
+  saveState();
+  statusEl.textContent = 'Answers revealed.';
+  checkCompletion();
+});
+
+function updateNavButtons() {
+  prevBtn.disabled = currentIndex <= 0;
+  nextBtn.disabled = currentIndex >= gridData.todayIndex;
+}
+
+function loadDay(index) {
+  index = Math.max(0, Math.min(gridData.todayIndex, index));
+  currentIndex = index;
+  const entry = gridData.archive[index];
+  ROWS = entry.rows;
+  COLS = entry.cols;
+  STORAGE_KEY = 'diamond-grid-' + entry.date_key;
+  statusEl.textContent = '';
+  statusEl.classList.remove('status-success', 'status-error');
+
+  dateEl.textContent = formatDateKey(entry.date_key) + (index === gridData.todayIndex ? ' (Today)' : '');
+
+  loadState();
+  buildGrid();
+  checkCompletion();
+  updateNavButtons();
+}
+
+prevBtn.addEventListener('click', () => { loadDay(currentIndex - 1); prevBtn.blur(); });
+nextBtn.addEventListener('click', () => { loadDay(currentIndex + 1); nextBtn.blur(); });
+
+loadDay(currentIndex);
+</script>
+
+<style>
+
+:root { color-scheme: dark; }
+body {
+  background: #0d0d0d; color: #f2f2f2; margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  background: #151515; box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+  padding: 0.9rem 1.25rem;
+}
+.brand { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.site-header h1 { font-size: 1.15rem; margin: 0; white-space: nowrap; }
+.site-header .date { color: #999; font-size: 0.9rem; white-space: nowrap; }
+.header-link {
+  margin-left: auto; background: #1a1a1a; border: 1px solid #333; color: #f2f2f2;
+  padding: 0.45rem 0.9rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; white-space: nowrap; flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.header-link:hover { border-color: #ff5266; color: #ff5266; }
+
+.disclaimer {
+  max-width: 620px; margin: 1.25rem auto 0; padding: 0.75rem 1rem;
+  color: #aaa; font-size: 0.85rem; line-height: 1.5;
+  background: rgba(255,82,102,0.06); border-left: 3px solid #ff5266; border-radius: 0 8px 8px 0;
+}
+
+.grid-main {
+  max-width: 620px; margin: 0 auto; padding: 1rem 1.25rem 2rem;
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+}
+.grid-nav { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 0.5rem; }
+.grid-nav-info { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; flex: 1; min-width: 0; }
+.grid-date { font-size: 0.85rem; font-weight: 700; color: #f2f2f2; white-space: nowrap; }
+.nav-btn {
+  background: #1a1a1a; border: 1px solid #333; color: #f2f2f2;
+  padding: 0.4rem 0.8rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+}
+.nav-btn:hover:not(:disabled) { border-color: #ff5266; color: #ff5266; }
+.nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(80px, 0.9fr) repeat(3, 1fr);
+  gap: 4px;
+  width: 100%;
+}
+.grid-cell {
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 6px; min-height: 78px;
+  position: relative;
+}
+.grid-corner { background: transparent; }
+.grid-head {
+  background: #1a1a1a; border: 1px solid #333; color: #f2f2f2;
+  font-size: 0.72rem; font-weight: 700; line-height: 1.25;
+}
+.grid-answer { background: #14141a; border: 1px solid #262626; flex-direction: column; gap: 4px; }
+.grid-answer.solved { background: rgba(74, 222, 128, 0.12); border-color: #4ade80; }
+.grid-answer.shake { animation: grid-shake 0.4s; border-color: #ff5266; }
+@keyframes grid-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+.grid-input {
+  width: 100%; box-sizing: border-box; background: #0d0d0d; border: 1px solid #333; color: #f2f2f2;
+  border-radius: 6px; padding: 6px 4px; font-size: 0.7rem; text-align: center;
+}
+.grid-input:focus { outline: none; border-color: #ff5266; }
+.grid-answer-name { font-size: 0.72rem; font-weight: 700; color: #4ade80; line-height: 1.2; }
+.grid-answer-pool { font-size: 0.62rem; color: #999; }
+.grid-suggest {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: 20; margin-top: 2px;
+  background: #1a1a1a; border: 1px solid #333; border-radius: 8px; overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+}
+.grid-suggest-item {
+  padding: 0.45rem 0.6rem; font-size: 0.75rem; text-align: left; cursor: pointer; color: #f2f2f2;
+}
+.grid-suggest-item:hover { background: #2a2a2a; }
+
+.grid-status { min-height: 1.4rem; font-size: 0.85rem; font-weight: 600; margin: 0; text-align: center; color: #999; }
+.grid-status.status-error { color: #ff5266; }
+.grid-status.status-success { color: #4ade80; }
+
+.grid-actions { display: flex; justify-content: center; }
+.reveal-btn {
+  background: #1a1a1a; border: 1px solid #333; color: #ccc;
+  padding: 0.45rem 1rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; transition: all 0.15s ease;
+}
+.reveal-btn:hover { border-color: #ff5266; color: #ff5266; }
+
+@media (max-width: 480px) {
+  .grid-cell { min-height: 66px; padding: 4px; }
+  .grid-head { font-size: 0.62rem; }
+  .grid-input { font-size: 0.62rem; padding: 4px 2px; }
+}
+</style>
+</body>
+</html>

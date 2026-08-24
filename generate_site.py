@@ -1,5 +1,5 @@
 """
-Builds index.html: an interactive front end for today's MLB slate, combining
+Builds dashboard/index.html: an interactive front end for today's MLB slate, combining
 the schedule, stadium dimensions/orientation, live NWS wind conditions, and
 batter-vs-pitcher matchup data (including season-by-season historical trends)
 into one self-contained page. No server or build step required - open the
@@ -51,14 +51,35 @@ from bvp_matchups import (
 from bvp_matchups_html import get_handedness
 from weather import get_wind_effect_for_stadium
 
-OUTPUT_FILE = "dashboard.html"
-HOME_PAGE_FILE = "index.html"
+OUTPUT_URL = "/dashboard/"
+OUTPUT_FILE = "dashboard/index.html"
+HOME_URL = "/home/"
+HOME_PAGE_FILE = "home/index.html"
+ROOT_REDIRECT_FILE = "index.html"
 ROSTER_MOVES_LOOKBACK_DAYS = 3
 ROSTER_MOVES_PER_CATEGORY = 30
 
 # Custom domain (no trailing slash) - robots.txt, sitemap.xml, and the
 # JSON-LD blocks all build absolute URLs from this.
 SITE_BASE_URL = "https://plateduel.com"
+
+# The bare domain root still needs *something* at /index.html for GitHub
+# Pages to serve, even though the real home page now lives at /home/ for a
+# clean URL. This is a minimal redirect, not a full page template.
+ROOT_REDIRECT_HTML = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PlateDuel</title>
+<meta http-equiv="refresh" content="0; url={HOME_URL}">
+<link rel="canonical" href="{SITE_BASE_URL}{HOME_URL}">
+<script>location.replace('{HOME_URL}');</script>
+</head>
+<body>
+<p>Redirecting to <a href="{HOME_URL}">PlateDuel</a>&hellip;</p>
+</body>
+</html>
+"""
 
 PROMOTION_DEMOTION_CODES = {"CU", "OPT", "SE"}  # Recalled, Optioned, Selected
 
@@ -184,8 +205,10 @@ PLATOON_OPPOSITE_HAND_MULTIPLIER = 1.08
 PLATOON_SWITCH_MULTIPLIER = 1.05
 MIN_PA_FOR_HR_PICKS = 50
 HR_PICKS_TOP_N = 25
-HR_PICKS_FILE = "hr-picks.html"
-PARK_FACTORS_FILE = "park-factors.html"
+HR_PICKS_URL = "/hr-picks/"
+HR_PICKS_FILE = "hr-picks/index.html"
+PARK_FACTORS_URL = "/park-factors/"
+PARK_FACTORS_FILE = "park-factors/index.html"
 PLAYERS_DIR = "players"
 TEAMS_DIR = "teams"
 RECENT_FORM_GAMES = 15
@@ -258,6 +281,27 @@ def slugify(name):
     normalized = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode("ascii")
     slug = re.sub(r"[^a-z0-9]+", "-", normalized.lower())
     return slug.strip("-")
+
+
+# Every page is written as its own directory with an index.html inside, so
+# it serves at a clean, extension-less URL (e.g. /streaks/ rather than
+# streaks.html). *_url() helpers give the absolute, root-relative href to
+# use in a link from ANY page - no '../' bookkeeping needed. *_disk_path()
+# gives the matching on-disk write target.
+def player_url(name):
+    return f"/{PLAYERS_DIR}/{slugify(name)}/"
+
+
+def player_disk_path(name):
+    return os.path.join(PLAYERS_DIR, slugify(name), "index.html")
+
+
+def team_url(name):
+    return f"/{TEAMS_DIR}/{slugify(name)}/"
+
+
+def team_disk_path(name):
+    return os.path.join(TEAMS_DIR, slugify(name), "index.html")
 
 
 def parse_avg(value):
@@ -434,7 +478,7 @@ def build_matchup_section(
         )
         player_slug = slugify(batter["fullName"])
         rows.append(row([
-            f"<a class='player-link' href='{PLAYERS_DIR}/{player_slug}.html'>{esc(batter['fullName'])}</a>",
+            f"<a class='player-link' href='/{PLAYERS_DIR}/{player_slug}/'>{esc(batter['fullName'])}</a>",
             (batter_bats, bats_class(batter_bats, pitcher_throws)),
             season_line,
             format_matchup_line_html(career_stat),
@@ -658,9 +702,9 @@ def build_game_card(game, stadiums_by_team, master_rows, hr_pick_rows, player_pa
   </div>
   <div class="summary-main">
     <span class="matchup">
-      <a class="team-link" href="{TEAMS_DIR}/{slugify(away)}.html" onclick="event.stopPropagation()">{esc(away)}</a>
+      <a class="team-link" href="/{TEAMS_DIR}/{slugify(away)}/" onclick="event.stopPropagation()">{esc(away)}</a>
       @
-      <a class="team-link" href="{TEAMS_DIR}/{slugify(home)}.html" onclick="event.stopPropagation()">{esc(home)}</a>
+      <a class="team-link" href="/{TEAMS_DIR}/{slugify(home)}/" onclick="event.stopPropagation()">{esc(home)}</a>
     </span>
     <span class="meta">{esc(game_time)} &middot; {esc(venue)}</span>
     <span class="meta pitchers">{esc(pitcher_names)}</span>
@@ -1041,8 +1085,10 @@ th {{ border-bottom: 1px solid #333; color: #aaa; font-family: -apple-system, sa
 </html>
 """
 
-ROSTER_MOVES_FILE = "roster-moves.html"
-GAME_PAGE_FILE = "162-0-challenge.html"
+ROSTER_MOVES_URL = "/roster-moves/"
+ROSTER_MOVES_FILE = "roster-moves/index.html"
+GAME_PAGE_URL = "/162-0-challenge/"
+GAME_PAGE_FILE = "162-0-challenge/index.html"
 
 ROSTER_MOVES_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -1059,7 +1105,7 @@ ROSTER_MOVES_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Roster Moves</h1>
   </div>
   <span class="date">Last {lookback_days} days</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <div class="filters-bar">
   <select id="team-filter">
@@ -1215,7 +1261,7 @@ HR_PICKS_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Today's Home Run Picks</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Ranked by a composite score - season HR rate, the opposing pitcher's HR/9 allowed, this
@@ -1344,9 +1390,9 @@ def build_hr_picks_page(picks, date_label):
         rows.append(row([
             (rank, f"rank-{rank}" if rank <= 3 else ""),
             f"{pick['score']:.2f}",
-            f"<a class='player-link' href='{PLAYERS_DIR}/{player_slug}.html'>{esc(pick['player'])}</a>",
+            f"<a class='player-link' href='/{PLAYERS_DIR}/{player_slug}/'>{esc(pick['player'])}</a>",
             pick["bats"] or "-",
-            f"<a class='team-link' href='{TEAMS_DIR}/{team_slug}.html'>{esc(TEAM_ABBR.get(pick['team'], pick['team'] or '-'))}</a>",
+            f"<a class='team-link' href='/{TEAMS_DIR}/{team_slug}/'>{esc(TEAM_ABBR.get(pick['team'], pick['team'] or '-'))}</a>",
             f"{esc(pick['opponent_pitcher'])} ({pick['pitcher_throws']})",
             pick["season_hr"],
             pick["plate_appearances"],
@@ -1382,7 +1428,7 @@ PARK_FACTORS_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Park Factors</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   A park factor above 1.00 means a stadium historically produces more home runs than a
@@ -1509,7 +1555,8 @@ def build_park_factors_page(stadiums_by_team, date_label):
     return PARK_FACTORS_PAGE_TEMPLATE.format(brand_icon=brand_icon_svg(), home_icon=brand_icon_svg(16), date_label=date_label, cards="\n".join(cards))
 
 
-WEATHER_PAGE_FILE = "weather-watch.html"
+WEATHER_PAGE_URL = "/weather-watch/"
+WEATHER_PAGE_FILE = "weather-watch/index.html"
 
 WEATHER_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -1526,7 +1573,7 @@ WEATHER_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Weather Watch</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Today's games ranked by wind, from most hitter-aided to most pitcher-suppressed. The wind
@@ -1758,8 +1805,8 @@ PLAYER_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>{player_name}</h1>
   </div>
   <span class="date">{bats} &middot; {team}</span>
-  <a class="header-link" href="../index.html">{home_icon}Home</a>
-  <a class="header-link" href="../{team_link}">&larr; {team}</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
+  <a class="header-link" href="{team_link}">&larr; {team}</a>
 </header>
 
 <main class="player-main">
@@ -1819,7 +1866,7 @@ TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>{team_name}</h1>
   </div>
   <span class="date">Today: {location_prefix} {opponent}</span>
-  <a class="header-link" href="../index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 
 <main class="team-main">
@@ -1955,7 +2002,7 @@ def build_player_page(data):
         "name": data["player"],
         "jobTitle": "Professional Baseball Player",
         "memberOf": {"@type": "SportsTeam", "name": team, "sport": "Baseball"},
-        "url": f"{SITE_BASE_URL}/{PLAYERS_DIR}/{slugify(data['player'])}.html",
+        "url": f"{SITE_BASE_URL}/{PLAYERS_DIR}/{slugify(data['player'])}/",
     }).replace("</", "<\\/")
 
     return PLAYER_PAGE_TEMPLATE.format(
@@ -1966,7 +2013,7 @@ def build_player_page(data):
         player_jsonld=player_jsonld,
         bats=data["bats"] or "-",
         team=esc(team),
-        team_link=f"{TEAMS_DIR}/{team_slug}.html",
+        team_link=f"/{TEAMS_DIR}/{team_slug}/",
         brand_color=brand_color,
         season=CURRENT_SEASON,
         avg=data["season_avg"] or "-",
@@ -1995,7 +2042,7 @@ def build_team_page(data, player_pages):
 
     if data["hr_picks"]:
         items = "".join(
-            f"<li><a class='player-link' href='../{PLAYERS_DIR}/{slugify(p['player'])}.html'>{esc(p['player'])}</a>"
+            f"<li><a class='player-link' href='/{PLAYERS_DIR}/{slugify(p['player'])}/'>{esc(p['player'])}</a>"
             f"<span class='pick-rank'>#{p['rank']} &middot; {p['score']:.2f}</span></li>"
             for p in data["hr_picks"]
         )
@@ -2006,7 +2053,7 @@ def build_team_page(data, player_pages):
     if data["lineup_rows"]:
         lineup_rows_html = "".join(
             row([
-                f"<a class='player-link' href='../{PLAYERS_DIR}/{slugify(p['player'])}.html'>{esc(p['player'])}</a>",
+                f"<a class='player-link' href='/{PLAYERS_DIR}/{slugify(p['player'])}/'>{esc(p['player'])}</a>",
                 p["bats"] or "-", p["season_avg"] or "-",
                 p["season_hr"] if p["season_hr"] is not None else "-", p["season_ops"] or "-",
             ])
@@ -2029,7 +2076,7 @@ def build_team_page(data, player_pages):
         items = "".join(
             f"<li><span class='move-date'>{esc(g['date'])}</span>"
             f"{'vs' if g['is_home'] else '@'} "
-            f"<a class='player-link' href='{slugify(g['opponent'])}.html'>{esc(g['opponent'])}</a></li>"
+            f"<a class='player-link' href='/{TEAMS_DIR}/{slugify(g['opponent'])}/'>{esc(g['opponent'])}</a></li>"
             for g in data["schedule"]
         )
         schedule_content = f"<ul class='move-mini-list'>{items}</ul>"
@@ -2040,7 +2087,7 @@ def build_team_page(data, player_pages):
         roster_rows = "".join(
             row([
                 p["jersey"] or "-",
-                f"<a class='player-link' href='../{PLAYERS_DIR}/{slugify(p['name'])}.html'>{esc(p['name'])}</a>"
+                f"<a class='player-link' href='/{PLAYERS_DIR}/{slugify(p['name'])}/'>{esc(p['name'])}</a>"
                 if p["name"] in player_pages else esc(p["name"]),
                 p["position"] or "-",
                 (esc(p["status"]), "" if p["status"] == "Active" else "roster-status-out"),
@@ -2059,7 +2106,7 @@ def build_team_page(data, player_pages):
         "@type": "SportsTeam",
         "name": team,
         "sport": "Baseball",
-        "url": f"{SITE_BASE_URL}/{TEAMS_DIR}/{slugify(team)}.html",
+        "url": f"{SITE_BASE_URL}/{TEAMS_DIR}/{slugify(team)}/",
     }).replace("</", "<\\/")
 
     return TEAM_PAGE_TEMPLATE.format(
@@ -2086,7 +2133,8 @@ def build_team_page(data, player_pages):
     )
 
 
-STREAKS_FILE = "streaks.html"
+STREAKS_URL = "/streaks/"
+STREAKS_FILE = "streaks/index.html"
 MIN_STREAK = 2
 MIN_SCORELESS_APPEARANCES = 1
 K_STREAK_THRESHOLDS = (4, 5, 6, 7, 8)
@@ -2165,7 +2213,7 @@ STREAKS_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Streaks</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Active streaks for players across the league, whether or not their team plays today, computed
@@ -2379,7 +2427,7 @@ def batter_streak_cards(player_pages, key, sub_label, value_label, factor_class=
     return [
         build_streak_card(
             i, p["team"] or "-",
-            f"<a class='player-link' href='{PLAYERS_DIR}/{slugify(p['player'])}.html'>{esc(p['player'])}</a>",
+            f"<a class='player-link' href='/{PLAYERS_DIR}/{slugify(p['player'])}/'>{esc(p['player'])}</a>",
             sub_label.format(p=p), str(p["streaks"][key]), value_label, factor_class,
         )
         for i, p in enumerate(entries, start=1)
@@ -2427,7 +2475,7 @@ def build_team_streak_sections():
         return [
             build_streak_card(
                 i, e["team"],
-                f"<a class='player-link' href='{TEAMS_DIR}/{slugify(e['team'])}.html'>{esc(e['team'])}</a>",
+                f"<a class='player-link' href='/{TEAMS_DIR}/{slugify(e['team'])}/'>{esc(e['team'])}</a>",
                 f"{e[key]} straight {_plural(e[key], 'game')}", str(e[key]), unit, factor_class,
                 show_team_label=False,
             )
@@ -2540,7 +2588,8 @@ def build_streaks_page(player_pages, pitcher_streaks, date_label):
     )
 
 
-LEADERBOARD_PAGE_FILE = "leaders.html"
+LEADERBOARD_PAGE_URL = "/leaders/"
+LEADERBOARD_PAGE_FILE = "leaders/index.html"
 
 # (request category, response lookup key, heading, unit label, stat group, color class)
 # Lookup key usually matches the request category, except where the API
@@ -2603,7 +2652,7 @@ def build_team_leader_sections():
         cards = [
             build_streak_card(
                 i, t["team"],
-                f"<a class='player-link' href='{TEAMS_DIR}/{slugify(t['team'])}.html'>{esc(t['team'])}</a>",
+                f"<a class='player-link' href='/{TEAMS_DIR}/{slugify(t['team'])}/'>{esc(t['team'])}</a>",
                 "", t["stat"].get(stat_key, "-"), unit, factor_class,
                 show_team_label=False,
             )
@@ -2634,7 +2683,7 @@ LEADERBOARD_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>League Leaders</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Season leaders among qualified players, independent of who's playing today. Names link to
@@ -2762,7 +2811,7 @@ def build_leaderboards_page(player_pages, date_label):
         cards = []
         for e in entries:
             if e["name"] in player_pages:
-                name_html = f"<a class='player-link' href='{PLAYERS_DIR}/{slugify(e['name'])}.html'>{esc(e['name'])}</a>"
+                name_html = f"<a class='player-link' href='/{PLAYERS_DIR}/{slugify(e['name'])}/'>{esc(e['name'])}</a>"
             else:
                 name_html = esc(e["name"])
             cards.append(build_streak_card(e["rank"], e["team"], name_html, "", e["value"], unit, factor_class))
@@ -2787,7 +2836,8 @@ def build_leaderboards_page(player_pages, date_label):
     )
 
 
-STANDINGS_PAGE_FILE = "standings.html"
+STANDINGS_PAGE_URL = "/standings/"
+STANDINGS_PAGE_FILE = "standings/index.html"
 
 STANDINGS_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -2804,7 +2854,7 @@ STANDINGS_PAGE_TEMPLATE = """<!DOCTYPE html>
     <h1>Standings</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   The real pennant race, next to the fantasy one over in the 162-0 Challenge. Magic number is
@@ -2957,7 +3007,8 @@ def build_standings_page(standings, date_label):
     )
 
 
-WORD_GAME_FILE = "bordle.html"
+WORD_GAME_URL = "/bordle/"
+WORD_GAME_FILE = "bordle/index.html"
 WORD_GAME_EPOCH = datetime.date(2026, 8, 17)  # the first Bordle
 
 # One guess per letter in the answer - no dictionary validation, just a
@@ -3620,7 +3671,7 @@ WORD_GAME_TEMPLATE = """<!DOCTYPE html>
     <h1>Bordle</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   A new baseball word every day - players, teams, ballparks, and terminology, all mixed together.
@@ -3677,7 +3728,8 @@ def build_word_game_page(today):
     )
 
 
-GRID_GAME_FILE = "diamond-grid.html"
+GRID_GAME_URL = "/diamond-grid/"
+GRID_GAME_FILE = "diamond-grid/index.html"
 GRID_GAME_EPOCH = datetime.date(2026, 8, 17)  # same "day one" as Bordle
 
 # key -> display label. Only includes achievements I'm confident are
@@ -4495,7 +4547,7 @@ GRID_GAME_TEMPLATE = """<!DOCTYPE html>
     <h1>Diamond Grid</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   Every row and column is a team or career achievement - name one player who fits both, without
@@ -4564,7 +4616,8 @@ def _grid_badge_svg():
 </svg>"""
 
 
-WHOAMI_FILE = "guess-the-legend.html"
+WHOAMI_URL = "/guess-the-legend/"
+WHOAMI_FILE = "guess-the-legend/index.html"
 WHOAMI_EPOCH = datetime.date(2026, 8, 17)  # same "day one" as Bordle
 
 # Clues ordered obscure -> obvious (index 0 = hardest, last = giveaway).
@@ -5117,7 +5170,7 @@ WHOAMI_TEMPLATE = """<!DOCTYPE html>
     <h1>Guess The Legend</h1>
   </div>
   <span class="date">{date_label}</span>
-  <a class="header-link" href="index.html">{home_icon}Home</a>
+  <a class="header-link" href="/home/">{home_icon}Home</a>
 </header>
 <p class="disclaimer">
   A new Hall of Famer every day. Clues start obscure - draft slot, first team, an odd fact - and
@@ -5491,7 +5544,7 @@ function renderResults(query) {
     return;
   }
   resultsEl.innerHTML = matches.map((e) => {
-    const href = (e.type === 'player' ? 'players/' : 'teams/') + e.slug + '.html';
+    const href = '/' + (e.type === 'player' ? 'players/' : 'teams/') + e.slug + '/';
     const sub = e.sub ? `<span class="search-sub">${e.sub}</span>` : '';
     return `<a class="search-result" href="${href}"><span class="search-name">${e.name}</span>${sub}</a>`;
   }).join('');
@@ -5514,11 +5567,11 @@ def build_search_index():
     the player/team pages for today have been written."""
     entries = []
     for dir_path, kind in ((PLAYERS_DIR, "player"), (TEAMS_DIR, "team")):
-        for fname in sorted(os.listdir(dir_path)):
-            if not fname.endswith(".html"):
+        for slug in sorted(os.listdir(dir_path)):
+            page_path = os.path.join(dir_path, slug, "index.html")
+            if not os.path.isfile(page_path):
                 continue
-            slug = fname[:-5]
-            with open(os.path.join(dir_path, fname)) as f:
+            with open(page_path) as f:
                 head = f.read(2000)
             name_match = re.search(r"<h1>(.*?)</h1>", head)
             name = html.unescape(name_match.group(1)) if name_match else slug.replace("-", " ").title()
@@ -5552,7 +5605,7 @@ def build_recap_cards(player_pages):
             for p in r["top_performers"]:
                 if p["name"] in player_pages:
                     name_html = (
-                        f"<a class='recap-performer-name' href='{PLAYERS_DIR}/{slugify(p['name'])}.html'>"
+                        f"<a class='recap-performer-name' href='/{PLAYERS_DIR}/{slugify(p['name'])}/'>"
                         f"{esc(p['name'])}</a>"
                     )
                 else:
@@ -5578,16 +5631,16 @@ def build_home_page(today, search_index, player_pages):
         site_base_url=SITE_BASE_URL,
         brand_icon_lg=brand_icon_svg(56),
         recap_cards=build_recap_cards(player_pages),
-        word_game_page=WORD_GAME_FILE,
-        game_page=GAME_PAGE_FILE,
-        grid_game_page=GRID_GAME_FILE,
-        whoami_page=WHOAMI_FILE,
-        index_page=OUTPUT_FILE,
-        hr_picks_page=HR_PICKS_FILE,
-        roster_moves_page=ROSTER_MOVES_FILE,
-        park_factors_page=PARK_FACTORS_FILE,
-        streaks_page=STREAKS_FILE,
-        weather_page=WEATHER_PAGE_FILE,
+        word_game_page=WORD_GAME_URL,
+        game_page=GAME_PAGE_URL,
+        grid_game_page=GRID_GAME_URL,
+        whoami_page=WHOAMI_URL,
+        index_page=OUTPUT_URL,
+        hr_picks_page=HR_PICKS_URL,
+        roster_moves_page=ROSTER_MOVES_URL,
+        park_factors_page=PARK_FACTORS_URL,
+        streaks_page=STREAKS_URL,
+        weather_page=WEATHER_PAGE_URL,
         bordle_svg=_bordle_badge_svg(),
         challenge_svg=_challenge_badge_svg(),
         grid_svg=_grid_badge_svg(),
@@ -5598,9 +5651,9 @@ def build_home_page(today, search_index, player_pages):
         park_factors_icon=_tool_icon_svg("park_factors"),
         streaks_icon=_tool_icon_svg("streaks"),
         weather_icon=_tool_icon_svg("weather"),
-        leaders_page=LEADERBOARD_PAGE_FILE,
+        leaders_page=LEADERBOARD_PAGE_URL,
         leaders_icon=_tool_icon_svg("leaders"),
-        standings_page=STANDINGS_PAGE_FILE,
+        standings_page=STANDINGS_PAGE_URL,
         standings_icon=_tool_icon_svg("standings"),
         search_index_json=search_index_json,
         home_js=HOME_JS,
@@ -5617,22 +5670,22 @@ Sitemap: {SITE_BASE_URL}/{SITEMAP_FILE}
 """
 
 # Static top-level pages included in the sitemap, independent of the daily
-# player/team pages. 162-0-challenge.html is a hand-authored page (not
+# player/team pages. 162-0-challenge/index.html is a hand-authored page (not
 # written by this script) but still a real page worth listing.
 STATIC_SITEMAP_PAGES = [
-    (HOME_PAGE_FILE, "daily", 1.0),
-    (OUTPUT_FILE, "hourly", 0.9),
-    (STREAKS_FILE, "hourly", 0.8),
-    (LEADERBOARD_PAGE_FILE, "hourly", 0.8),
-    (STANDINGS_PAGE_FILE, "hourly", 0.8),
-    (HR_PICKS_FILE, "daily", 0.7),
-    (ROSTER_MOVES_FILE, "daily", 0.6),
-    (WEATHER_PAGE_FILE, "daily", 0.5),
-    (PARK_FACTORS_FILE, "weekly", 0.4),
-    (GAME_PAGE_FILE, "weekly", 0.5),
-    (WORD_GAME_FILE, "daily", 0.6),
-    (GRID_GAME_FILE, "daily", 0.6),
-    (WHOAMI_FILE, "daily", 0.6),
+    (HOME_URL, "daily", 1.0),
+    (OUTPUT_URL, "hourly", 0.9),
+    (STREAKS_URL, "hourly", 0.8),
+    (LEADERBOARD_PAGE_URL, "hourly", 0.8),
+    (STANDINGS_PAGE_URL, "hourly", 0.8),
+    (HR_PICKS_URL, "daily", 0.7),
+    (ROSTER_MOVES_URL, "daily", 0.6),
+    (WEATHER_PAGE_URL, "daily", 0.5),
+    (PARK_FACTORS_URL, "weekly", 0.4),
+    (GAME_PAGE_URL, "weekly", 0.5),
+    (WORD_GAME_URL, "daily", 0.6),
+    (GRID_GAME_URL, "daily", 0.6),
+    (WHOAMI_URL, "daily", 0.6),
 ]
 
 
@@ -5643,18 +5696,18 @@ def build_sitemap_xml(player_pages, team_pages, today):
     every 15 minutes."""
     lastmod = today.isoformat()
     urls = [
-        f"  <url><loc>{SITE_BASE_URL}/{path}</loc><lastmod>{lastmod}</lastmod>"
+        f"  <url><loc>{SITE_BASE_URL}{url_path}</loc><lastmod>{lastmod}</lastmod>"
         f"<changefreq>{freq}</changefreq><priority>{priority}</priority></url>"
-        for path, freq, priority in STATIC_SITEMAP_PAGES
+        for url_path, freq, priority in STATIC_SITEMAP_PAGES
     ]
     for name in player_pages:
         urls.append(
-            f"  <url><loc>{SITE_BASE_URL}/{PLAYERS_DIR}/{slugify(name)}.html</loc>"
+            f"  <url><loc>{SITE_BASE_URL}/{PLAYERS_DIR}/{slugify(name)}/</loc>"
             f"<lastmod>{lastmod}</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>"
         )
     for name in team_pages:
         urls.append(
-            f"  <url><loc>{SITE_BASE_URL}/{TEAMS_DIR}/{slugify(name)}.html</loc>"
+            f"  <url><loc>{SITE_BASE_URL}/{TEAMS_DIR}/{slugify(name)}/</loc>"
             f"<lastmod>{lastmod}</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>"
         )
     return (
@@ -5673,6 +5726,16 @@ def main():
         return
 
     stadiums_by_team = load_stadiums_by_team()
+
+    # Every top-level page now writes to its own directory as index.html
+    # (clean URLs) - create them all upfront so every write below can just
+    # open() its target without worrying about the parent directory.
+    for page_file in (
+        OUTPUT_FILE, ROSTER_MOVES_FILE, HR_PICKS_FILE, PARK_FACTORS_FILE,
+        WEATHER_PAGE_FILE, LEADERBOARD_PAGE_FILE, STANDINGS_PAGE_FILE,
+        STREAKS_FILE, WORD_GAME_FILE, GRID_GAME_FILE, WHOAMI_FILE, HOME_PAGE_FILE,
+    ):
+        os.makedirs(os.path.dirname(page_file), exist_ok=True)
 
     master_rows = []
     hr_pick_rows = []
@@ -5714,7 +5777,7 @@ def main():
     matchup_data_json = json.dumps(dashboard_rows).replace("</", "<\\/")
     cards_html = "\n".join(cards) if cards else (
         "<p class='empty-state'>All of today's games have ended. "
-        "Check back tomorrow, or see <a href='index.html'>Yesterday's Results</a> on the home page.</p>"
+        "Check back tomorrow, or see <a href='/home/'>Yesterday's Results</a> on the home page.</p>"
     )
 
     page = PAGE_TEMPLATE.format(
@@ -5728,16 +5791,16 @@ def main():
         sports_events_jsonld=build_sports_events_jsonld(games, finished_game_labels),
         cards=cards_html,
         matchup_data_json=matchup_data_json,
-        roster_moves_page=ROSTER_MOVES_FILE,
-        game_page=GAME_PAGE_FILE,
-        hr_picks_page=HR_PICKS_FILE,
-        park_factors_page=PARK_FACTORS_FILE,
-        streaks_page=STREAKS_FILE,
-        weather_page=WEATHER_PAGE_FILE,
-        leaders_page=LEADERBOARD_PAGE_FILE,
-        standings_page=STANDINGS_PAGE_FILE,
-        word_game_page=WORD_GAME_FILE,
-        home_page=HOME_PAGE_FILE,
+        roster_moves_page=ROSTER_MOVES_URL,
+        game_page=GAME_PAGE_URL,
+        hr_picks_page=HR_PICKS_URL,
+        park_factors_page=PARK_FACTORS_URL,
+        streaks_page=STREAKS_URL,
+        weather_page=WEATHER_PAGE_URL,
+        leaders_page=LEADERBOARD_PAGE_URL,
+        standings_page=STANDINGS_PAGE_URL,
+        word_game_page=WORD_GAME_URL,
+        home_page=HOME_URL,
         season=CURRENT_SEASON,
         season_short=CURRENT_SEASON[-2:],
     )
@@ -5852,7 +5915,9 @@ def main():
     os.makedirs(TEAMS_DIR, exist_ok=True)
 
     for name, data in player_pages.items():
-        with open(os.path.join(PLAYERS_DIR, f"{slugify(name)}.html"), "w") as f:
+        path = player_disk_path(name)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w") as f:
             f.write(build_player_page(data))
     print(f"Wrote {len(player_pages)} player pages to {PLAYERS_DIR}/")
 
@@ -5880,7 +5945,9 @@ def main():
             data["schedule"] = []
 
     for name, data in team_pages.items():
-        with open(os.path.join(TEAMS_DIR, f"{slugify(name)}.html"), "w") as f:
+        path = team_disk_path(name)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w") as f:
             f.write(build_team_page(data, player_pages))
     print(f"Wrote {len(team_pages)} team pages to {TEAMS_DIR}/")
 
@@ -5890,6 +5957,11 @@ def main():
         f.write(home_page)
 
     print(f"Wrote {HOME_PAGE_FILE} (search index: {len(search_index)} entries)")
+
+    with open(ROOT_REDIRECT_FILE, "w") as f:
+        f.write(ROOT_REDIRECT_HTML)
+
+    print(f"Wrote {ROOT_REDIRECT_FILE} (redirects to {HOME_URL})")
 
     with open(ROBOTS_TXT_FILE, "w") as f:
         f.write(ROBOTS_TXT)

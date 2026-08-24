@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>162-0 | The Perfect Season Challenge</title>
+<style>
+  :root{
+    --navy:#0d1b2a;
+    --navy2:#13273d;
+    --red:#c8102e;
+    --red2:#e0193a;
+    --cream:#f4ecd8;
+    --gold:#d4af37;
+    --green:#1e5631;
+    --line:rgba(244,236,216,0.14);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:radial-gradient(circle at top, #16304a 0%, var(--navy) 55%, #060d15 100%);
+    color:var(--cream);
+    min-height:100vh;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px;}
+
+  header.game-header{text-align:center;padding:18px 10px 22px;position:relative;}
+  header.game-header h1{
+    font-size:2.6rem;margin:0 0 4px;letter-spacing:2px;
+    font-family:Georgia, 'Times New Roman', serif;color:var(--cream);
+    text-shadow:0 2px 0 var(--red), 0 4px 12px rgba(0,0,0,0.5);
+  }
+  header.game-header h1 span{color:var(--gold);}
+  .home-link{
+    position:absolute;top:18px;left:18px;color:var(--gold);text-decoration:none;
+    font-size:0.85rem;font-weight:600;border:1px solid rgba(212,175,55,0.4);
+    border-radius:999px;padding:6px 14px;transition:border-color 0.15s ease, background 0.15s ease;
+    display:inline-flex;align-items:center;gap:7px;
+  }
+  .home-link:hover{background:rgba(212,175,55,0.12);border-color:var(--gold);}
+  @media (max-width:600px){
+    .home-link{position:static;display:inline-flex;margin-bottom:10px;}
+  }
+  header.game-header p{margin:0 auto;opacity:0.75;font-size:0.95rem;max-width:640px;}
+
+  .scoreboard{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:22px 0 26px;}
+  .sb-card{
+    background:linear-gradient(180deg, #0c1622, #060c14);border:1px solid var(--line);
+    border-radius:10px;padding:12px 18px;text-align:center;min-width:120px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,0.02);
+  }
+  .sb-card .label{font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;opacity:0.6;margin-bottom:6px;}
+  .sb-card .value{font-size:1.6rem;font-weight:700;font-family:'Courier New', monospace;color:var(--gold);}
+
+  .board{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:26px;}
+  .slot{
+    background:linear-gradient(180deg, rgba(244,236,216,0.06), rgba(244,236,216,0.02));
+    border:2px dashed rgba(244,236,216,0.25);border-radius:10px;padding:12px 10px;min-height:96px;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+    position:relative;
+  }
+  .slot.filled{
+    border-style:solid;border-color:var(--gold);
+    background:linear-gradient(180deg, rgba(212,175,55,0.16), rgba(212,175,55,0.04));
+  }
+  .slot .pos-tag{font-size:0.66rem;letter-spacing:1.5px;text-transform:uppercase;opacity:0.55;margin-bottom:4px;}
+  .slot .pname{font-weight:700;font-size:0.92rem;line-height:1.15;}
+  .slot .pmeta{font-size:0.66rem;opacity:0.6;margin-top:3px;}
+  .slot.empty .pname{opacity:0.3;font-size:1.3rem;}
+  .slot.empty .pmeta{opacity:0.4;}
+
+  .section-title{
+    font-family:Georgia, serif;font-size:1.15rem;letter-spacing:1px;margin:30px 0 12px;
+    color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:8px;
+  }
+
+  /* ---- SPIN PANEL ---- */
+  .spin-panel{
+    background:rgba(6,12,20,0.6);border:1px solid var(--line);border-radius:12px;
+    padding:18px;margin-bottom:22px;
+  }
+  .spin-panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+  .spin-panel-title{font-family:Georgia, serif;font-size:1.02rem;color:var(--gold);}
+  .pill-group{display:flex;gap:8px;flex-wrap:wrap;}
+  .spins-left, .skips-left{
+    font-size:0.78rem;background:rgba(212,175,55,0.15);border:1px solid var(--gold);
+    border-radius:20px;padding:4px 12px;font-weight:700;white-space:nowrap;
+  }
+  .skips-left{background:rgba(200,16,46,0.15);border-color:var(--red2);color:var(--cream);}
+  .skips-left.exhausted{opacity:0.5;}
+  .reel-window{
+    height:64px;overflow:hidden;border-radius:8px;border:2px solid var(--gold);
+    background:#050a10;box-shadow:inset 0 4px 12px rgba(0,0,0,0.65);margin-bottom:16px;position:relative;
+  }
+  .reel-window::before, .reel-window::after{content:"";position:absolute;left:0;right:0;height:16px;pointer-events:none;z-index:2;}
+  .reel-window::before{top:0;background:linear-gradient(180deg, rgba(5,10,16,0.95), transparent);}
+  .reel-window::after{bottom:0;background:linear-gradient(0deg, rgba(5,10,16,0.95), transparent);}
+  .reel-strip{will-change:transform;}
+  .reel-strip.spinning{filter:blur(1.4px);}
+  .reel-item{
+    height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:0 10px;
+  }
+  .reel-item .ri-main{
+    font-family:'Courier New', monospace;font-weight:800;font-size:1rem;color:var(--cream);letter-spacing:0.5px;
+  }
+  .reel-item .ri-sub{font-size:0.68rem;color:var(--gold);opacity:0.85;margin-top:2px;}
+  #spinBtn{width:100%;}
+
+  .pending-pick{margin-top:16px;}
+  .pending-sub{font-size:0.85rem;opacity:0.75;text-align:center;margin-bottom:12px;}
+  .reveal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:14px;}
+  .reveal-player{
+    background:rgba(244,236,216,0.04);border:1px solid var(--line);border-radius:8px;padding:8px 10px;
+    cursor:pointer;transition:.12s;
+  }
+  .reveal-player:hover{background:rgba(212,175,55,0.14);border-color:var(--gold);transform:translateY(-1px);}
+  .reveal-player.disabled{opacity:0.35;cursor:not-allowed;}
+  .reveal-player.disabled:hover{background:rgba(244,236,216,0.04);border-color:var(--line);transform:none;}
+  .reveal-player .pos-tag{font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;opacity:0.55;}
+  .reveal-player .pn{font-weight:700;font-size:0.82rem;margin:2px 0 5px;}
+  .reveal-player .reveal-state{font-size:0.62rem;margin-top:5px;color:var(--gold);font-weight:700;}
+  #skipBtn{width:100%;}
+
+  .stats{display:flex;gap:5px;flex-wrap:wrap;}
+  .chip{font-size:0.6rem;padding:2px 6px;border-radius:10px;background:rgba(255,255,255,0.08);opacity:0.85;}
+
+  /* ---- HISTORY ---- */
+  .history-list{display:flex;flex-direction:column;gap:8px;margin-bottom:26px;}
+  .history-card{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:rgba(6,12,20,0.6);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:0.82rem;
+  }
+  .history-card.picked{border-color:var(--gold);}
+  .history-card .hc-spin{
+    font-weight:700;color:var(--gold);background:rgba(212,175,55,0.14);border-radius:6px;padding:2px 8px;font-size:0.72rem;
+  }
+  .history-card .hc-team{opacity:0.85;}
+  .history-card .hc-result{margin-left:auto;font-weight:600;}
+  .history-card .hc-result em{opacity:0.65;font-style:normal;}
+  .history-card .skipped-label{opacity:0.5;}
+  .history-empty{opacity:0.5;font-size:0.85rem;text-align:center;padding:14px;}
+
+  .cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:22px;}
+  .cat{background:rgba(6,12,20,0.6);border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .cat .cat-top{display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:6px;}
+  .cat .cat-top b{color:var(--gold);}
+  .bar-track{height:8px;border-radius:4px;background:rgba(255,255,255,0.08);overflow:hidden;}
+  .bar-fill{
+    height:100%;background:linear-gradient(90deg, var(--red2), var(--gold));
+    border-radius:4px;transition:width .5s ease;width:0%;
+  }
+
+  .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:26px 0;}
+  button.btn{
+    font-family:inherit;font-weight:700;letter-spacing:0.5px;padding:13px 26px;border-radius:8px;
+    border:none;cursor:pointer;font-size:0.95rem;transition:.15s;
+  }
+  .btn-primary{background:linear-gradient(180deg, var(--red2), var(--red));color:#fff;box-shadow:0 4px 14px rgba(200,16,46,0.35);}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(200,16,46,0.45);}
+  .btn-primary:disabled{opacity:0.35;cursor:not-allowed;transform:none;box-shadow:none;}
+  .btn-secondary{background:rgba(244,236,216,0.08);color:var(--cream);border:1px solid var(--line);}
+  .btn-secondary:hover{background:rgba(244,236,216,0.16);}
+  .btn-secondary:disabled{opacity:0.35;cursor:not-allowed;}
+  .btn-secondary:disabled:hover{background:rgba(244,236,216,0.08);}
+
+  .result{
+    display:none;text-align:center;background:linear-gradient(180deg, rgba(212,175,55,0.14), rgba(12,22,34,0.6));
+    border:1px solid var(--gold);border-radius:14px;padding:30px 20px;margin:20px 0 30px;
+  }
+  .result.show{display:block;animation:fadein .4s ease;}
+  @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .result .record{font-family:'Courier New', monospace;font-size:3.2rem;font-weight:800;color:var(--gold);letter-spacing:2px;}
+  .result .grade{font-size:1.25rem;font-weight:700;margin:6px 0 4px;}
+  .result .flavor{opacity:0.75;font-size:0.9rem;max-width:520px;margin:8px auto 0;}
+  .result .diff{margin-top:16px;font-size:0.8rem;opacity:0.6;}
+
+  footer{text-align:center;opacity:0.4;font-size:0.75rem;margin-top:30px;}
+
+  @media (max-width:600px){
+    header.game-header h1{font-size:1.9rem;}
+    .result .record{font-size:2.3rem;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="game-header">
+    <a class="home-link" href="/home/">
+      <svg width="18" height="18" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+        <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
+        <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
+        <path d="M10 8 H90 V50 L50 95 L10 50 Z" fill="none" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+        <g fill="#000">
+          <circle cx="50" cy="18" r="3.4"/><circle cx="50" cy="31" r="3.4"/><circle cx="50" cy="44" r="3.4"/>
+          <circle cx="50" cy="57" r="3.4"/><circle cx="50" cy="70" r="3.4"/><circle cx="50" cy="83" r="3.4"/>
+        </g>
+      </svg>
+      Home
+    </a>
+    <h1>162<span>-</span>0</h1>
+    <p>You get 11 spins &mdash; one for every roster slot &mdash; and skips don't cost you one. Each spin reveals a real historic team; draft exactly one of their players into your roster, or skip it for free (up to 3 skips total per game). Simulate your 162-game season anytime to see how your picks, backed by a replacement-level supporting cast, stack up.</p>
+  </header>
+
+  <div class="scoreboard">
+    <div class="sb-card"><div class="label">Slots Filled</div><div class="value" id="sbFilled">0 / 11</div></div>
+    <div class="sb-card"><div class="label">Overall Rating</div><div class="value" id="sbOverall">--</div></div>
+    <div class="sb-card"><div class="label">Team Grade</div><div class="value" id="sbGrade">--</div></div>
+  </div>
+
+  <div class="section-title">Your Roster</div>
+  <div class="board" id="board"></div>
+
+  <div class="section-title">Spin for a Team</div>
+  <div class="spin-panel">
+    <div class="spin-panel-head">
+      <div class="spin-panel-title">Spin the Reel</div>
+      <div class="pill-group">
+        <div class="spins-left" id="spinsLeft">11 spins left</div>
+        <div class="skips-left" id="skipsLeft">3 skips left</div>
+      </div>
+    </div>
+    <div class="reel-window">
+      <div class="reel-strip" id="reelStrip"></div>
+    </div>
+    <button class="btn btn-primary" id="spinBtn">SPIN</button>
+
+    <div class="pending-pick" id="pendingPick" style="display:none;">
+      <div class="pending-sub">Pick one player to draft, or skip this roster.</div>
+      <div class="reveal-grid" id="pendingGrid"></div>
+      <button class="btn btn-secondary" id="skipBtn">Skip This Roster</button>
+    </div>
+  </div>
+
+  <div class="section-title">Spin History</div>
+  <div class="history-list" id="historyList">
+    <div class="history-empty">No spins yet — hit Spin to reveal your first team.</div>
+  </div>
+
+  <div class="section-title">Team Categories</div>
+  <div class="cats" id="cats"></div>
+
+  <div class="actions">
+    <button class="btn btn-primary" id="simulateBtn">Simulate the Season</button>
+    <button class="btn btn-secondary" id="resetBtn">Reset Everything</button>
+  </div>
+
+  <div class="result" id="result">
+    <div class="record" id="resultRecord">0-0</div>
+    <div class="grade" id="resultGrade"></div>
+    <div class="flavor" id="resultFlavor"></div>
+    <div class="diff" id="resultDiff"></div>
+  </div>
+
+  <footer>Rosters are curated real team-seasons from 1910s&ndash;2020s; ratings are for fun, not official stats. Empty slots simulate as replacement-level players. Built as a baseball take on the 82-0 draft challenge.</footer>
+</div>
+
+<script>
+/* ---------------------------------------------------------
+   TEAM SEASONS — each spin reveals one real year+team, with
+   that team's actual primary starter for every slot.
+--------------------------------------------------------- */
+const TEAM_SEASONS = [
+  { year:1905, team:"New York Giants", abbr:"NYG", nickname:"Mathewson's Career-Best Season",
+    C:{name:"Roger Bresnahan",power:50,contact:78,speed:60,defense:88,clutch:80},
+    "1B":{name:"Dan McGann",power:50,contact:74,speed:55,defense:78,clutch:72},
+    "2B":{name:"Billy Gilbert",power:35,contact:68,speed:55,defense:80,clutch:66},
+    "3B":{name:"Art Devlin",power:45,contact:76,speed:70,defense:80,clutch:74},
+    SS:{name:"Bill Dahlen",power:50,contact:76,speed:60,defense:86,clutch:76},
+    LF:{name:"Sam Mertes",power:50,contact:74,speed:58,defense:74,clutch:72},
+    CF:{name:"Mike Donlin",power:60,contact:86,speed:65,defense:76,clutch:80},
+    RF:{name:"George Browne",power:45,contact:78,speed:62,defense:74,clutch:72},
+    DH:{name:"Sammy Strang",power:45,contact:74,speed:60,defense:60,clutch:70},
+    SP:{name:"Christy Mathewson",pitching:97,stuff:85,control:96,defense:80,clutch:95},
+    CL:{name:"Joe McGinnity",pitching:90,stuff:82,control:86,defense:76,clutch:86} },
+
+  { year:1911, team:"Philadelphia Athletics", abbr:"PHA", nickname:"$100,000 Infield",
+    C:{name:"Ira Thomas",power:50,contact:68,speed:35,defense:80,clutch:70},
+    "1B":{name:"Stuffy McInnis",power:55,contact:84,speed:55,defense:86,clutch:76},
+    "2B":{name:"Eddie Collins",power:55,contact:93,speed:82,defense:88,clutch:86},
+    "3B":{name:"Frank Baker",power:82,contact:82,speed:58,defense:78,clutch:85},
+    SS:{name:"Jack Barry",power:45,contact:74,speed:55,defense:86,clutch:74},
+    LF:{name:"Bris Lord",power:55,contact:76,speed:58,defense:72,clutch:70},
+    CF:{name:"Rube Oldring",power:58,contact:78,speed:68,defense:80,clutch:72},
+    RF:{name:"Danny Murphy",power:62,contact:81,speed:55,defense:74,clutch:76},
+    DH:{name:"Harry Davis",power:72,contact:76,speed:45,defense:68,clutch:76},
+    SP:{name:"Jack Coombs",pitching:90,stuff:84,control:84,defense:74,clutch:86},
+    CL:{name:"Eddie Plank",pitching:90,stuff:80,control:90,defense:75,clutch:86} },
+
+  { year:1912, team:"Boston Red Sox", abbr:"BOS", nickname:"105-Win AL Champs",
+    C:{name:"Bill Carrigan",power:55,contact:74,speed:40,defense:80,clutch:74},
+    "1B":{name:"Jake Stahl",power:58,contact:76,speed:45,defense:78,clutch:72},
+    "2B":{name:"Steve Yerkes",power:48,contact:80,speed:60,defense:80,clutch:74},
+    "3B":{name:"Larry Gardner",power:55,contact:82,speed:62,defense:82,clutch:78},
+    SS:{name:"Heinie Wagner",power:45,contact:72,speed:55,defense:84,clutch:72},
+    LF:{name:"Duffy Lewis",power:62,contact:84,speed:58,defense:82,clutch:80},
+    CF:{name:"Tris Speaker",power:75,contact:92,speed:80,defense:95,clutch:84},
+    RF:{name:"Harry Hooper",power:55,contact:83,speed:75,defense:88,clutch:80},
+    DH:{name:"Olaf Henriksen",power:50,contact:74,speed:45,defense:50,clutch:76},
+    SP:{name:"Smoky Joe Wood",pitching:95,stuff:94,control:78,defense:72,clutch:90},
+    CL:{name:"Charley Hall",pitching:74,stuff:72,control:74,defense:65,clutch:74} },
+
+  { year:1917, team:"Chicago White Sox", abbr:"CWS", nickname:"World Series Champions",
+    C:{name:"Ray Schalk",power:55,contact:78,speed:60,defense:96,clutch:78},
+    "1B":{name:"Chick Gandil",power:58,contact:80,speed:50,defense:82,clutch:74},
+    "2B":{name:"Eddie Collins",power:55,contact:93,speed:82,defense:88,clutch:86},
+    "3B":{name:"Buck Weaver",power:58,contact:82,speed:65,defense:86,clutch:80},
+    SS:{name:"Swede Risberg",power:45,contact:68,speed:65,defense:82,clutch:68},
+    LF:{name:"Shoeless Joe Jackson",power:78,contact:96,speed:75,defense:82,clutch:86},
+    CF:{name:"Happy Felsch",power:65,contact:82,speed:70,defense:85,clutch:76},
+    RF:{name:"Shano Collins",power:50,contact:76,speed:58,defense:78,clutch:72},
+    DH:{name:"Nemo Leibold",power:45,contact:74,speed:65,defense:60,clutch:70},
+    SP:{name:"Eddie Cicotte",pitching:92,stuff:86,control:88,defense:75,clutch:86},
+    CL:{name:"Red Faber",pitching:86,stuff:80,control:84,defense:74,clutch:82} },
+
+  { year:1927, team:"New York Yankees", abbr:"NYY", nickname:"Murderers' Row",
+    C:{name:"Pat Collins",power:55,contact:72,speed:35,defense:78,clutch:68},
+    "1B":{name:"Lou Gehrig",power:96,contact:92,speed:58,defense:78,clutch:95},
+    "2B":{name:"Tony Lazzeri",power:78,contact:82,speed:55,defense:82,clutch:82},
+    "3B":{name:"Joe Dugan",power:55,contact:78,speed:50,defense:80,clutch:74},
+    SS:{name:"Mark Koenig",power:50,contact:78,speed:55,defense:78,clutch:74},
+    LF:{name:"Bob Meusel",power:80,contact:82,speed:65,defense:60,clutch:78},
+    CF:{name:"Earle Combs",power:55,contact:87,speed:82,defense:85,clutch:80},
+    RF:{name:"Babe Ruth",power:99,contact:92,speed:55,defense:65,clutch:96},
+    DH:{name:"Ben Paschal",power:65,contact:80,speed:55,defense:60,clutch:74},
+    SP:{name:"Waite Hoyt",pitching:90,stuff:82,control:88,defense:74,clutch:86},
+    CL:{name:"Wilcy Moore",pitching:82,stuff:78,control:78,defense:65,clutch:80} },
+
+  { year:1929, team:"Philadelphia Athletics", abbr:"PHA", nickname:"World Series Champions",
+    C:{name:"Mickey Cochrane",power:78,contact:88,speed:60,defense:90,clutch:88},
+    "1B":{name:"Jimmie Foxx",power:95,contact:88,speed:55,defense:76,clutch:88},
+    "2B":{name:"Max Bishop",power:48,contact:78,speed:55,defense:80,clutch:76},
+    "3B":{name:"Jimmy Dykes",power:60,contact:80,speed:50,defense:82,clutch:76},
+    SS:{name:"Joe Boley",power:45,contact:76,speed:50,defense:82,clutch:72},
+    LF:{name:"Al Simmons",power:86,contact:90,speed:55,defense:72,clutch:82},
+    CF:{name:"Mule Haas",power:55,contact:80,speed:65,defense:82,clutch:74},
+    RF:{name:"Bing Miller",power:60,contact:83,speed:55,defense:78,clutch:78},
+    DH:{name:"Walter French",power:50,contact:75,speed:60,defense:55,clutch:70},
+    SP:{name:"Lefty Grove",pitching:96,stuff:97,control:80,defense:70,clutch:90},
+    CL:{name:"Eddie Rommel",pitching:80,stuff:74,control:82,defense:68,clutch:78} },
+
+  { year:1931, team:"Philadelphia Athletics", abbr:"PHA", nickname:"Grove's 31-4 Season",
+    C:{name:"Mickey Cochrane",power:78,contact:88,speed:60,defense:90,clutch:88},
+    "1B":{name:"Jimmie Foxx",power:96,contact:88,speed:55,defense:76,clutch:90},
+    "2B":{name:"Max Bishop",power:48,contact:78,speed:55,defense:80,clutch:76},
+    "3B":{name:"Jimmy Dykes",power:60,contact:80,speed:50,defense:82,clutch:76},
+    SS:{name:"Dib Williams",power:45,contact:72,speed:52,defense:80,clutch:70},
+    LF:{name:"Al Simmons",power:88,contact:92,speed:55,defense:72,clutch:84},
+    CF:{name:"Mule Haas",power:55,contact:80,speed:65,defense:82,clutch:74},
+    RF:{name:"Bing Miller",power:60,contact:83,speed:55,defense:78,clutch:78},
+    DH:{name:"Jimmy Moore",power:50,contact:76,speed:60,defense:60,clutch:70},
+    SP:{name:"Lefty Grove",pitching:99,stuff:98,control:84,defense:70,clutch:94},
+    CL:{name:"Rube Walberg",pitching:82,stuff:80,control:76,defense:68,clutch:80} },
+
+  { year:1932, team:"New York Yankees", abbr:"NYY", nickname:"Ruth's Called Shot",
+    C:{name:"Bill Dickey",power:82,contact:90,speed:45,defense:92,clutch:90},
+    "1B":{name:"Lou Gehrig",power:96,contact:92,speed:58,defense:78,clutch:95},
+    "2B":{name:"Tony Lazzeri",power:78,contact:82,speed:55,defense:82,clutch:82},
+    "3B":{name:"Joe Sewell",power:45,contact:90,speed:50,defense:80,clutch:78},
+    SS:{name:"Frank Crosetti",power:52,contact:74,speed:60,defense:84,clutch:74},
+    LF:{name:"Ben Chapman",power:58,contact:80,speed:85,defense:75,clutch:74},
+    CF:{name:"Earle Combs",power:55,contact:87,speed:82,defense:85,clutch:80},
+    RF:{name:"Babe Ruth",power:99,contact:92,speed:55,defense:65,clutch:96},
+    DH:{name:"Sammy Byrd",power:55,contact:76,speed:65,defense:60,clutch:70},
+    SP:{name:"Lefty Gomez",pitching:92,stuff:90,control:78,defense:70,clutch:86},
+    CL:{name:"Herb Pennock",pitching:78,stuff:72,control:82,defense:70,clutch:82} },
+
+  { year:1934, team:"St. Louis Cardinals", abbr:"STL", nickname:"Gashouse Gang",
+    C:{name:"Bill DeLancey",power:70,contact:80,speed:40,defense:82,clutch:76},
+    "1B":{name:"Ripper Collins",power:82,contact:82,speed:50,defense:78,clutch:80},
+    "2B":{name:"Frankie Frisch",power:65,contact:89,speed:82,defense:88,clutch:84},
+    "3B":{name:"Pepper Martin",power:65,contact:82,speed:90,defense:76,clutch:82},
+    SS:{name:"Leo Durocher",power:35,contact:65,speed:60,defense:88,clutch:74},
+    LF:{name:"Joe Medwick",power:85,contact:90,speed:55,defense:75,clutch:84},
+    CF:{name:"Ernie Orsatti",power:45,contact:80,speed:70,defense:80,clutch:72},
+    RF:{name:"Jack Rothrock",power:55,contact:78,speed:65,defense:75,clutch:74},
+    DH:{name:"Chick Fullis",power:45,contact:76,speed:60,defense:55,clutch:70},
+    SP:{name:"Dizzy Dean",pitching:94,stuff:92,control:82,defense:74,clutch:90},
+    CL:{name:"Jesse Haines",pitching:78,stuff:74,control:80,defense:68,clutch:78} },
+
+  { year:1936, team:"New York Yankees", abbr:"NYY", nickname:"DiMaggio's Rookie Year",
+    C:{name:"Bill Dickey",power:82,contact:90,speed:45,defense:92,clutch:90},
+    "1B":{name:"Lou Gehrig",power:96,contact:92,speed:58,defense:78,clutch:95},
+    "2B":{name:"Tony Lazzeri",power:78,contact:82,speed:55,defense:82,clutch:82},
+    "3B":{name:"Red Rolfe",power:55,contact:82,speed:55,defense:80,clutch:76},
+    SS:{name:"Frank Crosetti",power:52,contact:74,speed:60,defense:84,clutch:74},
+    LF:{name:"Roy Johnson",power:60,contact:80,speed:60,defense:70,clutch:72},
+    CF:{name:"Joe DiMaggio",power:88,contact:90,speed:75,defense:88,clutch:92},
+    RF:{name:"George Selkirk",power:75,contact:83,speed:55,defense:75,clutch:78},
+    DH:{name:"Myril Hoag",power:55,contact:78,speed:55,defense:55,clutch:70},
+    SP:{name:"Red Ruffing",pitching:90,stuff:84,control:85,defense:74,clutch:86},
+    CL:{name:"Johnny Murphy",pitching:82,stuff:76,control:80,defense:65,clutch:84} },
+
+  { year:1939, team:"New York Yankees", abbr:"NYY", nickname:"Gehrig's Farewell Season",
+    C:{name:"Bill Dickey",power:82,contact:90,speed:45,defense:92,clutch:90},
+    "1B":{name:"Babe Dahlgren",power:60,contact:74,speed:45,defense:80,clutch:70},
+    "2B":{name:"Joe Gordon",power:78,contact:80,speed:55,defense:88,clutch:80},
+    "3B":{name:"Red Rolfe",power:55,contact:82,speed:55,defense:80,clutch:76},
+    SS:{name:"Frank Crosetti",power:52,contact:74,speed:60,defense:84,clutch:74},
+    LF:{name:"George Selkirk",power:75,contact:83,speed:55,defense:75,clutch:78},
+    CF:{name:"Joe DiMaggio",power:88,contact:90,speed:75,defense:88,clutch:92},
+    RF:{name:"Charlie Keller",power:80,contact:83,speed:52,defense:70,clutch:80},
+    DH:{name:"Tommy Henrich",power:75,contact:84,speed:58,defense:76,clutch:82},
+    SP:{name:"Red Ruffing",pitching:90,stuff:84,control:85,defense:74,clutch:86},
+    CL:{name:"Johnny Murphy",pitching:82,stuff:76,control:80,defense:65,clutch:84} },
+
+  { year:1941, team:"Brooklyn Dodgers", abbr:"BRO", nickname:"Dem Bums' First Pennant Since 1920",
+    C:{name:"Mickey Owen",power:50,contact:76,speed:40,defense:86,clutch:70},
+    "1B":{name:"Dolph Camilli",power:85,contact:82,speed:40,defense:78,clutch:84},
+    "2B":{name:"Billy Herman",power:55,contact:88,speed:60,defense:90,clutch:80},
+    "3B":{name:"Cookie Lavagetto",power:55,contact:80,speed:50,defense:78,clutch:78},
+    SS:{name:"Pee Wee Reese",power:50,contact:76,speed:65,defense:84,clutch:78},
+    LF:{name:"Joe Medwick",power:85,contact:90,speed:55,defense:75,clutch:84},
+    CF:{name:"Pete Reiser",power:70,contact:90,speed:88,defense:85,clutch:78},
+    RF:{name:"Dixie Walker",power:65,contact:86,speed:50,defense:76,clutch:80},
+    DH:{name:"Augie Galan",power:55,contact:80,speed:65,defense:70,clutch:74},
+    SP:{name:"Whit Wyatt",pitching:88,stuff:84,control:82,defense:72,clutch:86},
+    CL:{name:"Hugh Casey",pitching:82,stuff:80,control:78,defense:65,clutch:80} },
+
+  { year:1942, team:"St. Louis Cardinals", abbr:"STL", nickname:"106-Win WS Champs",
+    C:{name:"Walker Cooper",power:70,contact:82,speed:40,defense:85,clutch:78},
+    "1B":{name:"Johnny Hopp",power:55,contact:82,speed:70,defense:80,clutch:76},
+    "2B":{name:"Jimmy Brown",power:45,contact:78,speed:68,defense:82,clutch:72},
+    "3B":{name:"Whitey Kurowski",power:75,contact:82,speed:45,defense:82,clutch:80},
+    SS:{name:"Marty Marion",power:45,contact:76,speed:55,defense:96,clutch:80},
+    LF:{name:"Stan Musial",power:85,contact:93,speed:65,defense:78,clutch:88},
+    CF:{name:"Terry Moore",power:55,contact:80,speed:70,defense:92,clutch:78},
+    RF:{name:"Enos Slaughter",power:75,contact:87,speed:68,defense:82,clutch:86},
+    DH:{name:"Coaker Triplett",power:55,contact:76,speed:55,defense:60,clutch:70},
+    SP:{name:"Mort Cooper",pitching:92,stuff:85,control:86,defense:74,clutch:88},
+    CL:{name:"Harry Gumbert",pitching:76,stuff:72,control:76,defense:65,clutch:74} },
+
+  { year:1948, team:"Cleveland Indians", abbr:"CLE", nickname:"World Series Champions",
+    C:{name:"Jim Hegan",power:50,contact:70,speed:40,defense:92,clutch:76},
+    "1B":{name:"Eddie Robinson",power:75,contact:80,speed:40,defense:78,clutch:76},
+    "2B":{name:"Joe Gordon",power:78,contact:80,speed:55,defense:88,clutch:80},
+    "3B":{name:"Ken Keltner",power:75,contact:82,speed:45,defense:88,clutch:80},
+    SS:{name:"Lou Boudreau",power:65,contact:87,speed:55,defense:90,clutch:85},
+    LF:{name:"Dale Mitchell",power:50,contact:88,speed:65,defense:78,clutch:78},
+    CF:{name:"Larry Doby",power:82,contact:82,speed:75,defense:86,clutch:82},
+    RF:{name:"Bob Kennedy",power:55,contact:78,speed:55,defense:78,clutch:72},
+    DH:{name:"Walt Judnich",power:65,contact:78,speed:45,defense:60,clutch:74},
+    SP:{name:"Bob Feller",pitching:92,stuff:96,control:74,defense:72,clutch:86},
+    CL:{name:"Russ Christopher",pitching:78,stuff:74,control:80,defense:65,clutch:80} },
+
+  { year:1949, team:"New York Yankees", abbr:"NYY", nickname:"Stengel's First Title",
+    C:{name:"Yogi Berra",power:82,contact:85,speed:45,defense:88,clutch:90},
+    "1B":{name:"Tommy Henrich",power:75,contact:84,speed:58,defense:76,clutch:82},
+    "2B":{name:"Jerry Coleman",power:45,contact:76,speed:55,defense:82,clutch:74},
+    "3B":{name:"Bobby Brown",power:50,contact:80,speed:45,defense:76,clutch:76},
+    SS:{name:"Phil Rizzuto",power:35,contact:78,speed:72,defense:92,clutch:80},
+    LF:{name:"Gene Woodling",power:55,contact:80,speed:55,defense:76,clutch:78},
+    CF:{name:"Joe DiMaggio",power:88,contact:90,speed:70,defense:86,clutch:92},
+    RF:{name:"Hank Bauer",power:60,contact:78,speed:60,defense:80,clutch:78},
+    DH:{name:"Johnny Lindell",power:60,contact:76,speed:50,defense:65,clutch:74},
+    SP:{name:"Vic Raschi",pitching:88,stuff:84,control:84,defense:74,clutch:86},
+    CL:{name:"Joe Page",pitching:84,stuff:85,control:74,defense:64,clutch:84} },
+
+  { year:1953, team:"New York Yankees", abbr:"NYY", nickname:"Fifth Straight World Series",
+    C:{name:"Yogi Berra",power:82,contact:85,speed:45,defense:88,clutch:90},
+    "1B":{name:"Joe Collins",power:60,contact:76,speed:45,defense:78,clutch:74},
+    "2B":{name:"Billy Martin",power:55,contact:80,speed:55,defense:82,clutch:86},
+    "3B":{name:"Gil McDougald",power:55,contact:80,speed:55,defense:84,clutch:78},
+    SS:{name:"Phil Rizzuto",power:35,contact:78,speed:70,defense:92,clutch:80},
+    LF:{name:"Gene Woodling",power:55,contact:80,speed:55,defense:76,clutch:78},
+    CF:{name:"Mickey Mantle",power:92,contact:84,speed:88,defense:84,clutch:84},
+    RF:{name:"Hank Bauer",power:60,contact:78,speed:60,defense:80,clutch:78},
+    DH:{name:"Irv Noren",power:58,contact:78,speed:55,defense:76,clutch:74},
+    SP:{name:"Whitey Ford",pitching:91,stuff:80,control:90,defense:75,clutch:88},
+    CL:{name:"Allie Reynolds",pitching:88,stuff:86,control:80,defense:73,clutch:88} },
+
+  { year:1954, team:"Cleveland Indians", abbr:"CLE", nickname:"111-Win AL Record",
+    C:{name:"Jim Hegan",power:50,contact:70,speed:40,defense:92,clutch:76},
+    "1B":{name:"Vic Wertz",power:82,contact:82,speed:40,defense:76,clutch:80},
+    "2B":{name:"Bobby Avila",power:60,contact:90,speed:65,defense:84,clutch:80},
+    "3B":{name:"Al Rosen",power:85,contact:85,speed:45,defense:78,clutch:84},
+    SS:{name:"George Strickland",power:45,contact:72,speed:50,defense:85,clutch:70},
+    LF:{name:"Al Smith",power:65,contact:82,speed:60,defense:75,clutch:76},
+    CF:{name:"Larry Doby",power:82,contact:82,speed:75,defense:86,clutch:82},
+    RF:{name:"Dave Philley",power:55,contact:80,speed:55,defense:78,clutch:74},
+    DH:{name:"Hank Majeski",power:55,contact:78,speed:40,defense:70,clutch:72},
+    SP:{name:"Bob Lemon",pitching:90,stuff:84,control:82,defense:74,clutch:86},
+    CL:{name:"Ray Narleski",pitching:82,stuff:84,control:74,defense:64,clutch:80} },
+
+  { year:1955, team:"Brooklyn Dodgers", abbr:"BRO", nickname:"Boys of Summer",
+    C:{name:"Roy Campanella",power:85,contact:80,speed:42,defense:90,clutch:80},
+    "1B":{name:"Gil Hodges",power:82,contact:80,speed:50,defense:88,clutch:84},
+    "2B":{name:"Jim Gilliam",power:55,contact:82,speed:75,defense:82,clutch:78},
+    "3B":{name:"Jackie Robinson",power:70,contact:82,speed:82,defense:82,clutch:90},
+    SS:{name:"Pee Wee Reese",power:60,contact:82,speed:70,defense:88,clutch:84},
+    LF:{name:"Sandy Amoros",power:55,contact:78,speed:70,defense:82,clutch:78},
+    CF:{name:"Duke Snider",power:88,contact:82,speed:65,defense:84,clutch:82},
+    RF:{name:"Carl Furillo",power:70,contact:87,speed:55,defense:88,clutch:82},
+    DH:{name:"George Shuba",power:60,contact:80,speed:45,defense:55,clutch:78},
+    SP:{name:"Don Newcombe",pitching:90,stuff:88,control:80,defense:74,clutch:86},
+    CL:{name:"Clem Labine",pitching:82,stuff:78,control:78,defense:64,clutch:82} },
+
+  { year:1956, team:"New York Yankees", abbr:"NYY", nickname:"Mantle's Triple Crown, Larsen's Perfect Game",
+    C:{name:"Yogi Berra",power:82,contact:85,speed:45,defense:88,clutch:90},
+    "1B":{name:"Bill Skowron",power:78,contact:80,speed:40,defense:78,clutch:78},
+    "2B":{name:"Billy Martin",power:55,contact:80,speed:55,defense:82,clutch:86},
+    "3B":{name:"Andy Carey",power:55,contact:76,speed:50,defense:80,clutch:74},
+    SS:{name:"Gil McDougald",power:55,contact:80,speed:55,defense:84,clutch:78},
+    LF:{name:"Elston Howard",power:70,contact:82,speed:45,defense:80,clutch:80},
+    CF:{name:"Mickey Mantle",power:99,contact:90,speed:88,defense:86,clutch:92},
+    RF:{name:"Hank Bauer",power:60,contact:78,speed:60,defense:80,clutch:78},
+    DH:{name:"Enos Slaughter",power:70,contact:85,speed:55,defense:76,clutch:84},
+    SP:{name:"Whitey Ford",pitching:91,stuff:80,control:90,defense:75,clutch:88},
+    CL:{name:"Don Larsen",pitching:84,stuff:82,control:78,defense:72,clutch:92} },
+
+  { year:1957, team:"Milwaukee Braves", abbr:"MLN", nickname:"World Series Champions",
+    C:{name:"Del Crandall",power:60,contact:74,speed:35,defense:90,clutch:76},
+    "1B":{name:"Joe Adcock",power:85,contact:78,speed:35,defense:76,clutch:80},
+    "2B":{name:"Red Schoendienst",power:50,contact:86,speed:55,defense:88,clutch:80},
+    "3B":{name:"Eddie Mathews",power:91,contact:78,speed:58,defense:80,clutch:82},
+    SS:{name:"Johnny Logan",power:55,contact:78,speed:50,defense:82,clutch:76},
+    LF:{name:"Wes Covington",power:78,contact:80,speed:45,defense:65,clutch:76},
+    CF:{name:"Bill Bruton",power:50,contact:78,speed:85,defense:86,clutch:74},
+    RF:{name:"Hank Aaron",power:95,contact:90,speed:68,defense:82,clutch:90},
+    DH:{name:"Frank Torre",power:55,contact:78,speed:40,defense:80,clutch:72},
+    SP:{name:"Warren Spahn",pitching:93,stuff:85,control:90,defense:78,clutch:90},
+    CL:{name:"Don McMahon",pitching:80,stuff:82,control:74,defense:62,clutch:78} },
+
+  { year:1959, team:"Chicago White Sox", abbr:"CWS", nickname:"Go-Go Sox",
+    C:{name:"Sherm Lollar",power:65,contact:76,speed:35,defense:84,clutch:76},
+    "1B":{name:"Ted Kluszewski",power:85,contact:82,speed:30,defense:74,clutch:80},
+    "2B":{name:"Nellie Fox",power:45,contact:92,speed:65,defense:88,clutch:84},
+    "3B":{name:"Bubba Phillips",power:50,contact:74,speed:55,defense:78,clutch:70},
+    SS:{name:"Luis Aparicio",power:40,contact:78,speed:95,defense:92,clutch:80},
+    LF:{name:"Al Smith",power:65,contact:82,speed:60,defense:75,clutch:78},
+    CF:{name:"Jim Landis",power:45,contact:76,speed:78,defense:90,clutch:74},
+    RF:{name:"Jim Rivera",power:50,contact:74,speed:75,defense:78,clutch:72},
+    DH:{name:"Earl Torgeson",power:55,contact:76,speed:40,defense:72,clutch:72},
+    SP:{name:"Early Wynn",pitching:90,stuff:82,control:85,defense:74,clutch:88},
+    CL:{name:"Gerry Staley",pitching:82,stuff:78,control:80,defense:66,clutch:82} },
+
+  { year:1961, team:"New York Yankees", abbr:"NYY", nickname:"M&amp;M Boys, WS Champs",
+    C:{name:"Elston Howard",power:75,contact:85,speed:45,defense:88,clutch:82},
+    "1B":{name:"Bill Skowron",power:78,contact:80,speed:40,defense:78,clutch:78},
+    "2B":{name:"Bobby Richardson",power:40,contact:80,speed:60,defense:88,clutch:78},
+    "3B":{name:"Clete Boyer",power:55,contact:72,speed:50,defense:94,clutch:74},
+    SS:{name:"Tony Kubek",power:50,contact:78,speed:60,defense:82,clutch:74},
+    LF:{name:"Yogi Berra",power:78,contact:83,speed:35,defense:70,clutch:88},
+    CF:{name:"Mickey Mantle",power:94,contact:86,speed:85,defense:82,clutch:88},
+    RF:{name:"Roger Maris",power:96,contact:80,speed:55,defense:80,clutch:88},
+    DH:{name:"Johnny Blanchard",power:78,contact:76,speed:35,defense:60,clutch:80},
+    SP:{name:"Whitey Ford",pitching:92,stuff:82,control:92,defense:75,clutch:90},
+    CL:{name:"Luis Arroyo",pitching:84,stuff:80,control:78,defense:62,clutch:82} },
+
+  { year:1963, team:"Los Angeles Dodgers", abbr:"LAD", nickname:"Swept the Yankees",
+    C:{name:"John Roseboro",power:55,contact:74,speed:40,defense:88,clutch:76},
+    "1B":{name:"Ron Fairly",power:60,contact:80,speed:45,defense:78,clutch:76},
+    "2B":{name:"Nate Oliver",power:35,contact:68,speed:70,defense:82,clutch:68},
+    "3B":{name:"Jim Gilliam",power:55,contact:80,speed:70,defense:80,clutch:78},
+    SS:{name:"Maury Wills",power:40,contact:82,speed:96,defense:82,clutch:82},
+    LF:{name:"Tommy Davis",power:70,contact:92,speed:60,defense:72,clutch:82},
+    CF:{name:"Willie Davis",power:60,contact:80,speed:88,defense:88,clutch:76},
+    RF:{name:"Frank Howard",power:90,contact:75,speed:35,defense:65,clutch:78},
+    DH:{name:"Wally Moon",power:60,contact:80,speed:45,defense:70,clutch:76},
+    SP:{name:"Sandy Koufax",pitching:96,stuff:96,control:85,defense:72,clutch:92},
+    CL:{name:"Ron Perranoski",pitching:80,stuff:78,control:80,defense:65,clutch:80} },
+
+  { year:1965, team:"Los Angeles Dodgers", abbr:"LAD", nickname:"Koufax's Perfect Game Season",
+    C:{name:"John Roseboro",power:55,contact:74,speed:40,defense:88,clutch:76},
+    "1B":{name:"Wes Parker",power:55,contact:78,speed:55,defense:92,clutch:74},
+    "2B":{name:"Jim Lefebvre",power:60,contact:78,speed:50,defense:80,clutch:76},
+    "3B":{name:"Jim Gilliam",power:52,contact:78,speed:65,defense:80,clutch:78},
+    SS:{name:"Maury Wills",power:40,contact:82,speed:94,defense:82,clutch:82},
+    LF:{name:"Lou Johnson",power:65,contact:78,speed:60,defense:72,clutch:80},
+    CF:{name:"Willie Davis",power:60,contact:80,speed:88,defense:88,clutch:76},
+    RF:{name:"Ron Fairly",power:60,contact:80,speed:45,defense:78,clutch:76},
+    DH:{name:"Al Ferrara",power:60,contact:74,speed:45,defense:60,clutch:72},
+    SP:{name:"Sandy Koufax",pitching:99,stuff:99,control:86,defense:72,clutch:95},
+    CL:{name:"Ron Perranoski",pitching:80,stuff:78,control:80,defense:65,clutch:80} },
+
+  { year:1966, team:"Baltimore Orioles", abbr:"BAL", nickname:"Frank Robinson's Triple Crown",
+    C:{name:"Andy Etchebarren",power:50,contact:70,speed:35,defense:82,clutch:72},
+    "1B":{name:"Boog Powell",power:90,contact:82,speed:35,defense:76,clutch:86},
+    "2B":{name:"Davey Johnson",power:60,contact:78,speed:50,defense:86,clutch:76},
+    "3B":{name:"Brooks Robinson",power:70,contact:80,speed:50,defense:99,clutch:88},
+    SS:{name:"Luis Aparicio",power:40,contact:78,speed:92,defense:90,clutch:80},
+    LF:{name:"Curt Blefary",power:70,contact:78,speed:45,defense:65,clutch:76},
+    CF:{name:"Paul Blair",power:55,contact:76,speed:78,defense:98,clutch:78},
+    RF:{name:"Frank Robinson",power:96,contact:92,speed:62,defense:80,clutch:92},
+    DH:{name:"Russ Snyder",power:50,contact:78,speed:55,defense:72,clutch:74},
+    SP:{name:"Jim Palmer",pitching:88,stuff:86,control:82,defense:76,clutch:90},
+    CL:{name:"Stu Miller",pitching:82,stuff:74,control:84,defense:66,clutch:82} },
+
+  { year:1968, team:"St. Louis Cardinals", abbr:"STL", nickname:"Gibson's 1.12 ERA Season",
+    C:{name:"Tim McCarver",power:55,contact:84,speed:50,defense:82,clutch:80},
+    "1B":{name:"Orlando Cepeda",power:88,contact:85,speed:55,defense:75,clutch:84},
+    "2B":{name:"Julian Javier",power:45,contact:76,speed:65,defense:86,clutch:74},
+    "3B":{name:"Mike Shannon",power:60,contact:76,speed:40,defense:76,clutch:76},
+    SS:{name:"Dal Maxvill",power:30,contact:62,speed:55,defense:88,clutch:68},
+    LF:{name:"Lou Brock",power:55,contact:85,speed:97,defense:76,clutch:84},
+    CF:{name:"Curt Flood",power:50,contact:82,speed:70,defense:92,clutch:78},
+    RF:{name:"Roger Maris",power:80,contact:76,speed:45,defense:72,clutch:82},
+    DH:{name:"Bobby Tolan",power:55,contact:78,speed:72,defense:74,clutch:74},
+    SP:{name:"Bob Gibson",pitching:97,stuff:92,control:86,defense:78,clutch:97},
+    CL:{name:"Joe Hoerner",pitching:82,stuff:80,control:78,defense:64,clutch:80} },
+
+  { year:1969, team:"New York Mets", abbr:"NYM", nickname:"Miracle Mets",
+    C:{name:"Jerry Grote",power:45,contact:74,speed:40,defense:90,clutch:78},
+    "1B":{name:"Donn Clendenon",power:78,contact:78,speed:40,defense:72,clutch:82},
+    "2B":{name:"Ken Boswell",power:40,contact:76,speed:55,defense:78,clutch:70},
+    "3B":{name:"Ed Charles",power:50,contact:74,speed:50,defense:76,clutch:76},
+    SS:{name:"Bud Harrelson",power:30,contact:72,speed:70,defense:90,clutch:74},
+    LF:{name:"Cleon Jones",power:65,contact:88,speed:65,defense:78,clutch:82},
+    CF:{name:"Tommie Agee",power:70,contact:76,speed:75,defense:90,clutch:80},
+    RF:{name:"Ron Swoboda",power:65,contact:72,speed:50,defense:72,clutch:78},
+    DH:{name:"Art Shamsky",power:60,contact:80,speed:45,defense:60,clutch:76},
+    SP:{name:"Tom Seaver",pitching:93,stuff:87,control:90,defense:76,clutch:88},
+    CL:{name:"Tug McGraw",pitching:82,stuff:82,control:76,defense:64,clutch:84} },
+
+  { year:1970, team:"Baltimore Orioles", abbr:"BAL", nickname:"World Series Champions",
+    C:{name:"Elrod Hendricks",power:55,contact:72,speed:30,defense:85,clutch:74},
+    "1B":{name:"Boog Powell",power:90,contact:82,speed:35,defense:76,clutch:86},
+    "2B":{name:"Davey Johnson",power:60,contact:78,speed:50,defense:86,clutch:76},
+    "3B":{name:"Brooks Robinson",power:65,contact:76,speed:50,defense:99,clutch:88},
+    SS:{name:"Mark Belanger",power:30,contact:66,speed:65,defense:98,clutch:72},
+    LF:{name:"Don Buford",power:55,contact:78,speed:70,defense:76,clutch:76},
+    CF:{name:"Paul Blair",power:55,contact:76,speed:75,defense:97,clutch:78},
+    RF:{name:"Frank Robinson",power:90,contact:86,speed:62,defense:78,clutch:88},
+    DH:{name:"Curt Motton",power:60,contact:74,speed:40,defense:55,clutch:72},
+    SP:{name:"Mike Cuellar",pitching:90,stuff:82,control:88,defense:74,clutch:86},
+    CL:{name:"Eddie Watt",pitching:80,stuff:76,control:78,defense:62,clutch:80} },
+
+  { year:1971, team:"Pittsburgh Pirates", abbr:"PIT", nickname:"Clemente's Last Ride",
+    C:{name:"Manny Sanguillen",power:60,contact:84,speed:50,defense:86,clutch:80},
+    "1B":{name:"Bob Robertson",power:75,contact:76,speed:40,defense:76,clutch:76},
+    "2B":{name:"Dave Cash",power:45,contact:80,speed:65,defense:82,clutch:74},
+    "3B":{name:"Richie Hebner",power:65,contact:80,speed:45,defense:78,clutch:78},
+    SS:{name:"Gene Alley",power:45,contact:74,speed:55,defense:86,clutch:72},
+    LF:{name:"Willie Stargell",power:92,contact:84,speed:40,defense:68,clutch:86},
+    CF:{name:"Al Oliver",power:65,contact:86,speed:55,defense:82,clutch:80},
+    RF:{name:"Roberto Clemente",power:82,contact:93,speed:76,defense:98,clutch:92},
+    DH:{name:"Vic Davalillo",power:50,contact:78,speed:60,defense:65,clutch:76},
+    SP:{name:"Steve Blass",pitching:84,stuff:78,control:84,defense:74,clutch:90},
+    CL:{name:"Dave Giusti",pitching:82,stuff:78,control:80,defense:65,clutch:82} },
+
+  { year:1972, team:"Oakland Athletics", abbr:"OAK", nickname:"Swingin' A's, First of Three",
+    C:{name:"Gene Tenace",power:75,contact:76,speed:35,defense:76,clutch:86},
+    "1B":{name:"Mike Epstein",power:75,contact:74,speed:35,defense:74,clutch:74},
+    "2B":{name:"Dick Green",power:45,contact:68,speed:45,defense:86,clutch:70},
+    "3B":{name:"Sal Bando",power:75,contact:80,speed:45,defense:80,clutch:84},
+    SS:{name:"Bert Campaneris",power:45,contact:80,speed:90,defense:85,clutch:78},
+    LF:{name:"Joe Rudi",power:70,contact:84,speed:55,defense:90,clutch:82},
+    CF:{name:"Angel Mangual",power:55,contact:76,speed:58,defense:78,clutch:72},
+    RF:{name:"Reggie Jackson",power:90,contact:74,speed:58,defense:70,clutch:90},
+    DH:{name:"Mike Hegan",power:55,contact:76,speed:40,defense:70,clutch:72},
+    SP:{name:"Catfish Hunter",pitching:90,stuff:84,control:88,defense:76,clutch:90},
+    CL:{name:"Rollie Fingers",pitching:89,stuff:80,control:84,defense:73,clutch:90} },
+
+  { year:1974, team:"Oakland Athletics", abbr:"OAK", nickname:"Three-Peat Completed",
+    C:{name:"Ray Fosse",power:55,contact:74,speed:35,defense:82,clutch:74},
+    "1B":{name:"Gene Tenace",power:78,contact:76,speed:35,defense:76,clutch:86},
+    "2B":{name:"Dick Green",power:45,contact:68,speed:45,defense:86,clutch:70},
+    "3B":{name:"Sal Bando",power:76,contact:80,speed:45,defense:80,clutch:85},
+    SS:{name:"Bert Campaneris",power:45,contact:80,speed:90,defense:85,clutch:78},
+    LF:{name:"Joe Rudi",power:72,contact:84,speed:55,defense:90,clutch:84},
+    CF:{name:"Bill North",power:40,contact:78,speed:88,defense:82,clutch:74},
+    RF:{name:"Reggie Jackson",power:93,contact:78,speed:58,defense:72,clutch:92},
+    DH:{name:"Deron Johnson",power:70,contact:76,speed:35,defense:55,clutch:76},
+    SP:{name:"Catfish Hunter",pitching:92,stuff:85,control:90,defense:76,clutch:92},
+    CL:{name:"Rollie Fingers",pitching:91,stuff:82,control:85,defense:74,clutch:93} },
+
+  { year:1975, team:"Cincinnati Reds", abbr:"CIN", nickname:"The Big Red Machine",
+    C:{name:"Johnny Bench",power:88,contact:78,speed:55,defense:96,clutch:88},
+    "1B":{name:"Tony Perez",power:82,contact:85,speed:45,defense:80,clutch:88},
+    "2B":{name:"Joe Morgan",power:72,contact:80,speed:88,defense:87,clutch:90},
+    "3B":{name:"Pete Rose",power:60,contact:92,speed:65,defense:78,clutch:88},
+    SS:{name:"Dave Concepcion",power:55,contact:78,speed:68,defense:92,clutch:80},
+    LF:{name:"George Foster",power:85,contact:82,speed:55,defense:75,clutch:84},
+    CF:{name:"Cesar Geronimo",power:50,contact:76,speed:70,defense:90,clutch:74},
+    RF:{name:"Ken Griffey Sr.",power:60,contact:85,speed:82,defense:84,clutch:78},
+    DH:{name:"Merv Rettenmund",power:55,contact:78,speed:50,defense:60,clutch:74},
+    SP:{name:"Don Gullett",pitching:86,stuff:84,control:80,defense:72,clutch:82},
+    CL:{name:"Rawly Eastwick",pitching:82,stuff:80,control:76,defense:62,clutch:82} },
+
+  { year:1976, team:"Cincinnati Reds", abbr:"CIN", nickname:"Back-to-Back Champions",
+    C:{name:"Johnny Bench",power:88,contact:78,speed:55,defense:96,clutch:88},
+    "1B":{name:"Tony Perez",power:82,contact:85,speed:45,defense:80,clutch:88},
+    "2B":{name:"Joe Morgan",power:72,contact:80,speed:88,defense:87,clutch:90},
+    "3B":{name:"Pete Rose",power:60,contact:92,speed:65,defense:78,clutch:88},
+    SS:{name:"Dave Concepcion",power:55,contact:78,speed:68,defense:92,clutch:80},
+    LF:{name:"George Foster",power:88,contact:84,speed:55,defense:76,clutch:85},
+    CF:{name:"Cesar Geronimo",power:50,contact:76,speed:70,defense:90,clutch:74},
+    RF:{name:"Ken Griffey Sr.",power:60,contact:85,speed:82,defense:84,clutch:78},
+    DH:{name:"Dan Driessen",power:65,contact:80,speed:55,defense:65,clutch:74},
+    SP:{name:"Gary Nolan",pitching:84,stuff:78,control:84,defense:72,clutch:82},
+    CL:{name:"Rawly Eastwick",pitching:82,stuff:80,control:76,defense:62,clutch:82} },
+
+  { year:1979, team:"Pittsburgh Pirates", abbr:"PIT", nickname:"We Are Family",
+    C:{name:"Ed Ott",power:55,contact:76,speed:40,defense:80,clutch:74},
+    "1B":{name:"Willie Stargell",power:90,contact:85,speed:35,defense:72,clutch:92},
+    "2B":{name:"Phil Garner",power:55,contact:78,speed:55,defense:80,clutch:78},
+    "3B":{name:"Bill Madlock",power:65,contact:92,speed:55,defense:76,clutch:82},
+    SS:{name:"Tim Foli",power:40,contact:76,speed:50,defense:82,clutch:72},
+    LF:{name:"Bill Robinson",power:70,contact:80,speed:50,defense:74,clutch:78},
+    CF:{name:"Omar Moreno",power:35,contact:76,speed:92,defense:84,clutch:72},
+    RF:{name:"Dave Parker",power:85,contact:87,speed:68,defense:84,clutch:86},
+    DH:{name:"John Milner",power:65,contact:76,speed:45,defense:60,clutch:74},
+    SP:{name:"John Candelaria",pitching:84,stuff:82,control:82,defense:74,clutch:82},
+    CL:{name:"Kent Tekulve",pitching:84,stuff:78,control:80,defense:66,clutch:84} },
+
+  { year:1982, team:"St. Louis Cardinals", abbr:"STL", nickname:"Whiteyball Champions",
+    C:{name:"Darrell Porter",power:65,contact:78,speed:35,defense:82,clutch:84},
+    "1B":{name:"Keith Hernandez",power:65,contact:90,speed:50,defense:97,clutch:86},
+    "2B":{name:"Tommy Herr",power:40,contact:82,speed:60,defense:84,clutch:76},
+    "3B":{name:"Ken Oberkfell",power:35,contact:82,speed:50,defense:80,clutch:74},
+    SS:{name:"Ozzie Smith",power:35,contact:72,speed:86,defense:99,clutch:78},
+    LF:{name:"Lonnie Smith",power:50,contact:84,speed:85,defense:72,clutch:78},
+    CF:{name:"Willie McGee",power:55,contact:84,speed:80,defense:86,clutch:80},
+    RF:{name:"George Hendrick",power:75,contact:82,speed:45,defense:74,clutch:80},
+    DH:{name:"Steve Braun",power:45,contact:78,speed:35,defense:55,clutch:74},
+    SP:{name:"Joaquin Andujar",pitching:85,stuff:82,control:80,defense:74,clutch:82},
+    CL:{name:"Bruce Sutter",pitching:89,stuff:86,control:82,defense:70,clutch:90} },
+
+  { year:1984, team:"Detroit Tigers", abbr:"DET", nickname:"35-5 Start, WS Champs",
+    C:{name:"Lance Parrish",power:82,contact:75,speed:40,defense:85,clutch:78},
+    "1B":{name:"Darrell Evans",power:78,contact:78,speed:35,defense:74,clutch:78},
+    "2B":{name:"Lou Whitaker",power:70,contact:84,speed:65,defense:88,clutch:80},
+    "3B":{name:"Tom Brookens",power:45,contact:72,speed:55,defense:80,clutch:70},
+    SS:{name:"Alan Trammell",power:65,contact:87,speed:65,defense:88,clutch:86},
+    LF:{name:"Larry Herndon",power:55,contact:78,speed:55,defense:75,clutch:74},
+    CF:{name:"Chet Lemon",power:65,contact:80,speed:60,defense:90,clutch:78},
+    RF:{name:"Kirk Gibson",power:82,contact:80,speed:78,defense:78,clutch:88},
+    DH:{name:"John Grubb",power:65,contact:80,speed:40,defense:55,clutch:76},
+    SP:{name:"Jack Morris",pitching:88,stuff:86,control:80,defense:74,clutch:88},
+    CL:{name:"Willie Hernandez",pitching:88,stuff:82,control:82,defense:65,clutch:90} },
+
+  { year:1986, team:"New York Mets", abbr:"NYM", nickname:"108-Win World Series Champions",
+    C:{name:"Gary Carter",power:78,contact:76,speed:50,defense:92,clutch:82},
+    "1B":{name:"Keith Hernandez",power:65,contact:88,speed:45,defense:96,clutch:86},
+    "2B":{name:"Wally Backman",power:35,contact:82,speed:70,defense:80,clutch:76},
+    "3B":{name:"Ray Knight",power:55,contact:80,speed:45,defense:78,clutch:82},
+    SS:{name:"Rafael Santana",power:35,contact:72,speed:50,defense:82,clutch:70},
+    LF:{name:"Mookie Wilson",power:50,contact:78,speed:88,defense:78,clutch:80},
+    CF:{name:"Lenny Dykstra",power:55,contact:80,speed:85,defense:82,clutch:82},
+    RF:{name:"Darryl Strawberry",power:92,contact:78,speed:65,defense:76,clutch:82},
+    DH:{name:"Kevin Mitchell",power:75,contact:80,speed:55,defense:70,clutch:78},
+    SP:{name:"Dwight Gooden",pitching:90,stuff:94,control:80,defense:72,clutch:84},
+    CL:{name:"Jesse Orosco",pitching:82,stuff:80,control:76,defense:62,clutch:84} },
+
+  { year:1989, team:"Oakland Athletics", abbr:"OAK", nickname:"Bash Brothers",
+    C:{name:"Terry Steinbach",power:65,contact:78,speed:40,defense:82,clutch:76},
+    "1B":{name:"Mark McGwire",power:97,contact:75,speed:30,defense:76,clutch:82},
+    "2B":{name:"Tony Phillips",power:55,contact:78,speed:65,defense:80,clutch:76},
+    "3B":{name:"Carney Lansford",power:55,contact:85,speed:55,defense:80,clutch:80},
+    SS:{name:"Walt Weiss",power:35,contact:76,speed:55,defense:82,clutch:74},
+    LF:{name:"Rickey Henderson",power:75,contact:82,speed:99,defense:78,clutch:85},
+    CF:{name:"Dave Henderson",power:65,contact:78,speed:55,defense:78,clutch:80},
+    RF:{name:"Jose Canseco",power:93,contact:78,speed:65,defense:65,clutch:82},
+    DH:{name:"Dave Parker",power:80,contact:83,speed:45,defense:60,clutch:82},
+    SP:{name:"Dave Stewart",pitching:88,stuff:82,control:82,defense:74,clutch:88},
+    CL:{name:"Dennis Eckersley",pitching:92,stuff:78,control:90,defense:76,clutch:90} },
+
+  { year:1990, team:"Cincinnati Reds", abbr:"CIN", nickname:"Wire-to-Wire, Swept the A's",
+    C:{name:"Joe Oliver",power:50,contact:72,speed:35,defense:80,clutch:72},
+    "1B":{name:"Todd Benzinger",power:55,contact:76,speed:45,defense:76,clutch:72},
+    "2B":{name:"Mariano Duncan",power:50,contact:78,speed:60,defense:76,clutch:74},
+    "3B":{name:"Chris Sabo",power:65,contact:78,speed:55,defense:82,clutch:78},
+    SS:{name:"Barry Larkin",power:70,contact:87,speed:80,defense:88,clutch:84},
+    LF:{name:"Eric Davis",power:80,contact:80,speed:85,defense:84,clutch:82},
+    CF:{name:"Billy Hatcher",power:45,contact:78,speed:72,defense:80,clutch:76},
+    RF:{name:"Paul O'Neill",power:70,contact:80,speed:50,defense:76,clutch:80},
+    DH:{name:"Hal Morris",power:55,contact:84,speed:45,defense:70,clutch:76},
+    SP:{name:"Jose Rijo",pitching:88,stuff:86,control:82,defense:74,clutch:90},
+    CL:{name:"Randy Myers",pitching:86,stuff:88,control:76,defense:64,clutch:84} },
+
+  { year:1991, team:"Minnesota Twins", abbr:"MIN", nickname:"Worst to First",
+    C:{name:"Brian Harper",power:55,contact:84,speed:30,defense:76,clutch:78},
+    "1B":{name:"Kent Hrbek",power:75,contact:82,speed:35,defense:82,clutch:82},
+    "2B":{name:"Chuck Knoblauch",power:45,contact:84,speed:75,defense:80,clutch:78},
+    "3B":{name:"Scott Leius",power:45,contact:76,speed:45,defense:76,clutch:72},
+    SS:{name:"Greg Gagne",power:45,contact:74,speed:55,defense:84,clutch:74},
+    LF:{name:"Dan Gladden",power:45,contact:76,speed:70,defense:72,clutch:76},
+    CF:{name:"Kirby Puckett",power:80,contact:90,speed:70,defense:90,clutch:90},
+    RF:{name:"Shane Mack",power:60,contact:84,speed:65,defense:80,clutch:78},
+    DH:{name:"Chili Davis",power:75,contact:82,speed:35,defense:45,clutch:80},
+    SP:{name:"Jack Morris",pitching:87,stuff:82,control:82,defense:74,clutch:95},
+    CL:{name:"Rick Aguilera",pitching:86,stuff:84,control:80,defense:66,clutch:84} },
+
+  { year:1993, team:"Toronto Blue Jays", abbr:"TOR", nickname:"Joe Carter's Walk-Off, WS Champs",
+    C:{name:"Pat Borders",power:55,contact:76,speed:35,defense:82,clutch:78},
+    "1B":{name:"John Olerud",power:70,contact:96,speed:35,defense:90,clutch:84},
+    "2B":{name:"Roberto Alomar",power:65,contact:85,speed:82,defense:92,clutch:82},
+    "3B":{name:"Ed Sprague",power:65,contact:76,speed:40,defense:78,clutch:76},
+    SS:{name:"Tony Fernandez",power:45,contact:84,speed:70,defense:90,clutch:78},
+    LF:{name:"Rickey Henderson",power:75,contact:82,speed:99,defense:78,clutch:85},
+    CF:{name:"Devon White",power:55,contact:76,speed:80,defense:94,clutch:76},
+    RF:{name:"Joe Carter",power:88,contact:78,speed:50,defense:72,clutch:92},
+    DH:{name:"Paul Molitor",power:72,contact:90,speed:78,defense:60,clutch:86},
+    SP:{name:"Juan Guzman",pitching:86,stuff:88,control:78,defense:70,clutch:82},
+    CL:{name:"Duane Ward",pitching:86,stuff:84,control:80,defense:64,clutch:84} },
+
+  { year:1995, team:"Atlanta Braves", abbr:"ATL", nickname:"World Series Champions",
+    C:{name:"Javy Lopez",power:78,contact:82,speed:40,defense:80,clutch:78},
+    "1B":{name:"Fred McGriff",power:88,contact:85,speed:35,defense:76,clutch:84},
+    "2B":{name:"Mark Lemke",power:35,contact:75,speed:45,defense:82,clutch:76},
+    "3B":{name:"Chipper Jones",power:80,contact:85,speed:55,defense:76,clutch:84},
+    SS:{name:"Jeff Blauser",power:55,contact:78,speed:50,defense:78,clutch:76},
+    LF:{name:"Ryan Klesko",power:82,contact:78,speed:40,defense:65,clutch:78},
+    CF:{name:"Marquis Grissom",power:55,contact:80,speed:80,defense:88,clutch:78},
+    RF:{name:"David Justice",power:85,contact:82,speed:50,defense:78,clutch:84},
+    DH:{name:"Mike Devereaux",power:55,contact:74,speed:55,defense:70,clutch:72},
+    SP:{name:"Greg Maddux",pitching:99,stuff:80,control:99,defense:88,clutch:94},
+    CL:{name:"Mark Wohlers",pitching:82,stuff:88,control:74,defense:62,clutch:78} },
+
+  { year:1996, team:"New York Yankees", abbr:"NYY", nickname:"Dynasty Begins",
+    C:{name:"Joe Girardi",power:45,contact:78,speed:35,defense:84,clutch:78},
+    "1B":{name:"Tino Martinez",power:82,contact:84,speed:40,defense:82,clutch:84},
+    "2B":{name:"Mariano Duncan",power:55,contact:80,speed:55,defense:76,clutch:76},
+    "3B":{name:"Wade Boggs",power:55,contact:96,speed:50,defense:85,clutch:84},
+    SS:{name:"Derek Jeter",power:62,contact:85,speed:68,defense:76,clutch:90},
+    LF:{name:"Tim Raines",power:65,contact:84,speed:94,defense:75,clutch:82},
+    CF:{name:"Bernie Williams",power:78,contact:90,speed:60,defense:82,clutch:86},
+    RF:{name:"Paul O'Neill",power:75,contact:86,speed:50,defense:80,clutch:88},
+    DH:{name:"Cecil Fielder",power:90,contact:78,speed:25,defense:40,clutch:84},
+    SP:{name:"Andy Pettitte",pitching:88,stuff:82,control:86,defense:74,clutch:88},
+    CL:{name:"John Wetteland",pitching:88,stuff:84,control:80,defense:64,clutch:90} },
+
+  { year:1998, team:"New York Yankees", abbr:"NYY", nickname:"114-Win Juggernaut",
+    C:{name:"Jorge Posada",power:70,contact:80,speed:35,defense:78,clutch:80},
+    "1B":{name:"Tino Martinez",power:82,contact:84,speed:40,defense:82,clutch:84},
+    "2B":{name:"Chuck Knoblauch",power:55,contact:82,speed:75,defense:78,clutch:78},
+    "3B":{name:"Scott Brosius",power:65,contact:80,speed:45,defense:85,clutch:86},
+    SS:{name:"Derek Jeter",power:68,contact:87,speed:70,defense:78,clutch:94},
+    LF:{name:"Chad Curtis",power:55,contact:76,speed:60,defense:75,clutch:76},
+    CF:{name:"Bernie Williams",power:78,contact:90,speed:60,defense:82,clutch:86},
+    RF:{name:"Paul O'Neill",power:75,contact:86,speed:50,defense:80,clutch:88},
+    DH:{name:"Chili Davis",power:75,contact:82,speed:35,defense:45,clutch:80},
+    SP:{name:"David Cone",pitching:90,stuff:85,control:86,defense:74,clutch:88},
+    CL:{name:"Mariano Rivera",pitching:96,stuff:80,control:90,defense:74,clutch:98} },
+
+  { year:2000, team:"New York Yankees", abbr:"NYY", nickname:"The Three-Peat",
+    C:{name:"Jorge Posada",power:75,contact:82,speed:35,defense:80,clutch:82},
+    "1B":{name:"Tino Martinez",power:82,contact:84,speed:40,defense:82,clutch:84},
+    "2B":{name:"Chuck Knoblauch",power:55,contact:82,speed:75,defense:78,clutch:78},
+    "3B":{name:"Scott Brosius",power:65,contact:80,speed:45,defense:85,clutch:86},
+    SS:{name:"Derek Jeter",power:70,contact:88,speed:68,defense:78,clutch:95},
+    LF:{name:"David Justice",power:85,contact:82,speed:50,defense:78,clutch:84},
+    CF:{name:"Bernie Williams",power:78,contact:90,speed:60,defense:82,clutch:86},
+    RF:{name:"Paul O'Neill",power:75,contact:86,speed:50,defense:80,clutch:88},
+    DH:{name:"Glenallen Hill",power:80,contact:76,speed:35,defense:45,clutch:76},
+    SP:{name:"Roger Clemens",pitching:90,stuff:90,control:82,defense:72,clutch:84},
+    CL:{name:"Mariano Rivera",pitching:97,stuff:80,control:92,defense:75,clutch:99} },
+
+  { year:2001, team:"Seattle Mariners", abbr:"SEA", nickname:"116-Win MLB Record",
+    C:{name:"Dan Wilson",power:50,contact:74,speed:35,defense:82,clutch:74},
+    "1B":{name:"John Olerud",power:70,contact:88,speed:35,defense:90,clutch:82},
+    "2B":{name:"Bret Boone",power:82,contact:86,speed:55,defense:84,clutch:84},
+    "3B":{name:"David Bell",power:55,contact:76,speed:40,defense:82,clutch:74},
+    SS:{name:"Carlos Guillen",power:55,contact:80,speed:55,defense:80,clutch:76},
+    LF:{name:"Mark McLemore",power:45,contact:78,speed:65,defense:74,clutch:74},
+    CF:{name:"Mike Cameron",power:70,contact:76,speed:80,defense:94,clutch:78},
+    RF:{name:"Ichiro Suzuki",power:45,contact:98,speed:92,defense:92,clutch:86},
+    DH:{name:"Edgar Martinez",power:82,contact:92,speed:40,defense:35,clutch:90},
+    SP:{name:"Jamie Moyer",pitching:84,stuff:65,control:92,defense:76,clutch:84},
+    CL:{name:"Kazuhiro Sasaki",pitching:86,stuff:82,control:78,defense:62,clutch:84} },
+
+  { year:2004, team:"Boston Red Sox", abbr:"BOS", nickname:"Broke the Curse",
+    C:{name:"Jason Varitek",power:70,contact:78,speed:35,defense:85,clutch:86},
+    "1B":{name:"Kevin Millar",power:70,contact:80,speed:40,defense:70,clutch:80},
+    "2B":{name:"Mark Bellhorn",power:65,contact:74,speed:45,defense:75,clutch:78},
+    "3B":{name:"Bill Mueller",power:55,contact:86,speed:45,defense:80,clutch:80},
+    SS:{name:"Orlando Cabrera",power:55,contact:80,speed:60,defense:84,clutch:80},
+    LF:{name:"Manny Ramirez",power:92,contact:88,speed:40,defense:55,clutch:90},
+    CF:{name:"Johnny Damon",power:60,contact:84,speed:78,defense:82,clutch:82},
+    RF:{name:"Trot Nixon",power:70,contact:80,speed:45,defense:78,clutch:80},
+    DH:{name:"David Ortiz",power:93,contact:85,speed:30,defense:40,clutch:96},
+    SP:{name:"Curt Schilling",pitching:92,stuff:88,control:88,defense:74,clutch:92},
+    CL:{name:"Keith Foulke",pitching:86,stuff:80,control:82,defense:64,clutch:86} },
+
+  { year:2007, team:"Boston Red Sox", abbr:"BOS", nickname:"World Series Champions",
+    C:{name:"Jason Varitek",power:70,contact:78,speed:35,defense:85,clutch:86},
+    "1B":{name:"Kevin Youkilis",power:70,contact:88,speed:45,defense:88,clutch:82},
+    "2B":{name:"Dustin Pedroia",power:60,contact:90,speed:60,defense:88,clutch:84},
+    "3B":{name:"Mike Lowell",power:72,contact:86,speed:40,defense:82,clutch:86},
+    SS:{name:"Julio Lugo",power:45,contact:76,speed:65,defense:76,clutch:72},
+    LF:{name:"Manny Ramirez",power:92,contact:88,speed:40,defense:55,clutch:90},
+    CF:{name:"Coco Crisp",power:50,contact:76,speed:78,defense:84,clutch:74},
+    RF:{name:"J.D. Drew",power:70,contact:84,speed:55,defense:80,clutch:76},
+    DH:{name:"David Ortiz",power:93,contact:85,speed:30,defense:40,clutch:96},
+    SP:{name:"Josh Beckett",pitching:90,stuff:88,control:84,defense:72,clutch:90},
+    CL:{name:"Jonathan Papelbon",pitching:88,stuff:90,control:78,defense:62,clutch:86} },
+
+  { year:2009, team:"New York Yankees", abbr:"NYY", nickname:"27th World Series Title",
+    C:{name:"Jorge Posada",power:75,contact:82,speed:30,defense:78,clutch:84},
+    "1B":{name:"Mark Teixeira",power:88,contact:85,speed:40,defense:92,clutch:82},
+    "2B":{name:"Robinson Cano",power:78,contact:86,speed:55,defense:82,clutch:78},
+    "3B":{name:"Alex Rodriguez",power:90,contact:84,speed:65,defense:80,clutch:86},
+    SS:{name:"Derek Jeter",power:68,contact:87,speed:65,defense:78,clutch:94},
+    LF:{name:"Johnny Damon",power:65,contact:84,speed:70,defense:76,clutch:82},
+    CF:{name:"Melky Cabrera",power:55,contact:78,speed:65,defense:80,clutch:72},
+    RF:{name:"Nick Swisher",power:70,contact:78,speed:45,defense:76,clutch:76},
+    DH:{name:"Hideki Matsui",power:80,contact:86,speed:35,defense:40,clutch:90},
+    SP:{name:"CC Sabathia",pitching:90,stuff:88,control:84,defense:74,clutch:86},
+    CL:{name:"Mariano Rivera",pitching:96,stuff:80,control:90,defense:74,clutch:98} },
+
+  { year:2013, team:"Boston Red Sox", abbr:"BOS", nickname:"Beard Power, WS Champions",
+    C:{name:"Jarrod Saltalamacchia",power:60,contact:74,speed:35,defense:76,clutch:76},
+    "1B":{name:"Mike Napoli",power:75,contact:76,speed:35,defense:80,clutch:80},
+    "2B":{name:"Dustin Pedroia",power:65,contact:90,speed:58,defense:90,clutch:86},
+    "3B":{name:"Will Middlebrooks",power:65,contact:72,speed:40,defense:78,clutch:72},
+    SS:{name:"Stephen Drew",power:55,contact:74,speed:45,defense:82,clutch:74},
+    LF:{name:"Jonny Gomes",power:55,contact:74,speed:40,defense:65,clutch:80},
+    CF:{name:"Jacoby Ellsbury",power:55,contact:84,speed:92,defense:84,clutch:80},
+    RF:{name:"Shane Victorino",power:55,contact:80,speed:70,defense:86,clutch:82},
+    DH:{name:"David Ortiz",power:90,contact:88,speed:30,defense:40,clutch:97},
+    SP:{name:"Jon Lester",pitching:89,stuff:84,control:84,defense:74,clutch:88},
+    CL:{name:"Koji Uehara",pitching:89,stuff:82,control:92,defense:66,clutch:90} },
+
+  { year:2015, team:"Kansas City Royals", abbr:"KC", nickname:"World Series Champions",
+    C:{name:"Salvador Perez",power:78,contact:78,speed:35,defense:86,clutch:82},
+    "1B":{name:"Eric Hosmer",power:72,contact:82,speed:50,defense:84,clutch:84},
+    "2B":{name:"Ben Zobrist",power:65,contact:84,speed:50,defense:80,clutch:82},
+    "3B":{name:"Mike Moustakas",power:75,contact:80,speed:40,defense:82,clutch:80},
+    SS:{name:"Alcides Escobar",power:35,contact:76,speed:70,defense:86,clutch:74},
+    LF:{name:"Alex Gordon",power:70,contact:80,speed:55,defense:92,clutch:82},
+    CF:{name:"Lorenzo Cain",power:55,contact:84,speed:85,defense:90,clutch:86},
+    RF:{name:"Alex Rios",power:55,contact:78,speed:65,defense:78,clutch:74},
+    DH:{name:"Kendrys Morales",power:78,contact:82,speed:35,defense:40,clutch:80},
+    SP:{name:"Johnny Cueto",pitching:86,stuff:84,control:82,defense:74,clutch:84},
+    CL:{name:"Wade Davis",pitching:90,stuff:92,control:80,defense:62,clutch:88} },
+
+  { year:2016, team:"Chicago Cubs", abbr:"CHC", nickname:"Broke the 108-Year Curse",
+    C:{name:"Willson Contreras",power:75,contact:78,speed:45,defense:82,clutch:78},
+    "1B":{name:"Anthony Rizzo",power:85,contact:86,speed:40,defense:88,clutch:86},
+    "2B":{name:"Javier Baez",power:75,contact:76,speed:75,defense:88,clutch:84},
+    "3B":{name:"Kris Bryant",power:88,contact:85,speed:55,defense:82,clutch:86},
+    SS:{name:"Addison Russell",power:65,contact:74,speed:55,defense:88,clutch:76},
+    LF:{name:"Ben Zobrist",power:65,contact:84,speed:50,defense:80,clutch:82},
+    CF:{name:"Dexter Fowler",power:55,contact:82,speed:70,defense:80,clutch:78},
+    RF:{name:"Jason Heyward",power:60,contact:74,speed:65,defense:92,clutch:76},
+    DH:{name:"Kyle Schwarber",power:85,contact:78,speed:35,defense:45,clutch:86},
+    SP:{name:"Jon Lester",pitching:90,stuff:82,control:86,defense:76,clutch:88},
+    CL:{name:"Aroldis Chapman",pitching:92,stuff:99,control:76,defense:60,clutch:88} },
+
+  { year:2017, team:"Houston Astros", abbr:"HOU", nickname:"World Series Champions",
+    C:{name:"Brian McCann",power:70,contact:78,speed:30,defense:82,clutch:80},
+    "1B":{name:"Yuli Gurriel",power:70,contact:84,speed:40,defense:78,clutch:78},
+    "2B":{name:"Jose Altuve",power:75,contact:94,speed:82,defense:80,clutch:90},
+    "3B":{name:"Alex Bregman",power:78,contact:84,speed:55,defense:84,clutch:84},
+    SS:{name:"Carlos Correa",power:82,contact:85,speed:55,defense:82,clutch:84},
+    LF:{name:"Marwin Gonzalez",power:70,contact:80,speed:50,defense:76,clutch:78},
+    CF:{name:"George Springer",power:82,contact:82,speed:70,defense:82,clutch:90},
+    RF:{name:"Josh Reddick",power:65,contact:78,speed:45,defense:80,clutch:76},
+    DH:{name:"Carlos Beltran",power:75,contact:80,speed:45,defense:55,clutch:86},
+    SP:{name:"Justin Verlander",pitching:93,stuff:90,control:85,defense:72,clutch:88},
+    CL:{name:"Ken Giles",pitching:82,stuff:86,control:74,defense:60,clutch:76} },
+
+  { year:2019, team:"Washington Nationals", abbr:"WSH", nickname:"World Series Champions",
+    C:{name:"Kurt Suzuki",power:60,contact:78,speed:30,defense:80,clutch:78},
+    "1B":{name:"Ryan Zimmerman",power:65,contact:78,speed:35,defense:76,clutch:80},
+    "2B":{name:"Asdrubal Cabrera",power:65,contact:80,speed:45,defense:74,clutch:78},
+    "3B":{name:"Anthony Rendon",power:85,contact:90,speed:50,defense:88,clutch:86},
+    SS:{name:"Trea Turner",power:78,contact:86,speed:94,defense:82,clutch:82},
+    LF:{name:"Juan Soto",power:90,contact:93,speed:60,defense:72,clutch:88},
+    CF:{name:"Victor Robles",power:55,contact:76,speed:85,defense:86,clutch:74},
+    RF:{name:"Adam Eaton",power:55,contact:82,speed:70,defense:80,clutch:76},
+    DH:{name:"Howie Kendrick",power:72,contact:86,speed:45,defense:65,clutch:90},
+    SP:{name:"Max Scherzer",pitching:93,stuff:92,control:86,defense:72,clutch:86},
+    CL:{name:"Daniel Hudson",pitching:84,stuff:84,control:78,defense:62,clutch:86} },
+
+  { year:2022, team:"Houston Astros", abbr:"HOU", nickname:"World Series Champions",
+    C:{name:"Martin Maldonado",power:45,contact:65,speed:30,defense:88,clutch:74},
+    "1B":{name:"Yuli Gurriel",power:65,contact:82,speed:35,defense:78,clutch:76},
+    "2B":{name:"Jose Altuve",power:78,contact:92,speed:75,defense:80,clutch:90},
+    "3B":{name:"Alex Bregman",power:78,contact:85,speed:45,defense:84,clutch:84},
+    SS:{name:"Jeremy Pena",power:65,contact:78,speed:60,defense:86,clutch:88},
+    LF:{name:"Michael Brantley",power:60,contact:88,speed:45,defense:76,clutch:80},
+    CF:{name:"Chas McCormick",power:65,contact:76,speed:65,defense:84,clutch:82},
+    RF:{name:"Kyle Tucker",power:85,contact:85,speed:70,defense:86,clutch:84},
+    DH:{name:"Yordan Alvarez",power:94,contact:90,speed:35,defense:40,clutch:90},
+    SP:{name:"Justin Verlander",pitching:96,stuff:90,control:90,defense:72,clutch:90},
+    CL:{name:"Ryan Pressly",pitching:84,stuff:84,control:80,defense:62,clutch:80} },
+
+  { year:2024, team:"Los Angeles Dodgers", abbr:"LAD", nickname:"World Series Champions",
+    C:{name:"Will Smith",power:78,contact:84,speed:40,defense:84,clutch:82},
+    "1B":{name:"Freddie Freeman",power:82,contact:89,speed:50,defense:86,clutch:90},
+    "2B":{name:"Gavin Lux",power:60,contact:78,speed:55,defense:76,clutch:74},
+    "3B":{name:"Max Muncy",power:82,contact:78,speed:35,defense:78,clutch:80},
+    SS:{name:"Mookie Betts",power:82,contact:88,speed:75,defense:88,clutch:88},
+    LF:{name:"Teoscar Hernandez",power:85,contact:82,speed:45,defense:75,clutch:80},
+    CF:{name:"Tommy Edman",power:60,contact:80,speed:78,defense:86,clutch:82},
+    RF:{name:"Andy Pages",power:65,contact:76,speed:55,defense:80,clutch:72},
+    DH:{name:"Shohei Ohtani",power:96,contact:88,speed:88,defense:50,clutch:92},
+    SP:{name:"Yoshinobu Yamamoto",pitching:89,stuff:88,control:86,defense:74,clutch:82},
+    CL:{name:"Evan Phillips",pitching:84,stuff:84,control:78,defense:62,clutch:82} }
+];
+
+// Slot definitions in display order
+const SLOTS = [
+  {id:"C", label:"Catcher", type:"batter"},
+  {id:"1B", label:"First Base", type:"batter"},
+  {id:"2B", label:"Second Base", type:"batter"},
+  {id:"3B", label:"Third Base", type:"batter"},
+  {id:"SS", label:"Shortstop", type:"batter"},
+  {id:"LF", label:"Left Field", type:"batter"},
+  {id:"CF", label:"Center Field", type:"batter"},
+  {id:"RF", label:"Right Field", type:"batter"},
+  {id:"DH", label:"Designated Hitter", type:"batter"},
+  {id:"SP", label:"Starting Pitcher", type:"pitcher"},
+  {id:"CL", label:"Closer", type:"pitcher"}
+];
+
+const REPLACEMENT_BATTER = {name:"Replacement Player", era:"—", power:55, contact:55, speed:55, defense:55, clutch:55};
+const REPLACEMENT_PITCHER = {name:"Replacement Arm", era:"—", pitching:55, stuff:55, control:55, defense:55, clutch:55};
+
+const MAX_SPINS = 11;
+const MAX_SKIPS = 3;
+const REEL_ITEM_HEIGHT = 64;
+const REEL_REPEATS = 6;
+const REEL_LANDING_REPEAT = 4; // land within this repeat block for a long, satisfying spin
+
+/* ---------------------------------------------------------
+   STATE
+--------------------------------------------------------- */
+let roster = {};            // slotId -> player object (with era = "YEAR Team")
+let skipsUsed = 0;          // skips don't consume a spin — tracked separately, capped at MAX_SKIPS
+let pendingTeamSeason = null;
+let history = [];           // {teamSeason, decision:'picked'|'skipped', slotId?, playerName?}
+
+const boardEl = document.getElementById("board");
+const catsEl = document.getElementById("cats");
+const reelStripEl = document.getElementById("reelStrip");
+const spinBtn = document.getElementById("spinBtn");
+const spinsLeftEl = document.getElementById("spinsLeft");
+const skipsLeftEl = document.getElementById("skipsLeft");
+const pendingPickEl = document.getElementById("pendingPick");
+const pendingGridEl = document.getElementById("pendingGrid");
+const skipBtn = document.getElementById("skipBtn");
+const historyListEl = document.getElementById("historyList");
+const simulateBtn = document.getElementById("simulateBtn");
+const resetBtn = document.getElementById("resetBtn");
+const resultEl = document.getElementById("result");
+
+const CATEGORY_DEFS = [
+  {key:"power", label:"Power"},
+  {key:"contact", label:"Contact"},
+  {key:"speed", label:"Speed & Baserunning"},
+  {key:"defense", label:"Defense"},
+  {key:"startPitch", label:"Starting Pitching"},
+  {key:"bullpen", label:"Bullpen"},
+  {key:"clutch", label:"Clutch"}
+];
+
+/* ---------------------------------------------------------
+   BUILD REEL STRIP
+--------------------------------------------------------- */
+function buildReel(){
+  for(let r = 0; r < REEL_REPEATS; r++){
+    TEAM_SEASONS.forEach(t => {
+      const item = document.createElement("div");
+      item.className = "reel-item";
+      item.innerHTML = `<div class="ri-main">${t.year} ${t.team.toUpperCase()}</div><div class="ri-sub">${t.nickname || ""}</div>`;
+      reelStripEl.appendChild(item);
+    });
+  }
+}
+buildReel();
+
+function updateSpinsUI(){
+  const spinsLeft = MAX_SPINS - Object.keys(roster).length;
+  spinsLeftEl.textContent = `${spinsLeft} spin${spinsLeft === 1 ? "" : "s"} left`;
+  spinBtn.disabled = spinsLeft <= 0 || !!pendingTeamSeason;
+  spinBtn.textContent = spinsLeft <= 0 ? "NO SPINS LEFT" : "SPIN";
+
+  const skipsLeft = MAX_SKIPS - skipsUsed;
+  skipsLeftEl.textContent = `${skipsLeft} skip${skipsLeft === 1 ? "" : "s"} left`;
+  skipsLeftEl.classList.toggle("exhausted", skipsLeft <= 0);
+
+  skipBtn.disabled = skipsLeft <= 0;
+  skipBtn.textContent = skipsLeft <= 0 ? "No Skips Left — Must Draft" : "Skip This Roster";
+}
+
+/* ---------------------------------------------------------
+   RENDER: BOARD
+--------------------------------------------------------- */
+function renderBoard(){
+  boardEl.innerHTML = "";
+  SLOTS.forEach(slot => {
+    const player = roster[slot.id];
+    const div = document.createElement("div");
+    div.className = "slot" + (player ? " filled" : " empty");
+    div.dataset.slot = slot.id;
+
+    if(player){
+      div.innerHTML = `
+        <div class="pos-tag">${slot.label}</div>
+        <div class="pname">${player.name}</div>
+        <div class="pmeta">${player.era}</div>
+      `;
+    } else {
+      div.innerHTML = `
+        <div class="pos-tag">${slot.label}</div>
+        <div class="pname">+</div>
+        <div class="pmeta">open</div>
+      `;
+    }
+
+    boardEl.appendChild(div);
+  });
+
+  document.getElementById("sbFilled").textContent = `${Object.keys(roster).length} / ${SLOTS.length}`;
+}
+
+/* ---------------------------------------------------------
+   SPIN
+--------------------------------------------------------- */
+spinBtn.addEventListener("click", () => {
+  if(Object.keys(roster).length >= MAX_SPINS || pendingTeamSeason) return;
+  spinBtn.disabled = true;
+  reelStripEl.classList.add("spinning");
+
+  const idx = Math.floor(Math.random() * TEAM_SEASONS.length);
+  const landingFlatIndex = REEL_LANDING_REPEAT * TEAM_SEASONS.length + idx;
+
+  reelStripEl.style.transition = "none";
+  reelStripEl.style.transform = "translateY(0px)";
+  void reelStripEl.offsetHeight; // force reflow so the reset isn't animated
+  reelStripEl.style.transition = "transform 3s cubic-bezier(.12,.7,.1,1)";
+  reelStripEl.style.transform = `translateY(-${landingFlatIndex * REEL_ITEM_HEIGHT}px)`;
+
+  setTimeout(() => {
+    reelStripEl.classList.remove("spinning");
+    pendingTeamSeason = TEAM_SEASONS[idx];
+    renderAll();
+    pendingPickEl.scrollIntoView({behavior:"smooth", block:"nearest"});
+  }, 3050);
+});
+
+skipBtn.addEventListener("click", () => {
+  if(!pendingTeamSeason || skipsUsed >= MAX_SKIPS) return;
+  skipsUsed++;
+  history.push({teamSeason: pendingTeamSeason, decision: "skipped"});
+  pendingTeamSeason = null;
+  renderAll();
+});
+
+/* ---------------------------------------------------------
+   RENDER: PENDING PICK
+--------------------------------------------------------- */
+function renderPendingPick(){
+  if(!pendingTeamSeason){
+    pendingPickEl.style.display = "none";
+    return;
+  }
+  pendingPickEl.style.display = "block";
+  pendingGridEl.innerHTML = "";
+
+  const teamLabel = `${pendingTeamSeason.year} ${pendingTeamSeason.team}`;
+
+  SLOTS.forEach(slot => {
+    const player = pendingTeamSeason[slot.id];
+    const slotFilled = !!roster[slot.id];
+    const usedElsewhere = Object.values(roster).some(p => p.name === player.name);
+    const locked = slotFilled || usedElsewhere;
+
+    const item = document.createElement("div");
+    item.className = "reveal-player" + (locked ? " disabled" : "");
+
+    const chips = slot.type === "batter"
+      ? `<span class="chip">PWR ${player.power}</span><span class="chip">CON ${player.contact}</span><span class="chip">SPD ${player.speed}</span><span class="chip">DEF ${player.defense}</span>`
+      : `<span class="chip">PITCH ${player.pitching}</span><span class="chip">STUFF ${player.stuff}</span><span class="chip">CTRL ${player.control}</span>`;
+
+    let stateLabel = "";
+    if(slotFilled) stateLabel = `<div class="reveal-state">Slot Filled</div>`;
+    else if(usedElsewhere) stateLabel = `<div class="reveal-state">Already Drafted</div>`;
+
+    item.innerHTML = `
+      <div class="pos-tag">${slot.label}</div>
+      <div class="pn">${player.name}</div>
+      <div class="stats">${chips}</div>
+      ${stateLabel}
+    `;
+
+    if(!locked){
+      item.addEventListener("click", () => {
+        roster[slot.id] = { ...player, era: teamLabel };
+        history.push({teamSeason: pendingTeamSeason, decision: "picked", slotId: slot.id, playerName: player.name});
+        pendingTeamSeason = null;
+        renderAll();
+      });
+    }
+
+    pendingGridEl.appendChild(item);
+  });
+}
+
+/* ---------------------------------------------------------
+   RENDER: HISTORY
+--------------------------------------------------------- */
+function renderHistory(){
+  if(history.length === 0){
+    historyListEl.innerHTML = `<div class="history-empty">No spins yet — hit Spin to reveal your first team.</div>`;
+    return;
+  }
+  historyListEl.innerHTML = "";
+  history.forEach((entry, i) => {
+    const spinNumber = i + 1;
+    const teamLabel = `${entry.teamSeason.year} ${entry.teamSeason.team}`;
+    const card = document.createElement("div");
+    card.className = "history-card" + (entry.decision === "picked" ? " picked" : "");
+    if(entry.decision === "picked"){
+      const slot = SLOTS.find(s => s.id === entry.slotId);
+      card.innerHTML = `<span class="hc-spin">Spin ${spinNumber}</span><span class="hc-team">${teamLabel}</span><span class="hc-result">✓ Drafted ${entry.playerName} <em>(${slot.label})</em></span>`;
+    } else {
+      card.innerHTML = `<span class="hc-spin">Spin ${spinNumber}</span><span class="hc-team">${teamLabel}</span><span class="hc-result skipped-label">Skipped</span>`;
+    }
+    historyListEl.appendChild(card);
+  });
+}
+
+/* ---------------------------------------------------------
+   TEAM RATING CALCULATIONS (empty slots use replacement level)
+--------------------------------------------------------- */
+function effectivePlayer(slotId, type){
+  return roster[slotId] || (type === "batter" ? REPLACEMENT_BATTER : REPLACEMENT_PITCHER);
+}
+
+function computeCategories(){
+  const batters = SLOTS.filter(s => s.type === "batter").map(s => effectivePlayer(s.id, "batter"));
+  const sp = effectivePlayer("SP", "pitcher");
+  const cl = effectivePlayer("CL", "pitcher");
+  const pitchers = [sp, cl];
+
+  const avg = (arr, key) => arr.reduce((sum,p) => sum + p[key], 0) / arr.length;
+
+  const power = avg(batters, "power");
+  const contact = avg(batters, "contact");
+  const speed = avg(batters, "speed");
+  const defense = avg(batters, "defense") * 0.8 + avg(pitchers, "defense") * 0.2;
+  const startPitch = sp.pitching;
+  const bullpen = cl.pitching;
+  const clutch = avg([...batters, ...pitchers], "clutch");
+
+  return {power, contact, speed, defense, startPitch, bullpen, clutch};
+}
+
+function renderCategories(){
+  const cats = computeCategories();
+  catsEl.innerHTML = "";
+  CATEGORY_DEFS.forEach(def => {
+    const val = Math.round(cats[def.key] || 0);
+    const div = document.createElement("div");
+    div.className = "cat";
+    div.innerHTML = `
+      <div class="cat-top"><span>${def.label}</span><b>${val}</b></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${val}%"></div></div>
+    `;
+    catsEl.appendChild(div);
+  });
+
+  const overall = Math.round(CATEGORY_DEFS.reduce((s, d) => s + (cats[d.key] || 0), 0) / CATEGORY_DEFS.length);
+  document.getElementById("sbOverall").textContent = overall;
+  document.getElementById("sbGrade").textContent = gradeForOverall(overall);
+}
+
+function gradeForOverall(overall){
+  if(overall >= 92) return "A+";
+  if(overall >= 87) return "A";
+  if(overall >= 82) return "A-";
+  if(overall >= 77) return "B+";
+  if(overall >= 72) return "B";
+  if(overall >= 65) return "C+";
+  return "C";
+}
+
+/* ---------------------------------------------------------
+   SEASON SIMULATION
+--------------------------------------------------------- */
+function simulateSeason(){
+  const cats = computeCategories();
+  const overall = CATEGORY_DEFS.reduce((s, d) => s + (cats[d.key] || 0), 0) / CATEGORY_DEFS.length;
+
+  const pWin = 1 / (1 + Math.pow(10, -(overall - 74) / 11));
+  const clampedP = Math.min(0.94, Math.max(0.32, pWin));
+
+  let wins = 0;
+  for(let i = 0; i < 162; i++){
+    if(Math.random() < clampedP) wins++;
+  }
+  const losses = 162 - wins;
+
+  let grade, flavor;
+  if(wins >= 158){
+    grade = "HISTORIC — PERFECT SEASON ENERGY";
+    flavor = "This roster is baseball's answer to going undefeated. The stuff of legend.";
+  } else if(wins >= 145){
+    grade = "DYNASTY";
+    flavor = "A juggernaut lineup and rotation — this team steamrolls October.";
+  } else if(wins >= 125){
+    grade = "PENNANT WINNER";
+    flavor = "Deep, balanced, and dangerous. A serious championship contender.";
+  } else if(wins >= 108){
+    grade = "PLAYOFF LOCK";
+    flavor = "Strong across the board — this club is built for a long run.";
+  } else if(wins >= 90){
+    grade = "WILD CARD HUNT";
+    flavor = "Talented, but a few holes keep this team out of the elite tier.";
+  } else if(wins >= 75){
+    grade = ".500 CLUB";
+    flavor = "A middle-of-the-pack roster — some real stars, some real gaps.";
+  } else {
+    grade = "REBUILDING YEAR";
+    flavor = "Your picks are outnumbered by replacement-level filler — spend your spins wisely next time.";
+  }
+
+  document.getElementById("resultRecord").textContent = `${wins}-${losses}`;
+  document.getElementById("resultGrade").textContent = grade;
+  document.getElementById("resultFlavor").textContent = flavor;
+  document.getElementById("resultDiff").textContent = `Overall roster rating: ${Math.round(overall)} · Simulated win probability per game: ${(clampedP*100).toFixed(1)}%`;
+  resultEl.classList.add("show");
+  resultEl.scrollIntoView({behavior:"smooth", block:"center"});
+}
+
+/* ---------------------------------------------------------
+   EVENTS
+--------------------------------------------------------- */
+simulateBtn.addEventListener("click", simulateSeason);
+resetBtn.addEventListener("click", () => {
+  roster = {};
+  skipsUsed = 0;
+  pendingTeamSeason = null;
+  history = [];
+  reelStripEl.style.transition = "none";
+  reelStripEl.style.transform = "translateY(0px)";
+  resultEl.classList.remove("show");
+  renderAll();
+});
+
+function renderAll(){
+  renderBoard();
+  renderCategories();
+  renderPendingPick();
+  renderHistory();
+  updateSpinsUI();
+  simulateBtn.disabled = !!pendingTeamSeason;
+}
+
+renderAll();
+</script>
+</body>
+</html>
