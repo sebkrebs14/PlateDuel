@@ -550,9 +550,9 @@ def build_matchup_section(
                 })
 
     table = (
-        "<table><tr><th>Batter</th><th>Bats</th>"
+        "<div class='matchup-table-scroll'><table><tr><th>Batter</th><th>Bats</th>"
         f"<th>{CURRENT_SEASON} season</th><th>Career vs pitcher</th><th>{CURRENT_SEASON} vs pitcher</th></tr>"
-        + "".join(rows) + "</table>"
+        + "".join(rows) + "</table></div>"
     )
     return f"<h3>{header}</h3>{table}"
 
@@ -1043,6 +1043,14 @@ body {{
 table {{ border-collapse: collapse; width: 100%; margin-bottom: 0.75rem; font-size: 0.85rem; }}
 th, td {{ border: none; border-bottom: 1px solid #222; padding: 6px 10px; text-align: left; font-family: ui-monospace, monospace; }}
 th {{ border-bottom: 1px solid #333; color: #aaa; font-family: -apple-system, sans-serif; font-size: 0.78rem; text-transform: uppercase; }}
+
+.matchup-table-scroll {{ overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 0.75rem; }}
+.matchup-table-scroll table {{ width: max-content; min-width: 100%; margin-bottom: 0; }}
+.matchup-table-scroll th, .matchup-table-scroll td {{ white-space: nowrap; }}
+.matchup-table-scroll th:first-child, .matchup-table-scroll td:first-child {{
+  position: sticky; left: 0; z-index: 1; background: #161616;
+  white-space: normal; border-right: 1px solid #262626;
+}}
 
 .trends-panel {{ display: flex; flex-direction: column; gap: 1rem; }}
 .trend-block h4 {{ margin: 0 0 0.4rem; font-size: 0.85rem; color: #ddd; }}
