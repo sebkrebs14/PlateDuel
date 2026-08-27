@@ -763,7 +763,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 
 <section class="all-matchups">
   <div class="all-matchups-header">
-    <h2>All Matchups</h2>
+    <h2>All Batter vs Pitcher Matchups</h2>
     <button type="button" id="opposite-hand-toggle" class="toggle-btn">Opposite-hand matchups only</button>
   </div>
   <p class="table-hint">Sorted by career hits vs pitcher by default. Click a column header to sort. Click Bats or Throws to cycle through L / R / S filters. Rows with no recorded history sort to the bottom.</p>
