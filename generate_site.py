@@ -70,6 +70,9 @@ ROOT_REDIRECT_HTML = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>PlateDuel</title>
 <meta http-equiv="refresh" content="0; url={HOME_URL}">
 <link rel="canonical" href="{SITE_BASE_URL}{HOME_URL}">
@@ -733,6 +736,9 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Today's Matchups - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="{meta_description}">
@@ -1102,6 +1108,9 @@ ROSTER_MOVES_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Roster Moves - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Recent MLB roster moves - call-ups, injuries, and transactions across the league.">
@@ -1258,6 +1267,9 @@ HR_PICKS_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>HR Picks - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Today's best MLB home run picks, ranked by matchup strength and ballpark factors.">
@@ -1425,6 +1437,9 @@ PARK_FACTORS_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Park Factors - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="MLB ballpark factors for every stadium - how each park affects home runs and scoring.">
@@ -1570,6 +1585,9 @@ WEATHER_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Weather Watch - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Wind and weather conditions for today's MLB games, and how they affect scoring.">
@@ -1801,6 +1819,9 @@ PLAYER_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>{player_name} - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="{meta_description}">
@@ -1862,6 +1883,9 @@ TEAM_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>{team_name} - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="{meta_description}">
@@ -2210,6 +2234,9 @@ STREAKS_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Streaks - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Active MLB hitting and pitching streaks across the league, updated daily.">
@@ -2680,6 +2707,9 @@ LEADERBOARD_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>League Leaders - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="MLB league leaders in home runs, batting average, ERA, strikeouts, and more - for players and teams.">
@@ -2851,6 +2881,9 @@ STANDINGS_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Standings - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="{meta_description}">
@@ -3668,6 +3701,9 @@ WORD_GAME_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Bordle - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Bordle: a daily baseball word guessing game, MLB-themed and free to play.">
@@ -5309,6 +5345,9 @@ GRID_GAME_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Diamond Grid - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Diamond Grid: a daily baseball trivia game - name a player who fits both the team and the achievement.">
@@ -5944,6 +5983,9 @@ WHOAMI_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Guess The Legend - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Guess The Legend: a daily Hall of Fame trivia game - guess the legend from progressively easier clues.">
@@ -6113,6 +6155,9 @@ HOME_PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Daily MLB matchups, HR picks, and games - PlateDuel brings live baseball stats and daily games together.">

@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Weather Watch - MLB Matchup Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Wind and weather conditions for today's MLB games, and how they affect scoring.">
@@ -24,7 +27,7 @@
 </svg>
     <h1>Weather Watch</h1>
   </div>
-  <span class="date">Wednesday, August 26, 2026</span>
+  <span class="date">Thursday, August 27, 2026</span>
   <a class="header-link" href="/home/"><svg width="16" height="16" viewBox="0 0 100 100" class="brand-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
   <path d="M10 8 H50 V95 L10 50 Z" fill="#ff5266"/>
   <path d="M50 8 H90 V50 L50 95 Z" fill="#6bb3ff"/>
@@ -47,169 +50,81 @@
 </p>
 <main class="park-main">
   <div class="park-list" id="park-list">
-    <div class="park-card" style="--team-accent: #ab0003">
+    <div class="park-card" style="--team-accent: #002d72">
       <div class="park-rank">1</div>
       <div class="park-body">
         <div class="park-head">
-          <span class="park-name">COL @ WSH</span>
-          <span class="park-team">Nationals Park &middot; 6:45 PM ET</span>
+          <span class="park-name">MIL @ NYM</span>
+          <span class="park-team">Citi Field &middot; 7:10 PM ET</span>
         </div>
-        <p class="park-dims">Blowing out toward CF (30° off), 7 mph — favors hitters</p>
+        <p class="park-dims">Blowing out toward CF (30° off), 12 mph — favors hitters</p>
       </div>
-      <div class="park-factor factor-hitters"><span class="factor-value">7 mph</span><span class="factor-label">Favors Hitters</span></div>
+      <div class="park-factor factor-hitters"><span class="factor-value">12 mph</span><span class="factor-label">Favors Hitters</span></div>
     </div>
-    <div class="park-card" style="--team-accent: #27251f">
+    <div class="park-card" style="--team-accent: #ab0003">
       <div class="park-rank">2</div>
       <div class="park-body">
         <div class="park-head">
-          <span class="park-name">TEX @ CWS</span>
-          <span class="park-team">Rate Field &middot; 7:40 PM ET</span>
+          <span class="park-name">COL @ WSH</span>
+          <span class="park-team">Nationals Park &middot; 1:05 PM ET</span>
         </div>
-        <p class="park-dims">Crosswind (68° off), 15 mph — neutral effect</p>
+        <p class="park-dims">Blowing out toward CF (30° off), 8 mph — favors hitters</p>
       </div>
-      <div class="park-factor factor-neutral"><span class="factor-value">15 mph</span><span class="factor-label">Neutral</span></div>
+      <div class="park-factor factor-hitters"><span class="factor-value">8 mph</span><span class="factor-label">Favors Hitters</span></div>
     </div>
-    <div class="park-card" style="--team-accent: #0c2c56">
+    <div class="park-card" style="--team-accent: #134a8e">
       <div class="park-rank">3</div>
       <div class="park-body">
         <div class="park-head">
-          <span class="park-name">PHI @ SEA</span>
-          <span class="park-team">T-Mobile Park &middot; 4:10 PM ET</span>
+          <span class="park-name">KC @ TOR</span>
+          <span class="park-team">Rogers Centre &middot; 7:07 PM ET</span>
         </div>
-        <p class="park-dims">Blowing out toward CF (22° off), 6 mph — favors hitters</p>
+        <p class="park-dims">Blowing out toward CF (18° off), 7 mph — favors hitters</p>
       </div>
-      <div class="park-factor factor-hitters"><span class="factor-value">6 mph</span><span class="factor-label">Favors Hitters</span></div>
-    </div>
-    <div class="park-card" style="--team-accent: #2f241d">
-      <div class="park-rank">4</div>
-      <div class="park-body">
-        <div class="park-head">
-          <span class="park-name">PIT @ SD</span>
-          <span class="park-team">Petco Park &middot; 4:10 PM ET</span>
-        </div>
-        <p class="park-dims">Blowing out toward CF (0° off), 5 mph — favors hitters</p>
-      </div>
-      <div class="park-factor factor-hitters"><span class="factor-value">5 mph</span><span class="factor-label">Favors Hitters</span></div>
+      <div class="park-factor factor-hitters"><span class="factor-value">7 mph</span><span class="factor-label">Favors Hitters</span></div>
     </div>
     <div class="park-card" style="--team-accent: #0c2340">
-      <div class="park-rank">5</div>
+      <div class="park-rank">4</div>
       <div class="park-body">
         <div class="park-head">
           <span class="park-name">HOU @ NYY</span>
           <span class="park-team">Yankee Stadium &middot; 7:05 PM ET</span>
         </div>
-        <p class="park-dims">Blowing out toward CF (15° off), 5 mph — favors hitters</p>
+        <p class="park-dims">Crosswind (75° off), 10 mph — neutral effect</p>
       </div>
-      <div class="park-factor factor-hitters"><span class="factor-value">5 mph</span><span class="factor-label">Favors Hitters</span></div>
+      <div class="park-factor factor-neutral"><span class="factor-value">10 mph</span><span class="factor-label">Neutral</span></div>
+    </div>
+    <div class="park-card" style="--team-accent: #fd5a1e">
+      <div class="park-rank">5</div>
+      <div class="park-body">
+        <div class="park-head">
+          <span class="park-name">AZ @ SF</span>
+          <span class="park-team">Oracle Park &middot; 9:45 PM ET</span>
+        </div>
+        <p class="park-dims">Crosswind (112° off), 5 mph — neutral effect</p>
+      </div>
+      <div class="park-factor factor-neutral"><span class="factor-value">5 mph</span><span class="factor-label">Neutral</span></div>
     </div>
     <div class="park-card" style="--team-accent: #c41e3a">
       <div class="park-rank">6</div>
       <div class="park-body">
         <div class="park-head">
           <span class="park-name">BAL @ STL</span>
-          <span class="park-team">Busch Stadium &middot; 7:45 PM ET</span>
+          <span class="park-team">Busch Stadium &middot; 2:15 PM ET</span>
         </div>
-        <p class="park-dims">Blowing out toward CF (15° off), 5 mph — favors hitters</p>
-      </div>
-      <div class="park-factor factor-hitters"><span class="factor-value">5 mph</span><span class="factor-label">Favors Hitters</span></div>
-    </div>
-    <div class="park-card" style="--team-accent: #ba0021">
-      <div class="park-rank">7</div>
-      <div class="park-body">
-        <div class="park-head">
-          <span class="park-name">CLE @ LAA</span>
-          <span class="park-team">Angel Stadium &middot; 4:07 PM ET</span>
-        </div>
-        <p class="park-dims">Blowing out toward CF (45° off), 5 mph — favors hitters</p>
-      </div>
-      <div class="park-factor factor-hitters"><span class="factor-value">5 mph</span><span class="factor-label">Favors Hitters</span></div>
-    </div>
-    <div class="park-card" style="--team-accent: #00a3e0">
-      <div class="park-rank">8</div>
-      <div class="park-body">
-        <div class="park-head">
-          <span class="park-name">BOS @ MIA</span>
-          <span class="park-team">loanDepot park &middot; 6:40 PM ET</span>
-        </div>
-        <p class="park-dims">Crosswind (75° off), 8 mph — neutral effect</p>
-      </div>
-      <div class="park-factor factor-neutral"><span class="factor-value">8 mph</span><span class="factor-label">Neutral</span></div>
-    </div>
-    <div class="park-card" style="--team-accent: #a71930">
-      <div class="park-rank">9</div>
-      <div class="park-body">
-        <div class="park-head">
-          <span class="park-name">CHC @ AZ</span>
-          <span class="park-team">Chase Field &middot; 3:40 PM ET</span>
-        </div>
-        <p class="park-dims">Crosswind (68° off), 5 mph — neutral effect</p>
+        <p class="park-dims">Crosswind (120° off), 5 mph — neutral effect</p>
       </div>
       <div class="park-factor factor-neutral"><span class="factor-value">5 mph</span><span class="factor-label">Neutral</span></div>
-    </div>
-    <div class="park-card" style="--team-accent: #134a8e">
-      <div class="park-rank">10</div>
-      <div class="park-body">
-        <div class="park-head">
-          <span class="park-name">KC @ TOR</span>
-          <span class="park-team">Rogers Centre &middot; 7:07 PM ET</span>
-        </div>
-        <p class="park-dims">Crosswind (81° off), 5 mph — neutral effect</p>
-      </div>
-      <div class="park-factor factor-neutral"><span class="factor-value">5 mph</span><span class="factor-label">Neutral</span></div>
-    </div>
-    <div class="park-card" style="--team-accent: #ce1141">
-      <div class="park-rank">11</div>
-      <div class="park-body">
-        <div class="park-head">
-          <span class="park-name">LAD @ ATL</span>
-          <span class="park-team">Truist Park &middot; 7:15 PM ET</span>
-        </div>
-        <p class="park-dims">Blowing in from CF (180° off), 5 mph — favors pitchers</p>
-      </div>
-      <div class="park-factor factor-pitchers"><span class="factor-value">5 mph</span><span class="factor-label">Favors Pitchers</span></div>
-    </div>
-    <div class="park-card" style="--team-accent: #0c2340">
-      <div class="park-rank">12</div>
-      <div class="park-body">
-        <div class="park-head">
-          <span class="park-name">TB @ DET</span>
-          <span class="park-team">Comerica Park &middot; 1:10 PM ET</span>
-        </div>
-        <p class="park-dims">Crosswind (128° off), 10 mph — neutral effect</p>
-      </div>
-      <div class="park-factor factor-neutral"><span class="factor-value">10 mph</span><span class="factor-label">Neutral</span></div>
     </div>
   </div>
   <h2 class="section-label">Indoor / No Forecast</h2>
   <div class="park-list">
-    <div class="park-card" style="--team-accent: #fd5a1e">
+    <div class="park-card" style="--team-accent: #ce1141">
       
       <div class="park-body">
         <div class="park-head">
-          <span class="park-name">CIN @ SF</span>
-          <span class="park-team">Oracle Park &middot; 3:45 PM ET</span>
-        </div>
-        <p class="park-dims">Calm (3 mph) — negligible effect</p>
-      </div>
-      
-    </div>
-    <div class="park-card" style="--team-accent: #002d72">
-      
-      <div class="park-body">
-        <div class="park-head">
-          <span class="park-name">MIL @ NYM</span>
-          <span class="park-team">Citi Field &middot; 7:10 PM ET</span>
-        </div>
-        <p class="park-dims">Calm (3 mph) — negligible effect</p>
-      </div>
-      
-    </div>
-    <div class="park-card" style="--team-accent: #003831">
-      
-      <div class="park-body">
-        <div class="park-head">
-          <span class="park-name">MIN @ ATH</span>
-          <span class="park-team">Sutter Health Park &middot; 9:05 PM ET</span>
+          <span class="park-name">LAD @ ATL</span>
+          <span class="park-team">Truist Park &middot; 7:15 PM ET</span>
         </div>
         <p class="park-dims">Calm (2 mph) — negligible effect</p>
       </div>
